@@ -1,0 +1,67 @@
+	#categories
+{
+	position:fixed;
+	margin-left:90px;
+}
+
+#containedPage
+{
+	background-color:white;
+	float:right;
+}
+
+#customerMenu .fa
+{
+	margin-right: 10px;
+}
+
+#customerMenu .dropdown-menu
+{
+	margin-top: 20px;
+}
+
+#customerMenu .divider
+{
+	margin-bottom: -5px;
+}
+
+#customerContainer
+{
+	position: relative;
+    bottom: 55px;
+    margin-bottom: -60px;
+    height: 30px;
+    margin-right: 50px;
+    color:#969696;
+}
+
+#customerContainer .btn a
+{
+	text-decoration: none;
+	color:black;
+	/*float:right;*/
+}
+
+#customerContainer .fa-user
+{
+	color:#969696;
+}
+
+#customerContainer .dropdown-menu
+{
+/*	margin-top:32px;
+*/}
+
+#connexionButtonDiv
+{
+	position: relative;
+    bottom: 15px;
+    right: 100px;
+    height: 30px;
+}
+
+#connexionButtonDiv #connexionButton
+{
+	position: relative;
+    top: 13px
+}
