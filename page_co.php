@@ -9,6 +9,6 @@
 		</form>
 
 		<a href="#">Mot de passe oublié ?</a><br>
-		<a href="accueil.php?page=ajoutClient">Vous n'avez pas encore de compte ?</a>
+		<a href="index.php?page=ajoutClient">Vous n'avez pas encore de compte ?</a>
 	</div>
 </div>
