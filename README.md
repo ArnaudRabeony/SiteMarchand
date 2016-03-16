@@ -1,15 +1,15 @@
 # SiteMarchand
 
 ## TODO : 
-* Ajouter client dans bd
-* Créer utilisateur admin
-* Tester la connexion/déconnexion
-* Tester menu custom 
+* Add customers in DB
+* Create admin account
+* Test co/deco
+* Check custom menu
 
-## Changes :
+### Changes :
 * Collapse Side Menu
 * Heading menu
 * welcomePage
 
-## JS Evo :
+### JS Evo :
 * Collapse Side Menu : mouseover addClass("in")
