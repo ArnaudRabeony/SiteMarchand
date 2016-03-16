@@ -8,7 +8,7 @@
     include('fonctions.php');
     protectPostGet();
 
-    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "welcome";
+    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +108,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+    
+    <!-- Custom JS -->
+    <script src="js/global.js"></script>
 </body>
 
 </html>

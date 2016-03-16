@@ -1,14 +1,14 @@
-<div id="connectionContainer">
-	<div id="connectionContent">
-		Saisissez vos identifiants <br>
+<div id="connectionContainer" class="col-md-offset-2">
+	<div id="connectionContent" class="row">
+		<h3><small>Saisissez vos identifiants</small></h3>
 
-		<form action="#" method="post">
-			<label for="email">email </label><input id="email" type="text"><br>
-			<label for="password">Mot de passe </label><input id="password" type="password"><br><br>
-			<button class="btn btn-default" type="submit">Connexion</button>
+		<form action="#" method="post" class="col-md-5 col-sm-3">
+		    <input type="email" class="form-control" id="email" placeholder="exemple@mail.com">
+		    <input type="password" class="form-control" id="password" placeholder="Mot de passe">	
+		   	<button class="btn btn-default" type="submit">Connexion</button>
 		</form>
-
-		<a href="#">Mot de passe oublié ?</a><br>
-		<a href="index.php?page=ajoutClient">Vous n'avez pas encore de compte ?</a>
 	</div>
+<br>
+		<a href="#">Mot de passe oublié ?</a><br>
+		<a href="index.php?page=creationCompte">Vous n'avez pas encore de compte ?</a>
 </div>

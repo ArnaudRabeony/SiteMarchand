@@ -15,4 +15,20 @@ function htmlentitiesArray (&$tab) {
 	}
 }
 
+function isExisting($page)
+{
+	$pagesArray=array(
+				 "connexion",
+				 "football",
+				 "gestionClients",
+				 "page_co",
+				 "page_deco",
+				 "welcome",
+				 "creationCompte",
+				 "creationCompte",
+				);
+
+	return in_array($page,$pagesArray);
+}
+
  ?>

@@ -33,27 +33,15 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                     <li>
                         <a href="#">Promotions</a>
                     </li>
-                    <!-- <li style="margin-left: 150px">
-                        <a href="#">Connexion</a>
-                    </li> -->
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        <!-- /.container -->
-        </div>
-        
-        <div id="customerContainer" class="navbar-text navbar-right col-xm-2 col-sm-2 col-md-2" style="">
-            
+                <ul class="nav navbar-nav navbar-right">
+                              
         <?php 
 
                 
         if($connected)
         {   
-            echo '<div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="customerMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-user"></i>Prénom N.
-                    <span class="caret"></span>
-                </button>';
+            echo '<li class="dropdown-toggle" data-toggle="dropdown"><a><span class="glyphicon glyphicon-user"></span>';
 
             if($isAdmin)
             {
@@ -62,37 +50,40 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                  * gestion des utilisateurs : liste/modification/suppression des utilisateurs
                  */
 
-                echo '<ul class="dropdown-menu">
+                echo 'Prénom N. (Admin) <span class="caret"></span></a></li>
+                <ul class="dropdown-menu">
                     <li><a href="#">Gestion des produits</a></li>
                     <li><a href="#">Gestion des utilisateurs</a></li>
-                    <div class="divider"></div>
-                    <li><a href="index.php?page=page_deco">Se déconnecter</a></li>
+                    <li><a href="index.php?page=page_deco"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>
-                </div>';
+                </div>
+                </li>';
             }
             else
             {
-                echo '<ul class="dropdown-menu">
+                echo 'Prénom N. <span class="caret"></span></a></li>
+                <ul class="dropdown-menu">
                     <li><a href="#">Mon compte</a></li>
                     <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>
                     <li><a href="#">Mon panier</li>
-                    <div class="divider"></div>
-                    <li><a href="index.php?page=page_deco">Se déconnecter</a></li>
+                    <li><a href="index.php?page=page_deco"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>
-                </div>';
+                </div>
+                </li>';
             }                    
         }
         else
         {
             echo '
-            <div id="connexionButtonDiv" class="nav navbar-right col-xm-2 col-sm-2 col-md-2">
-                <button id="connexionButton" class="btn btn-default"><a href="index.php?page=page_co">Connexion</a></button>
-            </div>
-            </div>';
+              <li><a href="index.php?page=page_co"><span class="glyphicon glyphicon-user"></span> Connexion</a></li>';
         }
 
         ?>
-        
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        <!-- /.container -->
+        </div>
     </nav>
