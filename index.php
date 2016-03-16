@@ -8,7 +8,7 @@
     include('fonctions.php');
     protectPostGet();
 
-    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "football";
+    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "welcome";
 ?>
 
 <!DOCTYPE html>
@@ -47,11 +47,36 @@
     <?php include('menu.php'); ?>
     <div id="categories" class="col-md-2">
         <p class="lead">Shop Name</p>
-        <div class="list-group">
-            <a href="index.php?page=football" class="list-group-item">Football</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
-        </div>
+            <div class="panel-group" id="collectives">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapseCollectives">Sports collectifs</a>
+                  </h4>
+                </div>
+                <div id="collapseCollectives" class="panel-collapse collapse">
+                  <ul class="list-group">
+                    <li class="list-group-item"><a href="index.php?page=football"style="padding: 0px 0px">Football</a></li>
+                    <li class="list-group-item"><a href="#">Basketball</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group" id="individuals">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapseIndividuals">Sports individuels</a>
+                  </h4>
+                </div>
+                <div id="collapseIndividuals" class="panel-collapse collapse">
+                  <ul class="list-group">
+                    <li class="list-group-item"><a href="#">Judo</a></li>
+                    <li class="list-group-item"><a href="#">Boxe</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
     </div>   
     <!-- Page Content -->
     <div class="container">

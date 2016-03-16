@@ -65,3 +65,26 @@
 	position: relative;
     top: 13px
 }
+
+#categories .panel-group
+{
+	margin-bottom: 1px;
+}
+
+#collapseCollectives li, #collapseIndividuals li
+{
+	font-size: 11px;
+}
+
+.panel-title a
+{
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.list-group a
+{
+	text-decoration: none;
+	font-size: 11px;
+	color: black;
+}

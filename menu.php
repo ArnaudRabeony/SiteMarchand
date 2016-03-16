@@ -25,14 +25,17 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="#">Nouveautés</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Meilleures ventes</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">Promotions</a>
                     </li>
+                    <!-- <li style="margin-left: 150px">
+                        <a href="#">Connexion</a>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
