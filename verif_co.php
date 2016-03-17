@@ -1,12 +1,19 @@
 <?php 
 
-	$mail=$_POST['email'];
-	$password=$_POST['password'];
+	if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['password']) &&!empty($_POST['password']) )
+	{
+		$mail=$_POST['email'];
+		$password=$_POST['password'];
 
-	if(tryCustomerConnexion($db,$mail,$password))
-		echo "connecté";
-	else
-		echo "déco";
+		if(customerConnexion($db,$mail,$password))
+		{
+			setSession($db,$mail);	
+			header('location: index.php');
+		}	
+		else//display error message
+			header('location: index.php?page=page_co');
+	}
 
-	// header('Location: index.php');
+	header('location: index.php');
+
 ?>

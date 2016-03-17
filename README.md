@@ -1,15 +1,18 @@
 # SiteMarchand
 
-## TODO : 
-* Add customers in DB
-* Create admin account
-* Test co/deco
-* Check custom menu
+## TODO :
+* Manage header redirect (connection failure) 
+* Insert customers
+---- ADMIN
+* Display users
 
 ### Changes :
 * Collapse Side Menu
 * Heading menu
 * welcomePage
 
-### JS Evo :
-* Collapse Side Menu : mouseover addClass("in")
+#### Done
+* Test co/deco
+* Create admin account
+* Check custom menu
+* Add customers in DB (pma)

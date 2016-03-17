@@ -1,7 +1,6 @@
 <?php 
-
+    ob_start();
     session_start();
-
     //Info site
     $title = 'Site marchand';
     require_once("connexion.php");
@@ -9,6 +8,7 @@
     protectPostGet();
 
     $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";
+    // $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "welcome";
 ?>
 
 <!DOCTYPE html>
@@ -44,44 +44,12 @@
 </head>
 
 <body>
-    <?php include('menu.php'); ?>
-    <div id="categories" class="col-md-2">
-        <p class="lead">Shop Name</p>
-            <div class="panel-group" id="collectives">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapseCollectives">Sports collectifs</a>
-                  </h4>
-                </div>
-                <div id="collapseCollectives" class="panel-collapse collapse">
-                  <ul class="list-group">
-                    <li class="list-group-item"><a href="index.php?page=football"style="padding: 0px 0px">Football</a></li>
-                    <li class="list-group-item"><a href="#">Basketball</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="panel-group" id="individuals">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapseIndividuals">Sports individuels</a>
-                  </h4>
-                </div>
-                <div id="collapseIndividuals" class="panel-collapse collapse">
-                  <ul class="list-group">
-                    <li class="list-group-item"><a href="#">Judo</a></li>
-                    <li class="list-group-item"><a href="#">Boxe</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    </div>   
+    <?php include('menu.php'); ?> 
     <!-- Page Content -->
     <div class="container">
             <div id="containedPage" class="col-md-9">
-                <?php include($containedPage.'.php'); ?>
+                <?php include($containedPage.'.php');
+                ob_end_flush() ?> 
             </div>
 
         </div>

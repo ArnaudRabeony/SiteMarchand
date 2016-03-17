@@ -25,7 +25,7 @@ function isExisting($page)
 				 "page_deco",
 				 "welcome",
 				 "creationCompte",
-				 "creationCompte",
+				 "verif_co",
 				);
 
 	return in_array($page,$pagesArray);
@@ -46,7 +46,7 @@ function displayCustomers($db)
 		echo 'Nom : '.$res['nom'];
 }
 
-function tryCustomerConnexion($db,$mail,$password)
+function customerConnexion($db,$mail,$password)
 {
 	$req=$db->prepare('select * from client where email=:mail && mdp=:password');
 	$req->bindValue(':mail',$mail);
@@ -57,4 +57,30 @@ function tryCustomerConnexion($db,$mail,$password)
 	return $res==1 ? true : false;
 }
 
- ?>
+function isAdmin($db,$mail)
+{
+	$req=$db->prepare('select type from client where email=:mail');
+	$req->bindValue(':mail',$mail);
+	$req->execute();
+	$res=$req->fetch(PDO::FETCH_NUM);
+
+	return $res[0]=="admin" ? true : false;
+}
+
+function setSession($db,$mail)
+{
+	$req=$db->prepare('select * from client where email=:mail');
+	$req->bindValue(':mail',$mail);
+	$req->execute();
+	$res=$req->fetch(PDO::FETCH_ASSOC);
+
+	$_SESSION['id']=$res['idClient'];
+	$_SESSION['type']=$res['type'];
+	$_SESSION['email']=$mail;
+	$_SESSION['nom']=$res['nom'];
+	$_SESSION['prenom']=$res['prenom'];
+}
+
+
+
+?>

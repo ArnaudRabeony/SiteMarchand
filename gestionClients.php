@@ -4,16 +4,20 @@
 require_once('connexion.php');
 require_once('fonctions.php');
 
-	$email= isset($_GET['email']) && trim($_GET['email'])!="" ? $_GET['email'] : NULL;
-	$firstname= isset($_GET['firstname']) && trim($_GET['firstname'])!="" ? $_GET['firstname'] : NULL;
-	$lastname= isset($_GET['lastname']) && trim($_GET['lastname'])!="" ? $_GET['lastname'] : NULL;
-	$password= isset($_GET['password']) && trim($_GET['password'])!="" ? $_GET['password'] : NULL;
-	$address= isset($_GET['address']) && trim($_GET['address'])!="" ? $_GET['address'] : NULL;
-	$phone= isset($_GET['phone']) && trim($_GET['phone'])!="" ? $_GET['phone'] : NULL;
+if(isset($_POST['email']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['password']) && isset($_POST['address']) && isset($_POST['phone']))
+{
+	$email= trim($_POST['email'])!="" ? $_POST['email'] : "undefined";
+	$firstname=trim($_POST['firstname'])!="" ? $_POST['firstname'] :"undefined";
+	$lastname=trim($_POST['lastname'])!="" ? $_POST['lastname'] : "undefined";
+	$password= trim($_POST['password'])!="" ? $_POST['password'] : "undefined";
+	$address=trim($_POST['address'])!="" ? $_POST['address'] : "undefined";
+	$phone=trim($_POST['phone'])!="" ? $_POST['phone'] : "undefined";
+
+	addCustomer($db,$_POST['email'],$_POST['lastname'],$_POST['firstname'],$_POST['password'],$_POST['address'],$_POST['phone']);	
+}	
 
 	
 
-	// addCustomer($db,$_POST['email'],$_POST['lastname'],$_POST['firstname'],$_POST['password'],$_POST['address'],$_POST['phone']);
 
 // echo 'Ajout bd';
 
@@ -28,7 +32,7 @@ require_once('fonctions.php');
 // 	'phone'=>$phone,
 // 	));
 	
-displayCustomers($db);
+// displayCustomers($db);
 
  ?>
 
