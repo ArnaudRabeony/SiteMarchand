@@ -11,4 +11,8 @@ $(document).ready(function()
 			$(this).find("img").css({ opacity: 1 });
 			$(this).find("p").hide();
 		});
+
+
+	// $('#createAccoundContent form').validator();
+
 });
