@@ -3,12 +3,12 @@
     session_start();
     //Info site
     $title = 'Site marchand';
-    require_once("connexion.php");
+    require_once("connection.php");
     include('fonctions.php');
     protectPostGet();
 
-    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";
-    // $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "welcome";
+    // $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";
+    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "welcome";
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +48,7 @@
     <!-- Page Content -->
     <div class="container">
             <div id="containedPage" class="col-md-9">
-                <?php include($containedPage.'.php');
+                <?php include($containedPage.'.php');   
                 ob_end_flush() ?> 
             </div>
 

@@ -1,5 +1,5 @@
 <?php 
-require_once('connexion.php');
+require_once('connection.php');
 // Permet d'appliquer htmlentities() à toutes les variables $_POST et $_GET
 function protectPostGet() {
 	htmlentitiesArray($_POST);
@@ -18,23 +18,33 @@ function htmlentitiesArray (&$tab) {
 function isExisting($page)
 {
 	$pagesArray=array(
-				 "connexion",
-				 "football",
-				 "gestionClients",
-				 "page_co",
-				 "page_deco",
+				 "connection",
+				 "soccer",
+				 "customersManagement",
+				 "co_page",
+				 "deco_page",
 				 "welcome",
-				 "creationCompte",
-				 "verif_co",
+				 "createAccount",
+				 "check_co",
 				);
 
 	return in_array($page,$pagesArray);
 }
 
+
 function addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone)
 {
-	$req=$db->prepare("INSERT INTO client(type, email, nom, prenom, mdp, adresse, telephone) values(?,?,?,?,?,?,?)");
-	$req->execute(array("client",$email,$lastname,$firstname,$password,$address,$phone));
+	$req=$db->prepare('insert into client(email, nom, prenom, mdp, adresse, telephone) values(:mail,:lastname,:firstname,:password,:address,:phone)');
+	$req->bindValue(':mail',$email);
+	$req->bindValue(':lastname',$lastname);
+	$req->bindValue(':firstname',$firstname);
+	$req->bindValue(':password',$password);
+	$req->bindValue(':address',$address);
+	$req->bindValue(':phone',$phone);
+	$req->execute();
+
+	//check if the insert is ok
+	return mailExists($db,$email);
 }
 
 function displayCustomers($db)
@@ -46,11 +56,21 @@ function displayCustomers($db)
 		echo 'Nom : '.$res['nom'];
 }
 
-function customerConnexion($db,$mail,$password)
+function customerConnection($db,$mail,$password)
 {
 	$req=$db->prepare('select * from client where email=:mail && mdp=:password');
 	$req->bindValue(':mail',$mail);
 	$req->bindValue(':password',$password);
+	$req->execute();
+	$res=$req->rowCount();
+
+	return $res==1 ? true : false;
+}
+
+function mailExists($db,$mail)
+{
+	$req=$db->prepare('select * from client where email=:mail');
+	$req->bindValue(':mail',$mail);
 	$req->execute();
 	$res=$req->rowCount();
 
