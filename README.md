@@ -20,9 +20,9 @@
 
 # MVC Architecture
 * Controller
-** Pages which contain redirections 
-** Forms managers
+	* Pages which contain redirections 
+	* Forms managers
 * Model
-** DB access functions
+	* DB access functions
 * View 
-** Display
+	* Display
