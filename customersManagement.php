@@ -13,19 +13,17 @@ if(isset($_POST['email']) && isset($_POST['firstname']) && isset($_POST['lastnam
 		$address=$_POST['address'];
 		$phone=$_POST['phone'];
 
+		$encryptedPassword = password_hash($password,PASSWORD_BCRYPT) ;
+
 		if(mailExists($db,$email))
 			header('location: index.php?page=createAccount&&error=true&&errortype=usedEmail&&firstname='.$firstname.'&&lastname='.$lastname.'&&address='.$address.'&&phone='.$phone);
 			
-		if(addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone))
+		if(addCustomer($db,$email,$lastname,$firstname,$encryptedPassword,$address,$phone))
 		{
 			//Auto connection
-			if(customerConnection($db,$email,$password))
-			{
-				echo "connecté";
-				setSession($db,$email);	
-				print_r($_SESSION);
-				header('location: index.php');
-			}
+			setSession($db,$email);	
+			print_r($_SESSION);
+			header('location: index.php');
 		}
 		else
 			header('location: index.php?page=createAccount&&error=true&&errortype=insert');

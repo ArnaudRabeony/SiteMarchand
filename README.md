@@ -2,11 +2,13 @@
 
 # BUG
 * [Resolved] Create an account : mail already exists isn't taken into account
+* Auto connection after account creation
 
 ## TODO :
 * Display users (for admin accounts)
 
 #### Done
+* Encrypted password
 * Test co/deco
 * Create admin account
 * Check custom menu

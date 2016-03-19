@@ -58,13 +58,12 @@ function displayCustomers($db)
 
 function customerConnection($db,$mail,$password)
 {
-	$req=$db->prepare('select * from client where email=:mail && mdp=:password');
+	$req=$db->prepare('select mdp from client where email=:mail');
 	$req->bindValue(':mail',$mail);
-	$req->bindValue(':password',$password);
 	$req->execute();
-	$res=$req->rowCount();
+	$res=$req->fetch(PDO::FETCH_NUM);
 
-	return $res==1 ? true : false;
+	return password_verify($password, $res[0]);
 }
 
 function mailExists($db,$mail)
