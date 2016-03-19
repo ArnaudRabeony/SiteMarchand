@@ -1,11 +1,10 @@
 <?php 
-
-
+// echo "session :";
+// print_r($_SESSION);
 $connected = isset($_SESSION['id']) ? true : false;
 $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false;
 // $connected=true;
 // $isAdmin=true;
-
  ?>
 
 <!-- Navigation -->
@@ -50,7 +49,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                  * gestion des utilisateurs : liste/modification/suppression des utilisateurs
                  */
 
-                echo 'Prénom N. (Admin) <span class="caret"></span></a></li>
+                echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname'].'(Admin) <span class="caret"></span></a></li>
                 <ul class="dropdown-menu">
                     <li><a href="#">Gestion des produits</a></li>
                     <li><a href="#">Gestion des utilisateurs</a></li>
@@ -62,7 +61,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
             }
             else
             {
-                echo 'Prénom N. <span class="caret"></span></a></li>
+                echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname'].'<span class="caret"></span></a></li>
                 <ul class="dropdown-menu">
                     <li><a href="#">Mon compte</a></li>
                     <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>

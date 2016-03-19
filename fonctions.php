@@ -69,12 +69,13 @@ function customerConnection($db,$mail,$password)
 
 function mailExists($db,$mail)
 {
+	// echo "recherche du mail".$mail;
 	$req=$db->prepare('select * from client where email=:mail');
 	$req->bindValue(':mail',$mail);
 	$req->execute();
 	$res=$req->rowCount();
 
-	return $res==1 ? true : false;
+	return $res!=0 ? true : false;
 }
 
 function isAdmin($db,$mail)
@@ -97,8 +98,8 @@ function setSession($db,$mail)
 	$_SESSION['id']=$res['idClient'];
 	$_SESSION['type']=$res['type'];
 	$_SESSION['email']=$mail;
-	$_SESSION['nom']=$res['nom'];
-	$_SESSION['prenom']=$res['prenom'];
+	$_SESSION['lastname']=$res['nom'];
+	$_SESSION['firstname']=$res['prenom'];
 }
 
 

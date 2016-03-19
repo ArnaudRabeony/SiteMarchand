@@ -14,17 +14,22 @@ if(isset($_POST['email']) && isset($_POST['firstname']) && isset($_POST['lastnam
 		$phone=$_POST['phone'];
 
 		if(mailExists($db,$email))
-			header('location: index.php?page=createAccount&&error=true&&errortype=usedEmail');
+			header('location: index.php?page=createAccount&&error=true&&errortype=usedEmail&&firstname='.$firstname.'&&lastname='.$lastname.'&&address='.$address.'&&phone='.$phone);
 			
 		if(addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone))
 		{
-			setSession($db,$email);		
-			header('location: index.php');
+			//Auto connection
+			if(customerConnection($db,$email,$password))
+			{
+				echo "connecté";
+				setSession($db,$email);	
+				print_r($_SESSION);
+				header('location: index.php');
+			}
 		}
 		else
 			header('location: index.php?page=createAccount&&error=true&&errortype=insert');
 		
-
 	}
 }
 ?>

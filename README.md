@@ -1,7 +1,7 @@
 # SiteMarchand
 
 # BUG
-* Create an account : mail already exists isn't taken into account
+* [Resolved] Create an account : mail already exists isn't taken into account
 
 ## TODO :
 * Display users (for admin accounts)
