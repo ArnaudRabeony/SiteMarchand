@@ -19,4 +19,3 @@
 		else
 			header('location: index.php?page=co_page&&error=true&&errortype=existed');	
 	}
-?>

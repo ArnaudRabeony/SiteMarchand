@@ -1,35 +1,5 @@
 <?php 
 require_once('connection.php');
-// Permet d'appliquer htmlentities() à toutes les variables $_POST et $_GET
-function protectPostGet() {
-	htmlentitiesArray($_POST);
-	htmlentitiesArray($_GET);
-}
-
-function htmlentitiesArray (&$tab) {
-	foreach($tab as $cle => &$value) {
-		if (is_array($value))
-			htmlentitiesArray($value);
-		else
-			$value = htmlentities($value);
-	}
-}
-
-function isExisting($page)
-{
-	$pagesArray=array(
-				 "connection",
-				 "soccer",
-				 "customersManagement",
-				 "co_page",
-				 "deco_page",
-				 "welcome",
-				 "createAccount",
-				 "check_co",
-				);
-
-	return in_array($page,$pagesArray);
-}
 
 
 function addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone)
@@ -100,7 +70,3 @@ function setSession($db,$mail)
 	$_SESSION['lastname']=$res['nom'];
 	$_SESSION['firstname']=$res['prenom'];
 }
-
-
-
-?>

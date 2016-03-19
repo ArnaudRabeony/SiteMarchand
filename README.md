@@ -17,3 +17,12 @@
 * DB form Validation
 * Manage header redirect (connection failure) 
 * Insert customers
+
+# MVC Architecture
+* Controller
+** Pages which contain redirections 
+** Forms managers
+* Model
+** DB access functions
+* View 
+** Display

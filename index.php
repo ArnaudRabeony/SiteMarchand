@@ -3,12 +3,13 @@
     session_start();
     //Info site
     $title = 'Site marchand';
-    require_once("connection.php");
-    include('fonctions.php');
+    require_once("Model/connection.php");
+    include('Model/functions.php');
+    include('Model/sql_functions.php');
     protectPostGet();
 
     // $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";
-    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "welcome";
+    $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "View/welcome";
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@
 </head>
 
 <body>
-    <?php include('menu.php'); ?> 
+    <?php include('View/menu.php'); ?> 
     <!-- Page Content -->
     <div class="container">
             <div id="containedPage" class="col-md-9">
