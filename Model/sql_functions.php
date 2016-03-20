@@ -19,11 +19,51 @@ function addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone)
 
 function displayCustomers($db)
 {
+
+	$head="<thead>
+		<tr>
+			<th>Type</th>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Mail</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>";
+
+	$cptr=0;
 	$req=$db->prepare('select * from client');
 	$req->execute();
+	
+	$body='<tbody>';
 
 	while($res=$req->fetch(PDO::FETCH_ASSOC))
-		echo 'Nom : '.$res['nom'];
+	{
+		$initWithClient = $res['type']=="client" ? "selected" : "";
+		$initWithAdmin = $res['type']=="admin" ? "selected" : "";
+
+		$lineNumber=$cptr++;
+		$body.='<tr id="row'.$lineNumber.'">
+		<td>
+		<select disabled class="form-control" id="selectType">
+		    <option '.$initWithAdmin.' >admin</option>
+		    <option '.$initWithClient.' >client</option>
+		</select></td>
+	<td><input disabled class="form-control" type="text" value="'.$res['nom'].'"</td>
+	<td><input disabled class="form-control" type="text" value="'.$res['prenom'].'"</td>
+	<td><input disabled class="form-control" type="text" value="'.$res['email'].'"</td>
+	<td><button class="editButton btn btn-default btn-sm">Éditer</button></td>
+	<td><button class="deleteButton btn btn-default btn-sm">Supprimer</button></td>
+
+	</tr>';
+	}
+	
+
+	$tableContent=$head.$body.'</tbody>';
+
+	return $tableContent;
+	// while($res=$req->fetch(PDO::FETCH_ASSOC))
+	// 	echo 'Nom : '.$res['nom'];
 }
 
 function customerConnection($db,$mail,$password)

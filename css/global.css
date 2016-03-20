@@ -161,3 +161,7 @@ ul.dropdown-menu
     margin-top: 0px;
 }
 
+#customersTable td
+{
+	font-size: small;
+}

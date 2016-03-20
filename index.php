@@ -48,7 +48,7 @@
     <?php include('View/menu.php'); ?> 
     <!-- Page Content -->
     <div class="container">
-            <div id="containedPage" class="col-md-9">
+            <div id="containedPage" class="col-md-10">
                 <?php include($containedPage.'.php');   
                 ob_end_flush() ?> 
             </div>
