@@ -11,31 +11,9 @@
 		<table class="table table-hover table-condensed" id="customersTable">
 			<?php echo displayCustomers($db);?>
 		</table>
-		<button id="saveButton" class="btn btn-default btn-sm" style="float:right">Sauvegarder</button>
+		<button id="saveButton" class="btn btn-default btn-sm" style="float:right" novalidate>Sauvegarder</button>
 	</div>
 </div>
 
 <script src="js/jquery.js"></script>
 <script src="js/displayCustomers.js"></script>
-<script>
-	$(document).ready(function()
-	{
-		$('.editButton').on("click",function()
-		{
-			$row=$(this).parent().parent();
-			$row.find('input, select').each(function()
-				{
-					$(this).attr("disabled",false);
-				});
-		});
-
-		$('#saveButton').on("click",function()
-		{
-			$('#customersTable').find('input, select').each(function()
-				{
-					$(this).attr("disabled",true);
-				});
-		});
-
-	});
-</script>

@@ -161,7 +161,8 @@ ul.dropdown-menu
     margin-top: 0px;
 }
 
-#customersTable td
+#customersTable td,#customersTable input,#customersTable select
 {
 	font-size: small;
 }
+

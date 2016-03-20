@@ -43,7 +43,7 @@ function displayCustomers($db)
 		$initWithAdmin = $res['type']=="admin" ? "selected" : "";
 
 		$lineNumber=$cptr++;
-		$body.='<tr id="row'.$lineNumber.'">
+		$body.='<tr id="row'.$lineNumber.'" class="editRow" style="display:none">
 		<td>
 		<select disabled class="form-control" id="selectType">
 		    <option '.$initWithAdmin.' >admin</option>
@@ -55,6 +55,14 @@ function displayCustomers($db)
 	<td><button class="editButton btn btn-default btn-sm">Éditer</button></td>
 	<td><button class="deleteButton btn btn-default btn-sm">Supprimer</button></td>
 
+	</tr>
+	<tr id="row'.$lineNumber.'" class="displayRow">
+		<td>'.$res['type'].'</td>
+	<td>'.$res['nom'].'</td>
+	<td>'.$res['prenom'].'</td>
+	<td>'.$res['email'].'</td>
+	<td><button class="editButton btn btn-default btn-sm">Éditer</button></td>
+	<td><button class="deleteButton btn btn-default btn-sm">Supprimer</button></td>
 	</tr>';
 	}
 	
