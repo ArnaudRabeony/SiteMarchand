@@ -17,10 +17,10 @@ function addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone)
 	return mailExists($db,$email);
 }
 
-function displayCustomers($db)
+function displayCustomers($db,$id)
 {
 
-	$head="<thead>
+	$head="<thead class='thead-default'>
 		<tr>
 			<th>Type</th>
 			<th>Nom</th>
@@ -31,8 +31,8 @@ function displayCustomers($db)
 		</tr>
 	</thead>";
 
-	$cptr=0;
-	$req=$db->prepare('select * from client');
+	$req=$db->prepare('select * from client where idClient!=:id');
+	$req->bindValue(":id",$id);
 	$req->execute();
 	
 	$body='<tbody>';
@@ -42,21 +42,19 @@ function displayCustomers($db)
 		$initWithClient = $res['type']=="client" ? "selected" : "";
 		$initWithAdmin = $res['type']=="admin" ? "selected" : "";
 
-		$lineNumber=$cptr++;
-		$body.='<tr id="row'.$lineNumber.'" class="editRow" style="display:none">
+		$body.='<tr id="row'.$res['idClient'].'" class="editRow" style="display:none">
 		<td>
 		<select disabled class="form-control" id="selectType">
-		    <option '.$initWithAdmin.' >admin</option>
-		    <option '.$initWithClient.' >client</option>
+		    <option value="admin"'.$initWithAdmin.' >admin</option>
+		    <option value="client"'.$initWithClient.' >client</option>
 		</select></td>
-	<td><input disabled class="form-control" type="text" value="'.$res['nom'].'"</td>
-	<td><input disabled class="form-control" type="text" value="'.$res['prenom'].'"</td>
-	<td><input disabled class="form-control" type="text" value="'.$res['email'].'"</td>
-	<td><button class="editButton btn btn-default btn-sm">Éditer</button></td>
+	<td><input id="newLastname" disabled class="form-control" type="text" value="'.$res['nom'].'"</td>
+	<td><input id="newFirstname" disabled class="form-control" type="text" value="'.$res['prenom'].'"</td>
+	<td><input id="newEmail" disabled class="form-control" type="email" value="'.$res['email'].'"</td>
+	<td><button class="editButton btn btn-default btn-sm"><a href="#">Appliquer</a></button></td>
 	<td><button class="deleteButton btn btn-default btn-sm">Supprimer</button></td>
-
 	</tr>
-	<tr id="row'.$lineNumber.'" class="displayRow">
+	<tr id="row'.$res['idClient'].'" class="displayRow">
 		<td>'.$res['type'].'</td>
 	<td>'.$res['nom'].'</td>
 	<td>'.$res['prenom'].'</td>
@@ -117,4 +115,26 @@ function setSession($db,$mail)
 	$_SESSION['email']=$mail;
 	$_SESSION['lastname']=$res['nom'];
 	$_SESSION['firstname']=$res['prenom'];
+}
+
+function updateCustomer($db,$id,$type,$lastname,$firstname,$email)
+{
+	$req=$db->prepare('update client set type=:type, nom=:lastname, prenom=:firstname, email=:email where idClient=:id');
+	$req->bindValue(':type',$type);
+	$req->bindValue(':lastname',$lastname);
+	$req->bindValue(':firstname',$firstname);
+	$req->bindValue(':email',$email);
+	$req->bindValue(':id',$id);
+	$req->execute();
+
+	$req=$db->prepare('select * from client where type=:type and nom=:lastname and prenom=:firstname and email=:email and idClient=:id');
+	$req->bindValue(':type',$type);
+	$req->bindValue(':lastname',$lastname);
+	$req->bindValue(':firstname',$firstname);
+	$req->bindValue(':email',$email);
+	$req->bindValue(':id',$id);
+	$req->execute();
+	$res=$req->rowCount();
+
+	return $res==1 ? true : false;
 }
