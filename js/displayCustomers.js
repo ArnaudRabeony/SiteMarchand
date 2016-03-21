@@ -20,10 +20,14 @@ $(document).ready(function()
 				// $(this).attr("aria-pressed","false");
 				$(this).html('<i class="fa fa-check"></i>').css("color","#286B0E");
 			}
+			// else if()//check types
+			// {
+
+			// }
 			else
 			{
 				// alert("id :"+id+"   |   "+type+" |   "+lastname);
-				$.get('Controller/updateCustomers.php',
+				$.get('controller/updateCustomers.php',
 				{
 					id:id,
 					type:type,
@@ -38,7 +42,7 @@ $(document).ready(function()
 				});
 
 				row.addClass("secured");
-				$(this).html('<i class="fa fa-pencil"></i>');
+				$(this).html('<i class="fa fa-pencil"></i>').css("color","#333");
 				alert("Changement ok ");
 			}
 		});

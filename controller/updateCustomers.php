@@ -10,7 +10,8 @@ if(verifGet(array("id","type","lastname","firstname","email")))
 	$lastname=$_GET['lastname'];
 	$email=$_GET['email'];
 
-	updateCustomer($db,$id,$type,$lastname,$firstname,$email);
+	if(!mailExists($db,$mail))
+		updateCustomer($db,$id,$type,$lastname,$firstname,$email);
 }
 
 ?>
