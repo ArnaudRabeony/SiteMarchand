@@ -31,11 +31,14 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 	 </ul>
 </p>
 	<div class="tableContainer table-responsive" style="/*background-color: blue;*/">
-		<table class="table table-hover table-condensed table-striped" id="customersTable">
+		<table class="table table-hover table-condensed" id="customersTable">
 			<?php echo displayCustomers($db,$_SESSION['id']);?>
 		</table>
-		<button id="saveButton" class="btn btn-default btn-sm" style="float:right">Sauvegarder</button>
-		<button id="cancelButton" class="btn btn-default btn-sm" style="float:right;margin-right: 5px;"><a href="index.php?page=view/displayCustomers">Annuler</a></button>
+		<div class="buttonsContainer" style="float:right">
+			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayCustomers">Annuler</a></button>
+			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
+			<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>
+		</div>
 	</div>
 </div>
 <p class="errormessage" style="color:red"><?php echo $errorMessage; ?></p>

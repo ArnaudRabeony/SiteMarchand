@@ -111,6 +111,10 @@ function setSession($db,$mail)
 
 function updateCustomer($db,$id,$type,$lastname,$firstname,$email)
 {
+	//can't add an existing email
+	// if(mailExists($db,$email))
+	// 	return false;
+
 	$req=$db->prepare('update client set type=:type, nom=:lastname, prenom=:firstname, email=:email where idClient=:id');
 	$req->bindValue(':type',$type);
 	$req->bindValue(':lastname',$lastname);

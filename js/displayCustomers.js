@@ -43,8 +43,19 @@ $(document).ready(function()
 
 				row.addClass("secured");
 				$(this).html('<i class="fa fa-pencil"></i>').css("color","#333");
-				alert("Changement ok ");
+				// alert("Changement ok ");
 			}
+		});
+
+		$("#addCustomer").click(function()
+		{
+			newRow='<tr class="newrow"><td><select class="form-control" id="selectType"><option value="admin">admin</option><option value="client">client</option></select></td>';
+			newRow+='<td><input id="newLastname" class="form-control" type="text" placeholder="Nom"></td>';
+			newRow+='<td><input id="newFirstname" class="form-control" type="text" placeholder="Prénom"></td>';
+			newRow+='<td><input id="newEmail" class="form-control" type="email" placeholder="Email"></td>';
+			newRow+='<td><button class="editButton btn btn-default btn-sm"><i class="fa fa-pencil"></i></button></td>';
+			newRow+='<td><button class="deleteButton btn btn-default btn-sm"><i class="fa fa-close"></i></button></td></tr>';
+			$('#customersTable').append(newRow);
 		});
 
 		$('#saveButton').on("click",function()

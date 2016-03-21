@@ -36,7 +36,7 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 	<div id="createAccountContent" class="row">
 <h3><small>Veuillez remplir le formulaire d'inscription suivant</small></h3>
 
-		<form action="index.php?page=Controller/customersManagement" method="post" class="col-md-5 col-sm-3">
+		<form action="index.php?page=controller/customersManagement" method="post" class="col-md-5 col-sm-3">
 		    <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Prénom" <?php echo "value=".$firstname; ?>>
 		    <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Nom" <?php echo "value=".$lastname; ?>>
 		    <input type="email" name="email" class="form-control" id="email" placeholder="exemple@mail.com">

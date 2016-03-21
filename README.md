@@ -7,6 +7,7 @@
 
 ## TODO :
 * Manage update errors (check fields formats, email already exists...)
+* Add customer (which fields ?)
 * Delete customer ?
 * User settings panel (update phone, address...)
 * Create products
