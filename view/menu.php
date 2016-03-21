@@ -55,8 +55,8 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                     <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>
                     <li><a href="#">Mon panier</a></li>
                     <li><a href="#">Gestion des produits</a></li>
-                    <li><a href="index.php?page=View/displayCustomers">Gestion des utilisateurs</a></li><hr>
-                    <li><a href="index.php?page=Controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                    <li><a href="index.php?page=view/displayCustomers">Gestion des utilisateurs</a></li><hr>
+                    <li><a href="index.php?page=controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>
                 </div>
@@ -69,7 +69,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                     <li><a href="#">Mon compte</a></li>
                     <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>
                     <li><a href="#">Mon panier</a></li><hr>
-                    <li><a href="index.php?page=Controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                    <li><a href="index.php?page=controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>
                 </div>
@@ -79,7 +79,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
         else
         {
             echo '
-              <li><a href="index.php?page=View/co_page"><span class="glyphicon glyphicon-user"></span> Connexion</a></li>';
+              <li><a href="index.php?page=view/co_page"><span class="glyphicon glyphicon-user"></span> Connexion</a></li>';
         }
 
         ?>
@@ -101,7 +101,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                 </div>
                 <div id="collapseCollectives" class="panel-collapse collapse">
                   <ul class="list-group">
-                    <li class="list-group-item"><a href="index.php?page=View/soccer"style="padding: 0px 0px">Football</a></li>
+                    <li class="list-group-item"><a href="index.php?page=view/soccer"style="padding: 0px 0px">Football</a></li>
                     <li class="list-group-item"><a href="#">Basketball</a></li>
                   </ul>
                 </div>
