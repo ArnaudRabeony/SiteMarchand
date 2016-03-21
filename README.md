@@ -6,10 +6,13 @@
 * [Resolved] Update users fields : sets type value to 0 
 
 ## TODO :
-* Multiple updates by clicking on "Sauvegarder"
+* Manage update errors (check fields formats, email already exists...)
+* Delete customer ?
+* User settings panel (update phone, address...)
 * Create products
 
 #### Done
+* Multiple updates by clicking on "Sauvegarder"
 * Display users (for admin accounts)
 * Encrypted password
 * Test co/deco

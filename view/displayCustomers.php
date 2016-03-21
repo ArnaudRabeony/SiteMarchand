@@ -26,7 +26,7 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 	<h3><small>Cette page vous permet de gérer les clients.</small></h3>
 	 En cliquant sur les boutons de la ligne désirée, vous aurez la possibilité :
 	 <ul>
-	 	<li>d'éditer les différents champs d'un client</li>
+	 	<li>de mettre à jour un ou plusieurs champs d'un client</li>
 	 	<li>de supprimer un client</li>
 	 </ul>
 </p>
@@ -35,7 +35,7 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 			<?php echo displayCustomers($db,$_SESSION['id']);?>
 		</table>
 		<button id="saveButton" class="btn btn-default btn-sm" style="float:right">Sauvegarder</button>
-		<button id="cancelButton" class="btn btn-default btn-sm" style="float:right;margin-right: 5px;">Annuler</button>
+		<button id="cancelButton" class="btn btn-default btn-sm" style="float:right;margin-right: 5px;"><a href="index.php?page=view/displayCustomers">Annuler</a></button>
 	</div>
 </div>
 <p class="errormessage" style="color:red"><?php echo $errorMessage; ?></p>

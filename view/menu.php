@@ -51,8 +51,11 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
 
                 echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname']{0}.'. (Admin) <span class="caret"></span></a></li>
                 <ul class="dropdown-menu">
+                    <li><a href="#">Mon compte</a></li>
+                    <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>
+                    <li><a href="#">Mon panier</a></li>
                     <li><a href="#">Gestion des produits</a></li>
-                    <li><a href="index.php?page=View/displayCustomers">Gestion des utilisateurs</a></li>
+                    <li><a href="index.php?page=View/displayCustomers">Gestion des utilisateurs</a></li><hr>
                     <li><a href="index.php?page=Controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>
@@ -65,7 +68,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                 <ul class="dropdown-menu">
                     <li><a href="#">Mon compte</a></li>
                     <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>
-                    <li><a href="#">Mon panier</li>
+                    <li><a href="#">Mon panier</a></li><hr>
                     <li><a href="index.php?page=Controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>

@@ -2,59 +2,58 @@ $(document).ready(function()
 	{
 		$('.editButton').on("click",function()
 		{
-			$row=$(this).parent().parent();
-
-			if($row.hasClass("displayRow"))
+			var row=$(this).parent().parent();
+			var id=row.attr("id").replace('row','');
+			var type=row.find("#selectType option:selected").text();
+			var lastname=row.find("#newLastname").val();
+			var firstname=row.find("#newFirstname").val();
+			var email=row.find("#newEmail").val();
+			
+			if(row.hasClass('secured'))
 			{
-				$row.prev().show()
-							.find('input, select').each(function()
-								{
-									$(this).attr("disabled",false);
-								});
-				$row.hide();
-			}
-			else if($row.hasClass("editButton"))
-			{
-				$row.find('input, select').each(function()
+				row.find('input, select').each(function()
 				{
 					$(this).attr("disabled",false);
 				});
+
+				row.removeClass("secured");
+				// $(this).attr("aria-pressed","false");
+				$(this).html('<i class="fa fa-check"></i>').css("color","#286B0E");
 			}
-			else //create the update link
-			{	
-				var id=$row.attr("id").replace('row','');
-				var type=$row.find("#selectType option:selected").text();
-				var lastname=$row.find("#newLastname").val();
-				var fistname=$row.find("#newFirstname").val();
-				var email=$row.find("#newEmail").val();
+			else
+			{
 				// alert("id :"+id+"   |   "+type+" |   "+lastname);
-				var newLink='index.php?page=Controller/updateCustomers&id='+id+'&type='+type+'&nom='+lastname+'&prenom='+fistname+'&email='+email;
-				// alert(newLink);
-				$row.find(".editButton a").attr("href",newLink);
+				$.get('Controller/updateCustomers.php',
+				{
+					id:id,
+					type:type,
+					lastname:lastname,                  
+					firstname:firstname,                    
+					email:email                    
+				});
+
+				row.find('input, select').each(function()
+				{
+					$(this).attr("disabled",true);
+				});
+
+				row.addClass("secured");
+				$(this).html('<i class="fa fa-pencil"></i>');
+				alert("Changement ok ");
 			}
 		});
 
 		$('#saveButton').on("click",function()
 		{
-			$('.editButton').each(function()
+			$('tr').each(function()
 			{
-				$(this).click();
-				$row.find(".editButton a").attr("href",newLink);
+				if(!$(this).hasClass("secured"))
+					$(this).find(".editButton").click();
 			});
 		});
 
 		$('#cancelButton').on("click",function()
 		{
-			// alert("hide");
-			$("tr").each(function()
-				{
-					if($(this).hasClass("editRow"))
-					{
-						$(this).hide();
-						$(this).next().show();
-					}
-				});
-		});
 
-	
+		});
 	});

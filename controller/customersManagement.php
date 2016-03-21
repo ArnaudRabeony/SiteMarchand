@@ -12,7 +12,7 @@ if(verifPost(array("email","firstname","lastname","password","address","phone"))
 	$encryptedPassword = password_hash($password,PASSWORD_BCRYPT);
 
 	if(mailExists($db,$email))
-		header('location: index.php?page=View/createAccount&&error=true&&errortype=usedEmail&&firstname='.$firstname.'&&lastname='.$lastname.'&&address='.$address.'&&phone='.$phone);
+		header('location: index.php?page=view/createAccount&&error=true&&errortype=usedEmail&&firstname='.$firstname.'&&lastname='.$lastname.'&&address='.$address.'&&phone='.$phone);
 	else if(addCustomer($db,$email,$lastname,$firstname,$encryptedPassword,$address,$phone))
 	{
 		//Auto connection
@@ -21,7 +21,7 @@ if(verifPost(array("email","firstname","lastname","password","address","phone"))
 		header('location: index.php');
 	}
 	else
-		header('location: index.php?page=View/createAccount&&error=true&&errortype=insert');
+		header('location: index.php?page=view/createAccount&&error=true&&errortype=insert');
 	
 }
 

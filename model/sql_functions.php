@@ -42,7 +42,7 @@ function displayCustomers($db,$id)
 		$initWithClient = $res['type']=="client" ? "selected" : "";
 		$initWithAdmin = $res['type']=="admin" ? "selected" : "";
 
-		$body.='<tr id="row'.$res['idClient'].'" class="editRow" style="display:none">
+		$body.='<tr id="row'.$res['idClient'].'" class="secured">
 		<td>
 		<select disabled class="form-control" id="selectType">
 		    <option value="admin"'.$initWithAdmin.' >admin</option>
@@ -51,16 +51,8 @@ function displayCustomers($db,$id)
 	<td><input id="newLastname" disabled class="form-control" type="text" value="'.$res['nom'].'"</td>
 	<td><input id="newFirstname" disabled class="form-control" type="text" value="'.$res['prenom'].'"</td>
 	<td><input id="newEmail" disabled class="form-control" type="email" value="'.$res['email'].'"</td>
-	<td><button class="editButton btn btn-default btn-sm"><a href="#">Appliquer</a></button></td>
-	<td><button class="deleteButton btn btn-default btn-sm">Supprimer</button></td>
-	</tr>
-	<tr id="row'.$res['idClient'].'" class="displayRow">
-		<td>'.$res['type'].'</td>
-	<td>'.$res['nom'].'</td>
-	<td>'.$res['prenom'].'</td>
-	<td>'.$res['email'].'</td>
-	<td><button class="editButton btn btn-default btn-sm">Éditer</button></td>
-	<td><button class="deleteButton btn btn-default btn-sm">Supprimer</button></td>
+	<td><button class="editButton btn btn-default btn-sm"><i class="fa fa-pencil"></i></button></td>
+	<td><button class="deleteButton btn btn-default btn-sm"><i class="fa fa-close"></i></button></td>
 	</tr>';
 	}
 	

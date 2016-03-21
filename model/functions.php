@@ -18,7 +18,7 @@ function htmlentitiesArray (&$tab)
 }
 
  //Check that $_POST contains keys from $keys without empty values
-function verifPost ($keys) 
+function verifPost($keys) 
 {
 	foreach($keys as $v) {
 		if (!(isset($_POST[$v]) and trim($_POST[$v]) != '')) {
@@ -29,7 +29,7 @@ function verifPost ($keys)
 }
 
  //Check that $_GET contains keys from $keys without empty values
-function verifGet ($keys) 
+function verifGet($keys) 
 {
 	foreach($keys as $v) {
 		if (!(isset($_GET[$v]) and trim($_GET[$v]) != '')) {
