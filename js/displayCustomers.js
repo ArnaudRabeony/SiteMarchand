@@ -47,7 +47,7 @@ $(document).ready(function()
 			}
 		});
 
-		$("#addCustomer").click(function()
+		/*$("#addCustomer").click(function()
 		{
 			newRow='<tr class="newrow"><td><select class="form-control" id="selectType"><option value="admin">admin</option><option value="client">client</option></select></td>';
 			newRow+='<td><input id="newLastname" class="form-control" type="text" placeholder="Nom"></td>';
@@ -56,7 +56,7 @@ $(document).ready(function()
 			newRow+='<td><button class="editButton btn btn-default btn-sm"><i class="fa fa-pencil"></i></button></td>';
 			newRow+='<td><button class="deleteButton btn btn-default btn-sm"><i class="fa fa-close"></i></button></td></tr>';
 			$('#customersTable').append(newRow);
-		});
+		});*/
 
 		$('#saveButton').on("click",function()
 		{

@@ -37,7 +37,7 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 		<div class="buttonsContainer" style="float:right">
 			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayCustomers">Annuler</a></button>
 			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
-			<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>
+			<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
 		</div>
 	</div>
 </div>

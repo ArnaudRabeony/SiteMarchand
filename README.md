@@ -1,16 +1,23 @@
 # SiteMarchand
 
-# BUG
-* Auto connection after account creation
+# BUGS
+* Create an account with a non email format value
 * [Resolved] Create an account : mail already exists isn't taken into account
 * [Resolved] Update users fields : sets type value to 0 
+* [Resolved] Auto connection after account creation
+
 
 ## TODO :
+* Q : Add/display products
+* A : Project structure (organize files and foldes)
+* A : Mon compte -> update fields
 * Manage update errors (check fields formats, email already exists...)
 * Add customer (which fields ?)
 * Delete customer ?
 * User settings panel (update phone, address...)
-* Create products
+* Create 
+* Admin : deletion ? 
+
 
 #### Done
 * Multiple updates by clicking on "Sauvegarder"

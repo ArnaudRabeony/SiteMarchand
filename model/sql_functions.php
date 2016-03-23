@@ -134,3 +134,25 @@ function updateCustomer($db,$id,$type,$lastname,$firstname,$email)
 
 	return $res==1 ? true : false;
 }
+
+function getCustomerById($db,$id)
+{
+	// echo "recherche du mail".$mail;
+	$req=$db->prepare('select * from client where idClient=:id');
+	$req->bindValue(':id',$id);
+	$req->execute();
+	$resultNb=$req->rowCount();
+
+	if($resultNb==1)
+	{
+		$res=$req->fetch(PDO::FETCH_ASSOC);
+		return array('nom' => $res["nom"],
+						'prenom' => $res["prenom"],
+						'adresse' => $res["adresse"],
+						'telephone' => $res["telephone"],
+						'email' => $res["email"]);
+
+	}
+
+	return null;
+}
