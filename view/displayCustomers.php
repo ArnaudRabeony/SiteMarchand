@@ -29,6 +29,7 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 	 	<li>de mettre à jour un ou plusieurs champs d'un client</li>
 	 	<li>de supprimer un client</li>
 	 </ul>
+	 <hr>
 </p>
 	<div class="tableContainer table-responsive" style="/*background-color: blue;*/">
 		<table class="table table-hover table-condensed" id="customersTable">

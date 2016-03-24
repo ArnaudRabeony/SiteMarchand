@@ -156,3 +156,40 @@ function getCustomerById($db,$id)
 
 	return null;
 }
+
+function deleteUserById($db,$id)	
+{
+	$req=$db->prepare('delete from client where idClient=:id');
+	$req->bindValue(':id',$id);
+	$req->execute();
+
+	return $getCustomerById($db,$id)==null ? true : false;
+}
+
+function oneselfUpdate($db,$id,$lastname,$firstname,$email,$address,$phone)
+{
+	//can't add an existing email
+	// if(mailExists($db,$email))
+	// 	return false;
+
+	$req=$db->prepare('update client set adresse=:address, telephone=:phone, nom=:lastname, prenom=:firstname, email=:email where idClient=:id');
+	$req->bindValue(':type',$address);
+	$req->bindValue(':phone',$phone);
+	$req->bindValue(':lastname',$lastname);
+	$req->bindValue(':firstname',$firstname);
+	$req->bindValue(':email',$email);
+	$req->bindValue(':id',$id);
+	$req->execute();
+
+	$req=$db->prepare('select * from client where adresse=:address and telephone=:phone and nom=:lastname and prenom=:firstname and email=:email and idClient=:id');
+	$req->bindValue(':adresse',$address);
+	$req->bindValue(':phone',$phone);
+	$req->bindValue(':lastname',$lastname);
+	$req->bindValue(':firstname',$firstname);
+	$req->bindValue(':email',$email);
+	$req->bindValue(':id',$id);
+	$req->execute();
+	$res=$req->rowCount();
+
+	return $res==1 ? true : false;
+}

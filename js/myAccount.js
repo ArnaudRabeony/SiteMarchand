@@ -17,33 +17,28 @@ $(document).ready(function()
 		var row=$(this).parent().parent();
 		row.find("input,textarea").//css("background-color","#FFECC0").
 				attr("disabled",false);
+		$("#saveChanges").attr("disabled", false);
 	});
 
 	$('#saveChanges').click(function(e)
 	{
-		var relatedTable=$(this).parent().prev().find("table");
-		
+			var relatedTable=$(this).parent().prev().find("table");
 			var firstname=$("#newfirstname").val();
 			var lastname=$("#newlastname").val();
-			// var password=$("#password").val();
-			var confirmation=$("#newconfirmation").val();
 			var email=$("#newemail").val();
 			var address=$("#newaddress").val();
 			var phone=$("#newphone").val();
 
 			var noFirstname= firstname =="" ? true : false;
 			var noLastname= lastname =="" ? true : false;
-			var noPassword= password =="" ? true : false;
-			var noConfirmation= confirmation =="" ? true : false;
 			var noEmail= email =="" ? true : false;
 			var noAddress= address =="" ? true : false;
 			var noPhone= phone =="" ? true : false;
 
 			var phoneFilter="#^0[0-9]([ .-]?[0-9]{2}){4}$#";
 
-			if(noFirstname || noLastname || noEmail || noAddress || noPhone || noPassword || noConfirmation)
+			if(noFirstname || noLastname || noEmail || noAddress || noPhone)
 			{
-				e.preventDefault();
 				if(noFirstname)
 					$('#newfirstname').addClass("necessary");
 				if(noLastname)
@@ -54,30 +49,60 @@ $(document).ready(function()
 					$('#newaddress').addClass("necessary");
 				if(noPhone)
 					$('#newphone').addClass("necessary");
-				if(noPassword)
-					$('#newpassword').addClass("necessary");
-				if(noConfirmation)
-					$('#newconfirmation').addClass("necessary");
 			}
-			// else if(!noPassword && !noConfirmation && password!=confirmation)
-			// {
-			// 	e.preventDefault();
-			// 	$('#password').addClass("necessary");
-			// 	$('#confirmation').addClass("necessary");
-			// 	$('#mismatch').text("Le mot de passe et la confirmation sont différents");
-			// }
 			else
 			{
 				// $(this).attr("novalidate","false");
-				$(this).click();
+				//send values and check conflicts
+
+				$.get("controller/updateMyAccount.php",
+				{
+					id:$("#myAccountTable").attr("data-id"),
+					firstname:firstname,
+					lastname:lastname,
+					email:email,
+					address:address,
+					phone:phone
+				});
+
 				alert("submitted");
-			}	
+			}
+
+			e.preventDefault();
+
 	});
 
 	$('#changePassword').click(function(e)
 	{
 		$(this).parent().hide();
 		$('#changePasswordContainerForm').show();
-	})
+	});
+
+	$("#deleteMyAccount").click(function()
+	{
+		$.post("controller/deleteCustomer.php",
+		{
+			id:$("#myAccountTable").attr("data-id")
+		});
+	});
+
+	$("#confirmPasswordUpdateButton").click(function(e)
+	{
+		var currentPassword = $("#currentPassword").val();
+		var currentPasswordConfirmation = $("#currentPasswordConfirmation").val();
+		var newPassword = $("#newPassword").val();
+
+		if(currentPassword!=currentPasswordConfirmation)
+		{
+			$("#currentPassword").addClass("necessary");
+			$("#currentPasswordConfirmation").addClass("necessary");
+		}
+		else if(newPassword!="")
+		{
+			alert("ok pour hashage php et update");
+		}
+
+		e.preventDefault();
+	});
 
 });

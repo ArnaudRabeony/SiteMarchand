@@ -10,13 +10,11 @@
 ## TODO :
 * Q : Add/display products
 * A : Project structure (organize files and foldes)
-* A : Mon compte -> update fields
+* A : Mon compte -> update fields TBC
+* A : Mon compte -> delete my account TBC
 * Manage update errors (check fields formats, email already exists...)
-* Add customer (which fields ?)
-* Delete customer ?
 * User settings panel (update phone, address...)
 * Create 
-* Admin : deletion ? 
 
 
 #### Done
