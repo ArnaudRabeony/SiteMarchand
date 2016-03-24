@@ -5,42 +5,78 @@
 </p><br>
 <?php $user=getCustomerById($db,$_SESSION["id"]);?>
 	<div class="formContainer col-md-4">
-		<form action="controller/myAccount.php" method="post">
+		<form action="controller/myAccount.php" method="post" novalidate>
 			<table id="myAccountTable">
 				<tbody>
 					<tr>
-						<td><input disabled type="text" name="firstname" class="form-control" id="firstname" placeholder="Prénom" <?php echo "value=".$user["prenom"]; ?>></td>
+						<td><input disabled type="text" name="firstname" class="form-control" id="newfirstname" placeholder="Prénom" <?php echo "value=".$user["prenom"]; ?>></td>
 						<td><button class="edit btn btn-default"><i class="fa fa-pencil"></i></button></td>
 					</tr>
 					<tr>
-						<td><input disabled type="text" name="lastname" class="form-control" id="lastname" placeholder="Nom" <?php echo "value=".$user["nom"]; ?>></td>
+						<td><input disabled type="text" name="lastname" class="form-control" id="newlastname" placeholder="Nom" <?php echo "value=".$user["nom"]; ?>></td>
 						<td><button class="edit btn btn-default"><i class="fa fa-pencil"></i></button></td>
 					</tr>
 					<tr>
-						<td><input disabled type="email" name="email" class="form-control" id="email" placeholder="exemple@mail.com" <?php echo "value=".$user["email"]; ?>></td>
+						<td><input disabled type="email" name="email" class="form-control" id="newemail" placeholder="exemple@mail.com" <?php echo "value=".$user["email"]; ?>></td>
 						<td><button class="edit btn btn-default"><i class="fa fa-pencil"></i></button></td>
 					</tr>
 					<tr>
-						<td><input disabled type="password" name="password" class="form-control" id="password" data-minlength="5" placeholder="Mot de passe"></td>
+						<td><textarea disabled class="form-control" name="address" id="newaddress" rows="2" placeholder="Adresse"><?php echo $user["adresse"]; ?></textarea></td>
 						<td><button class="edit btn btn-default"><i class="fa fa-pencil"></i></button></td>
 					</tr>
 					<tr>
-						<td><textarea disabled class="form-control" name="address" id="address" rows="2" placeholder="Adresse"><?php echo $user["adresse"]; ?></textarea></td>
-						<td><button class="edit btn btn-default"><i class="fa fa-pencil"></i></button></td>
-					</tr>
-					<tr>
-						<td><input disabled type="tel" class="form-control" name="phone" id="phone" placeholder="01 23 45 65 78" <?php echo "value=".$user["telephone"]; ?>></td>
+						<td><input disabled type="tel" class="form-control" name="phone" id="newphone" placeholder="01 23 45 65 78" <?php echo "value=".$user["telephone"]; ?>></td>
 						<td><button class="edit btn btn-default"><i class="fa fa-pencil"></i></button></td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
-		<div class="buttonsContainer">
-			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayCustomers">Annuler</a></button>
-			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
+		<div class="buttonsContainer"><br>
+			<button id="discardChanges" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayCustomers">Annuler</a></button>
+			<button id="saveChanges" class="btn btn-default btn-sm" >Sauvegarder</button>
 			<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
 		</div>
 	</div>
+	<div class="otherChanges col-md-8" >
+		<div id="changePasswordContainer">
+			<p>
+				<h3><small>Je souhaite changer de mot de passe</small></h3>
+					<div>
+						Le changement de mot de passe s'effectuera après avoir saisi et confirmé votre mot de passe actuel et renseigné un nouveau mot de passe.
+					</div>
+				<button id="changePassword" class="btn btn-default btn-sm col-offset-sm-3" style="color:red;">Changer mon mot de passe</button>
+			</p>
+		</div>
+		<div id="changePasswordContainerForm" style="display:none"><br>
+				<form action="controller/myAccount.php" method="post" novalidate>
+					<table id="myAccountTable">
+						<tbody>
+							<tr>
+								<td><input type="password" name="currentPassword" class="form-control" id="currentPassword" placeholder="Votre mot de passe"></td>
+							</tr>
+							<tr>
+								<td><input type="password" name="currentPasswordConfirmation" class="form-control" id="currentPasswordConfirmation" placeholder="Confirmation de votre mot de passe" ></td>
+							</tr>
+							<tr>
+								<td><input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="Nouveau mot de passe"></td>
+							</tr>
+						</tbody>
+					</table>
+				<button id="confirmPasswordUpdate" class="btn btn-default btn-sm col-offset-sm-3" style="color:red;" disabled>Je change mon mot de passe</button>
+				</form>
+		</div>
+		<div id="deleteMyAccount">
+			<p>
+				<h3><small>Je souhaite supprimer mon compte</small></h3>
+					<div>
+						Pour supprimer votre compte, cliquez sur le bouton ci-dessous. Vous serez alors invité(e) à confirmer cette action en renseingnant votre mot de passe.	
+					</div>
+			</p>
+				<button id="deleteMyAccount" class="btn btn-default btn-sm" style="color:red" disabled>Supprimer mon compte</button>
+		
+		</div>
+	</div>
+	
 </div>
 
 <script src="js/jquery.js"></script>
