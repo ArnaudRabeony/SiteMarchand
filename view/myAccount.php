@@ -1,4 +1,4 @@
-<div class="displayContainer" style="/*background-color: red;*/padding:10px 10px;">
+<div class="myAccountDisplayContainer" style="/*background-color: red;*/padding:10px 10px;">
 <p>
 	<h3><small>Cette page vous permet de gérer les informations relatives à votre compte.</small></h3>
 	 Ainsi, vous avez la possibilité de mettre à jour les différents champs. Pour cela, il vous suffit de survoler le champ à modifier puis cliquer sur le bouton d'édition.
@@ -39,14 +39,14 @@
 		</div>
 	</div>
 	<div class="otherChanges col-md-8">
-		<div id="passwordContainer" style="text-align:center;padding:5px 5px;border-radius: 10px;box-shadow: 3px 4px 10px #888888;margin-bottom: 10px;">
+		<div id="passwordContainer">
 			<div id="changePasswordContainer">
 				<p>
 					<h3><small>Je souhaite changer de mot de passe</small></h3>
 						<div>
 							Le changement de mot de passe s'effectuera après avoir saisi et confirmé votre mot de passe actuel et renseigné un nouveau mot de passe.
 						</div>
-					<button id="changePassword" class="btn btn-default btn-sm col-offset-sm-3" style="color:red;">Changer mon mot de passe</button>
+					<button id="changePassword" class="btn btn-default btn-sm col-offset-sm-3">Changer mon mot de passe</button>
 				</p>
 			</div>
 			<div id="changePasswordContainerForm" style="display:none"><br>
@@ -64,19 +64,19 @@
 								</tr>
 							</tbody>
 						</table>
-					<button id="confirmPasswordUpdateButton" class="btn btn-default btn-sm col-offset-sm-3" style="color:red;">Je change mon mot de passe</button>
+					<button id="confirmPasswordUpdateButton" class="btn btn-default btn-sm col-offset-sm-3">Je change mon mot de passe</button>
 					</form>
 			</div>
 		</div>
 		
-		<div id="deleteMyAccount" style="text-align:center;padding:5px 5px;border-radius: 10px;box-shadow: 3px 4px 10px #888888;">
+		<div id="deleteMyAccountContainer">
 			<p>
 				<h3><small>Je souhaite supprimer mon compte</small></h3>
 					<div>
 						Pour supprimer votre compte, cliquez sur le bouton ci-dessous. Vous serez alors invité(e) à confirmer cette action en renseingnant votre mot de passe.	
 					</div>
 			</p>
-			<button id="deleteMyAccount" class="btn btn-default btn-sm" style="color:red" disabled>Supprimer mon compte</button>
+			<button id="deleteMyAccount" class="btn btn-default btn-sm" disabled>Supprimer mon compte</button>
 		</div>
 	</div>
 	
