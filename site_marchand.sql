@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Ven 25 Mars 2016 à 10:46
+-- Généré le :  Ven 25 Mars 2016 à 23:22
 -- Version du serveur :  5.5.42
 -- Version de PHP :  7.0.0
 
@@ -60,6 +60,7 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`idClient`, `type`, `email`, `nom`, `prenom`, `mdp`, `adresse`, `telephone`) VALUES
 (23, 'admin', 'admin', 'NomAdm', 'PrenomAdm', '$2y$10$ftrzKc.OwPhFVY.J6aNPLuy0Ozd4RznDyKJfpVporunWLddfsxrDO', 'Adresse de l''admin', '0123456879'),
 (24, 'client', 'client1@client.client', 'Client1Nom', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
+(24, 'client', 'client', 'Client1Nom', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
 (25, 'client', 'client2@client.client', 'Client2', 'Client2', '$2y$10$/a3tr7PH.Z.eE6g00GvmX.NQzJ2Pl95/r0gmERwuKmdCuwY0MVfTS', 'adresse client', '0123456789'),
 (26, 'client', 'a@a.aa', 'Ajax01', 'aze', '$2y$10$McmGAvMAPOdnl75s1by.nugQLXEaJ2E4roZ6Vw3ia4N3OxSU7nDFO', 'adresse client 3', '0123456789'),
 (27, 'client', 'test@test.test', 'Ajax02', 'test', '$2y$10$Be7peEuldR0clKSz2/bgQuXW0zcWr7YkeBEOcq5C1/90qY3eqCGn6', 'test', 'test'),
@@ -121,13 +122,14 @@ INSERT INTO `marque` (`idMarque`, `nomMarque`) VALUES
 
 CREATE TABLE `produit` (
   `idProduit` int(11) NOT NULL,
-  `reference` varchar(20) DEFAULT NULL,
   `libelle` varchar(20) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `prix` float DEFAULT NULL,
   `photo` varchar(100) DEFAULT NULL,
   `idTaille` int(4) NOT NULL,
   `idCategorie` int(4) NOT NULL,
-  `idSport` int(4) NOT NULL
+  `idSport` int(4) NOT NULL,
+  `idMarque` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -224,7 +226,8 @@ ALTER TABLE `produit`
   ADD PRIMARY KEY (`idProduit`),
   ADD KEY `FK_PRODUIT_idCategorie` (`idCategorie`),
   ADD KEY `idSport` (`idSport`),
-  ADD KEY `idTaille` (`idTaille`);
+  ADD KEY `idTaille` (`idTaille`),
+  ADD KEY `idMarque` (`idMarque`);
 
 --
 -- Index pour la table `sport`
@@ -304,9 +307,10 @@ ALTER TABLE `ligne_commande`
 -- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD CONSTRAINT `FK_PRODUIT_idTaille` FOREIGN KEY (`idTaille`) REFERENCES `taille` (`idTaille`),
   ADD CONSTRAINT `FK_PRODUIT_idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie_produit` (`idCategorie`),
-  ADD CONSTRAINT `FK_PRODUIT_idSport` FOREIGN KEY (`idSport`) REFERENCES `sport` (`idSport`);
+  ADD CONSTRAINT `FK_PRODUIT_idMarque` FOREIGN KEY (`idMarque`) REFERENCES `marque` (`idMarque`),
+  ADD CONSTRAINT `FK_PRODUIT_idSport` FOREIGN KEY (`idSport`) REFERENCES `sport` (`idSport`),
+  ADD CONSTRAINT `FK_PRODUIT_idTaille` FOREIGN KEY (`idTaille`) REFERENCES `taille` (`idTaille`);
 
 --
 -- Contraintes pour la table `taille`

@@ -22,5 +22,3 @@ $password='mdproot';
 	{
 		echo 'Erreur : '.$e->getMessage();
 	}
-
-
