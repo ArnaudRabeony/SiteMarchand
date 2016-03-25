@@ -137,11 +137,6 @@ li.dropdown-toggle
 	cursor:pointer;
 }
 
-#connectionContainer input, #createAccount input, #createAccount textarea
-{
-	margin-bottom: 5px;
-}
-
 .necessary
 {
 	border-color: #a94442;
@@ -171,3 +166,14 @@ ul.dropdown-menu
 	color:#A90000;
 }
 
+form input,form textarea
+{
+	margin-bottom: 5px;
+}
+
+.edit
+{
+	display: none;
+	margin-top: -5px;
+    margin-left: 5px;
+}

@@ -13,8 +13,8 @@
 				header('location: index.php');
 			}
 			else//display error message
-				header('location: index.php?page=controller/co_page&&error=true&&errortype=matched');
+				header('location: index.php?page=view/co_page&error=true&errortype=matched');
 		}
 		else
-			header('location: index.php?page=controller/co_page&&error=true&&errortype=existed');	
+			header('location: index.php?page=view/co_page&error=true&errortype=existed');	
 	}
