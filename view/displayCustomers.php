@@ -26,8 +26,8 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 	<h3><small>Cette page vous permet de gérer les clients.</small></h3>
 	 En cliquant sur les boutons de la ligne désirée, vous aurez la possibilité :
 	 <ul>
-	 	<li>de mettre à jour un ou plusieurs champs d'un client</li>
-	 	<li>de supprimer un client</li>
+	 	<li>de mettre à jour un ou plusieurs champs du client</li>
+	 	<li>de supprimer le client</li>
 	 </ul>
 	 <hr>
 </p>

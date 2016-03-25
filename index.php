@@ -3,11 +3,12 @@
     session_start();
     //Info site
     $title = 'Site marchand';
+    
     require_once("model/connection.php");
     include('model/functions.php');
     include('model/sql_functions.php');
     protectPostGet();
-
+    
     // $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";
     $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "view/welcome";
 ?>

@@ -12,6 +12,7 @@
 * A : Project structure (organize files and foldes)
 * A : Mon compte -> update fields TBC
 * A : Mon compte -> delete my account TBC
+* A : Admin : display products
 * Manage update errors (check fields formats, email already exists...)
 * User settings panel (update phone, address...)
 * Create 
