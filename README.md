@@ -9,6 +9,7 @@
 
 ## TODO :
 * Add Quantity field in product
+* Delete products function
 * Q : Add/display products
 * A : Project structure (organize files and foldes)
 * A : Mon compte -> update fields TBC

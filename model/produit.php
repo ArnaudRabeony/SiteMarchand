@@ -4,6 +4,9 @@ require_once('connection.php');
 
 function addProduct($db, $dataArray)
 {
+
+	// echo "id Categorie : ".$dataArray['categorie']."<br>";
+
 	$req = $db->prepare('insert into produit(libelle, description, prix, photo, idTaille, idCategorie, idSport, idMarque)
 							values(:libelle, :description, :prix, :photo, :idTaille, :idCategorie, :idSport, :idMarque)');
 	$req->bindValue(':libelle', $dataArray['libelle']);
@@ -11,15 +14,29 @@ function addProduct($db, $dataArray)
 	$req->bindValue(':prix', $dataArray['prix']);
 	$req->bindValue(':photo', $dataArray['photo']);
 	$req->bindValue(':idTaille', $dataArray['taille']);
-	$req->bindValue(':idCategorie', $dataArray['categorie']);
-	$req->bindValue(':idSport', $dataArray['sport']);
-	$req->bindValue(':idMarque', $dataArray['marque']);
+	$req->bindValue(':idCategorie', 3);
+	$req->bindValue(':idSport', 1);
+	$req->bindValue(':idMarque', 1);
 	$req->execute();
+
+	$req=$db->prepare('select * from produit where libelle=:libelle and description=:description and prix=:prix and photo=:photo and idTaille=:idTaille and idCategorie=:idCategorie and idSport=:idSport and idMarque=:idMarque');
+	$req->bindValue(':libelle', $dataArray['libelle']);
+	$req->bindValue(':description', $dataArray['description']);
+	$req->bindValue(':prix', $dataArray['prix']);
+	$req->bindValue(':photo', $dataArray['photo']);
+	$req->bindValue(':idTaille', $dataArray['taille']);
+	$req->bindValue(':idCategorie', 3);
+	$req->bindValue(':idSport', 1);
+	$req->bindValue(':idMarque', 1);
+	$req->execute();
+	$res=$req->rowCount();
+
+	return $res==1 ? true : false;
 }
 
 function deleteProductTable($db)
 {
-	$req = $db->prepare('delete * from produit');
+	$req = $db->prepare('delete from produit');
 	$req->execute();
 }
 

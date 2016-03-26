@@ -2,25 +2,26 @@
 
 // echo realpath("../");
 
-require_once('../model/connection.php');
-include('../model/marque.php');
-include('../model/taille.php');
-include('../model/categorie_produit.php');
-include('../model/sport.php');
-include('../model/produit.php');
+include('./model/connection.php');
+include('./model/marque.php');
+include('./model/taille.php');
+include('./model/categorie_produit.php');
+include('./model/sport.php');
+// include('./model/produit.php');
 
 //  Include PHPExcel_IOFactory
 include 'PHPExcel_1/Classes/PHPExcel/IOFactory.php';
 
-
-
 if($_FILES['selectedFile']['error']>0)
-{
   echo "upload failed";
-}
 else
 {
+
+  $added=0;
+  $cptr=0;
+
   $path = $_FILES['selectedFile']['name'];
+  $filePath = "./files/".$_FILES['selectedFile']['name'];
   $ext = pathinfo($path, PATHINFO_EXTENSION);
   print_r($_FILES);
 
@@ -31,10 +32,7 @@ else
 
   if($ext==="xls")
   {  
-      $inputFileName = $_FILES['selectedFile']['name'];
-
-
-        // $inputFileName = 'controller/listeArticles.xls';
+      $inputFileName = $filePath;
 
         //  Read your Excel workbook
       try 
@@ -50,16 +48,16 @@ else
 
       // Select the sheet
       $sheet = $objPHPExcel->getSheet(0); 
-
+      
       //TODO : Delete * from table
-      deleteProductTable($db);
+      // deleteProductTable($db);
 
       //  Loop through each row of the worksheet in turn
       for ($row = 2; $row <= $sheet->getHighestRow(); $row++)
       { 
           //  Read a row of data into an array
 
-          $dataArray = array('reference'   => $objPHPExcel->getActiveSheet()->getCell("A" . $row),
+          $productArray = array('reference'   => $objPHPExcel->getActiveSheet()->getCell("A" . $row),
                              'libelle'     => $objPHPExcel->getActiveSheet()->getCell("B" . $row),
                              'description' => $objPHPExcel->getActiveSheet()->getCell("D" . $row),
                              'prix'        => $objPHPExcel->getActiveSheet()->getCell("G" . $row),
@@ -69,14 +67,52 @@ else
                              'sport'       => getIdSportByName($db, $objPHPExcel->getActiveSheet()->getCell("E" . $row)),
                              'marque'      => getIdMarqueByName($db, $objPHPExcel->getActiveSheet()->getCell("C" . $row))
                              );
-          addProduct($db, $dataArray);
+
+           if(addProduct($db, $productArray));
+              $added++;
+
+            $cptr++;
       }
   }
   else if($ext==="csv")
-  {
-    echo "TODO : test csv";
+  {   
+    $handle=fopen($filePath, "r");
+    $firstRow=true;
+
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+    {
+        if($firstRow)
+          $firstRow=false;
+        else
+        {
+            $idCategory= getIdCategorieByName($db,$data[5]);
+            $idSport= getIdSportByName($db,$data[4]);
+            $idSize= getIdTailleByName($db,$data[8]);
+            $idBrand= getIdMarqueByName($db,$data[2]);
+
+            $productArray=array('reference'   => "REF".$data[0],
+                             'libelle'     => $data[1],
+                             'description' => $data[3],
+                             'prix'        => $data[6],
+                             'photo'       => 'photo',
+                             'taille'      => $idSize,
+                             'categorie'   => $idCategory,
+                             'sport'       => $idSport,
+                             'marque'      => $idBrand
+                             );
+
+            if(addProduct($db, $productArray));
+              $added++;
+
+            $cptr++;        
+          }
+    }
+
+    fclose($handle);
   }
 
-  
+if($added==$cptr)
+  header("location:index.php?page=view/displayProducts"); 
+
 }
 ?>

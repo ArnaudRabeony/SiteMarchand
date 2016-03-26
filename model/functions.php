@@ -54,4 +54,3 @@ function verifGet($keys)
 
 // 	return in_array($page,$pagesArray);
 // }
-

@@ -35,7 +35,7 @@
 			<?php echo displayProducts($db);?>
 		</table>
 		<div class="buttonsContainer">
-			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayCustomers">Annuler</a></button>
+			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayProducts">Annuler</a></button>
 			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
 			<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
 		</div><br>
@@ -45,7 +45,7 @@
 			Pour cela, il vous suffit de charger votre fichier dans le champs présent ci-dessous puis de cliquer sur le bouton d'import.
 			<div class="col-md-8"><br>
 
-			<form method="post" action="controller/importsManager.php" enctype="multipart/form-data">
+			<form method="post" action="index.php?page=controller/importsManager" enctype="multipart/form-data">
 			    <span class="btn btn-default btn-file">
 				    Choisir un fichier
 				    <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />

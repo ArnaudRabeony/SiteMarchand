@@ -26,7 +26,7 @@ $(document).ready(function()
 			// }
 			else
 			{
-				alert("TODO: Update product");
+				// alert("TODO: Update product");
 			
 				row.find('input, select').each(function()
 				{
@@ -57,8 +57,10 @@ $(document).ready(function()
         // });
     });
 
-    $("#importProducts").click(function()
+    $("#importProducts").submit(function()
     {
+    	e.preventDefault();
+
     	alert("TODO : csv/PHPExel ajax management --> Delete * from produit + insert all");
     });
 });
