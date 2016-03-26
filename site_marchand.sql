@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 -- phpMyAdmin SQL Dump
 -- version 4.4.10
 -- http://www.phpmyadmin.net
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `categorie_produit`
 --
-=======
->>>>>>> beb066b49f16338615659b31e5b4865be9f9ee3f
-
 CREATE TABLE `categorie_produit` (
   `idCategorie` int(11) NOT NULL,
   `nomCategorie` varchar(30) NOT NULL
@@ -62,10 +59,6 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`idClient`, `type`, `email`, `nom`, `prenom`, `mdp`, `adresse`, `telephone`) VALUES
 (23, 'admin', 'admin', 'NomAdm', 'PrenomAdm', '$2y$10$ftrzKc.OwPhFVY.J6aNPLuy0Ozd4RznDyKJfpVporunWLddfsxrDO', 'Adresse de l''admin', '0123456879'),
-<<<<<<< HEAD
-(24, 'client', 'client1@client.client', 'Client1Nom', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
-=======
->>>>>>> beb066b49f16338615659b31e5b4865be9f9ee3f
 (24, 'client', 'client', 'Client1Nom', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
 (25, 'client', 'client2@client.client', 'Client2', 'Client2', '$2y$10$/a3tr7PH.Z.eE6g00GvmX.NQzJ2Pl95/r0gmERwuKmdCuwY0MVfTS', 'adresse client', '0123456789'),
 (26, 'client', 'a@a.aa', 'Ajax01', 'aze', '$2y$10$McmGAvMAPOdnl75s1by.nugQLXEaJ2E4roZ6Vw3ia4N3OxSU7nDFO', 'adresse client 3', '0123456789'),

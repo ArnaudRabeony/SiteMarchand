@@ -4,6 +4,7 @@ require('model/marque.php');
 require('model/taille.php');
 require('model/categorie_produit.php');
 require('model/sport.php');
+require('model/produit.php');
 
 //  Include PHPExcel_IOFactory
 include 'PHPExcel_1/Classes/PHPExcel/IOFactory.php';
@@ -33,15 +34,12 @@ for ($row = 2; $row <= $sheet->getHighestRow(); $row++){
                        'libelle'     => $objPHPExcel->getActiveSheet()->getCell("B" . $row),
                        'description' => $objPHPExcel->getActiveSheet()->getCell("D" . $row),
                        'prix'        => $objPHPExcel->getActiveSheet()->getCell("G" . $row),
-                       'photo'       => '',
+                       'photo'       => 'photo',
                        'taille'      => getIdTailleByName($db, $objPHPExcel->getActiveSheet()->getCell("H" . $row)),
                        'categorie'   => getIdCategorieByName($db, $objPHPExcel->getActiveSheet()->getCell("F" . $row)),
                        'sport'       => getIdSportByName($db, $objPHPExcel->getActiveSheet()->getCell("E" . $row)),
                        'marque'      => getIdMarqueByName($db, $objPHPExcel->getActiveSheet()->getCell("C" . $row))
                        );
-
-    foreach($dataArray as $value)
-        echo $value . "<br>";
-    echo "<br><br>";
+    importProduitExcel($db, $dataArray);
 }
 ?>
