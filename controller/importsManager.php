@@ -2,12 +2,12 @@
 
 // echo realpath("../");
 
-require_once('../model/connection.php');
-include('../model/marque.php');
-include('../model/taille.php');
-include('../model/categorie_produit.php');
-include('../model/sport.php');
-include('../model/produit.php');
+require_once('./model/connection.php');
+include('./model/marque.php');
+include('./model/taille.php');
+include('./model/categorie_produit.php');
+include('./model/sport.php');
+include('./model/produit.php');
 
 //  Include PHPExcel_IOFactory
 include 'PHPExcel_1/Classes/PHPExcel/IOFactory.php';

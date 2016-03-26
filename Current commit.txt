@@ -1,0 +1,8 @@
+Controller :
+- Creation of the soccerController. Use a getSoccerProduct method which gets all the product of the football section and pass the data to the view
+
+Model :
+- Modification of produit.php. The method getProductsBySport($db, $sport) returns all the product for a sport.
+
+View :
+- The soccer view displays well of the product of the soccer section.

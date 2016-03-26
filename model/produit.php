@@ -23,6 +23,15 @@ function deleteProductTable($db)
 	$req->execute();
 }
 
+function getProductsBySport($db, $sport)
+{
+	$req = $db->prepare('select * from produit where idSport = :idSport');
+	$req->bindValue(':idSport', $sport);
+	$req->execute();
+	$res = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $res;
+}
+
 function displayProducts($db)
 {
 
