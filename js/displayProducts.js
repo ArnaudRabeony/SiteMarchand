@@ -43,12 +43,22 @@ $(document).ready(function()
 	{
 		var selectedFilePath = $(this).val().split("\\");
 		var selectedFile = selectedFilePath[selectedFilePath.length-1];
+		// var fileExtArray = selectedFile.split(".");
+		// var fileName = fileExtArray[0];
+		// var fileExt = fileExtArray[fileExtArray.length-1];
+
         $("#importedFile i").text(selectedFile);
         $("#importProducts").attr("disabled",false);
+
+        // $.get("/controller/importExcel.php",
+        // {
+        // 	ext:fileExt,
+        // 	fileName:fileName
+        // });
     });
 
     $("#importProducts").click(function()
     {
-    	alert("TODO : csv/PHPExel ajax management --> Drop table produit + insert all");
+    	alert("TODO : csv/PHPExel ajax management --> Delete * from produit + insert all");
     });
 });

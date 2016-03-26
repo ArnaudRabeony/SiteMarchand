@@ -7,6 +7,11 @@
     require_once("model/connection.php");
     include('model/functions.php');
     include('model/sql_functions.php');
+    // include('model/marque.php');
+    // include('model/taille.php');
+    // include('model/categorie_produit.php');
+    // include('model/sport.php');
+    include('model/produit.php');
     protectPostGet();
     
     // $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";

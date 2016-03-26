@@ -1,5 +1,4 @@
 <?php 
-
 $type="";
 $errorMessage="";
 $invalidMail="";

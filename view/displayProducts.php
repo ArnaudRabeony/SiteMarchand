@@ -44,12 +44,16 @@
 			<h3><small>Vous pouvez importer une liste de produits créée au préalable sous la forme d'un fichier csv ou xls</small></h3>
 			Pour cela, il vous suffit de charger votre fichier dans le champs présent ci-dessous puis de cliquer sur le bouton d'import.
 			<div class="col-md-8"><br>
-				<span class="btn btn-default btn-file">
-				    Choisir un fichier <input id="productsFileChooser" accept=".csv,.xls" type="file">
-				</span>
-				<span id="importedFile"><i>Aucun fichier selectionné</i></span>
 
-				<br><br><button id="importProducts" class="btn btn-default btn-sm" disabled>Importer mes produits</button>
+			<form method="post" action="controller/importsManager.php" enctype="multipart/form-data">
+			    <span class="btn btn-default btn-file">
+				    Choisir un fichier
+				    <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+				    <input id="productsFileChooser" accept=".csv,.xls" type="file" name="selectedFile">
+				</span>
+				<span id="importedFile"><i>Aucun fichier selectionné</i></span><br><br>
+			    <input id="importProducts" type="submit" name="submit" value="Importer mes produits" class="btn btn-default" disabled/>
+			</form>
 
 			</div>		
 		</p>

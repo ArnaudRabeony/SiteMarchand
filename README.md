@@ -8,6 +8,7 @@
 
 
 ## TODO :
+* Add Quantity field in product
 * Q : Add/display products
 * A : Project structure (organize files and foldes)
 * A : Mon compte -> update fields TBC
