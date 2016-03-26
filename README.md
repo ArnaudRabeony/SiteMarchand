@@ -9,8 +9,13 @@
 
 ## TODO :
 * Add Quantity field in product
+<<<<<<< HEAD
 * Delete products function
 * Q : Add/display products
+=======
+* Q : Creation of the filter section 
+* A/Q : See how to manage the photos into the DB -> blob ?
+>>>>>>> 51e23244caf5ac7049b5c9ddc77efb9d1aa2efc3
 * A : Project structure (organize files and foldes)
 * A : Mon compte -> update fields TBC
 * A : Mon compte -> delete my account TBC
@@ -22,6 +27,7 @@
 
 #### Done
 * Multiple updates by clicking on "Sauvegarder"
+* Add/display products
 * Display users (for admin accounts)
 * Encrypted password
 * Test co/deco

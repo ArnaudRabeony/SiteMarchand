@@ -2,12 +2,20 @@
 
 // echo realpath("../");
 
+<<<<<<< HEAD
 include('./model/connection.php');
+=======
+require_once('./model/connection.php');
+>>>>>>> 51e23244caf5ac7049b5c9ddc77efb9d1aa2efc3
 include('./model/marque.php');
 include('./model/taille.php');
 include('./model/categorie_produit.php');
 include('./model/sport.php');
+<<<<<<< HEAD
 // include('./model/produit.php');
+=======
+include('./model/produit.php');
+>>>>>>> 51e23244caf5ac7049b5c9ddc77efb9d1aa2efc3
 
 //  Include PHPExcel_IOFactory
 include 'PHPExcel_1/Classes/PHPExcel/IOFactory.php';

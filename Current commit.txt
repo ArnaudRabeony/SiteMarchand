@@ -1,0 +1,18 @@
+Controller :
+- Creation of the soccerController. Use a getSoccerProduct method which gets all the product of the football section and pass the data to the view
+
+Model :
+- Modification of produit.php. The method getProductsBySport($db, $sport) returns all the product for a sport.
+
+View :
+- The soccer view displays well of the product of the soccer section.
+
+
+Integration fonction d'ajout Produit dans Gestion des Produits
+Vérification de l'ajout par requete select
+Stockage des fichiers uploadés dans files/
+Probleme d'include dans importsManager
+Probleme Utilisation fonction addProduct (valeurs en dur pcq pb get ?)
+    $req->bindValue(':idCategorie', 3);
+    $req->bindValue(':idSport', 1);
+    $req->bindValue(':idMarque', 1);
