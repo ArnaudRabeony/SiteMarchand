@@ -1,13 +1,22 @@
 Controller :
-- Creation of the soccerController. Use a getSoccerProduct method which gets all the product of the football section and pass the data to the view
+- A unique sportController is used. It contains a method($db, $sport) that returns all the articles of one sport.
 
 Model :
-- Modification of produit.php. The method getProductsBySport($db, $sport) returns all the product for a sport.
 
 View :
-- The soccer view displays well of the product of the soccer section.
+- The previous displayProducts file has been renamed to manageProducts
+- The new displayProducts contains two method : 
+	- one to display all the articles of a sport. This method is used by all the sport view
+	- the other has to display the carousel, it's the buggy one
+
+Database :
+- Photos has been added ('photoName.jpg')
+
+Structure :
+- In the images folder, a folder has been added for each sport containing the photos of the articles
 
 
+--
 Integration fonction d'ajout Produit dans Gestion des Produits
 Vérification de l'ajout par requete select
 Stockage des fichiers uploadés dans files/

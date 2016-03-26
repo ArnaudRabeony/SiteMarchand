@@ -14,9 +14,9 @@ function addProduct($db, $dataArray)
 	$req->bindValue(':prix', $dataArray['prix']);
 	$req->bindValue(':photo', $dataArray['photo']);
 	$req->bindValue(':idTaille', $dataArray['taille']);
-	$req->bindValue(':idCategorie', 3);
-	$req->bindValue(':idSport', 1);
-	$req->bindValue(':idMarque', 1);
+	$req->bindValue(':idCategorie', $dataArray['categorie']);
+	$req->bindValue(':idSport', $dataArray['sport']);
+	$req->bindValue(':idMarque', $dataArray['marque']);
 	$req->execute();
 
 	$req=$db->prepare('select * from produit where libelle=:libelle and description=:description and prix=:prix and photo=:photo and idTaille=:idTaille and idCategorie=:idCategorie and idSport=:idSport and idMarque=:idMarque');
@@ -25,9 +25,9 @@ function addProduct($db, $dataArray)
 	$req->bindValue(':prix', $dataArray['prix']);
 	$req->bindValue(':photo', $dataArray['photo']);
 	$req->bindValue(':idTaille', $dataArray['taille']);
-	$req->bindValue(':idCategorie', 3);
-	$req->bindValue(':idSport', 1);
-	$req->bindValue(':idMarque', 1);
+	$req->bindValue(':idCategorie', $dataArray['categorie']);
+	$req->bindValue(':idSport', $dataArray['sport']);
+	$req->bindValue(':idMarque', $dataArray['marque']);
 	$req->execute();
 	$res=$req->rowCount();
 

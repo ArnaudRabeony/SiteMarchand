@@ -40,8 +40,8 @@
 
                     <?php
                         //displayCarousel();
-                        $footballArray = getSportProducts($db, 'Football');
-                        displayProductList($db, $footballArray);
+                        $basketballArray = getSportProducts($db, 'Basketball');
+                        displayProductList($db, $basketballArray);
                     ?>
 
 <!-- End of product's display -->

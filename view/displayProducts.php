@@ -1,65 +1,70 @@
-<?php 
+<?php
 
-	$type="";
-	$errorMessage="";
-	$invalidMail="";
-	if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
-	{
-		$type=$_GET['errortype'];
+require_once('./model/connection.php');
 
-		switch ($type) 
-		{
-			case 'notExists':
-				$errorMessage="Erreur : impossible de trouver le client";
-				break;
-
-			case 'update':
-				$errorMessage="Erreur : impossible de mettre à jour la base de données";
-				break;
-		}
+function displayProductList($db, $dataArray)
+{
+	foreach($dataArray as $key)
+    {
+    	echo "
+    	<div class=col-sm-4 col-lg-4 col-md-4>
+        	<div class=thumbnail>
+            	<img src=./images/" . $key['photo'] . "> 
+                <div class=caption>
+                   <h4 class=pull-right>" . $key['prix'] . " €</h4>
+                   <h4><a href=#>" . $key['libelle'] . "</a>
+                   </h4>
+                    <p>" . $key['description'] . "</p>
+                </div>
+				<div class=ratings>
+                    <p class=pull-right>15 reviews</p>
+                    <p>
+                        <span class=glyphicon glyphicon-star></span>
+                        <span class=glyphicon glyphicon-star></span>
+                        <span class=glyphicon glyphicon-star></span>
+                        <span class=glyphicon glyphicon-star></span>
+                        <span class=glyphicon glyphicon-star></span>
+                    </p>
+                </div>
+            </div>
+        </div>";
 	}
- ?>
+}
 
-<div class="displayContainer">
-	<p>
-		<h3><small>Cette page vous permet de gérer les produits</small></h3>
-		 En cliquant sur les boutons de la ligne désirée, vous aurez la possibilité :
-		 <ul>
-		 	<li>de mettre à jour un ou plusieurs champs du produit</li>
-		 	<li>de supprimer le produit</li>
-		 </ul>
-		 <hr>
-	</p>
-	<div class="tableContainer table-responsive">
-		<table class="table table-hover table-condensed" id="customersTable">
-			<?php echo displayProducts($db);?>
-		</table>
-		<div class="buttonsContainer">
-			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayProducts">Annuler</a></button>
-			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
-			<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
-		</div><br>
-		<hr>
-		<p>
-			<h3><small>Vous pouvez importer une liste de produits créée au préalable sous la forme d'un fichier csv ou xls</small></h3>
-			Pour cela, il vous suffit de charger votre fichier dans le champs présent ci-dessous puis de cliquer sur le bouton d'import.
-			<div class="col-md-8"><br>
+// function used in all the sport pages
+// @param $images an array containing the images for the carousel
+/*function displayCarousel($images)
+{
+	echo "
+<div class=col-md-12>
+                    <div class=row carousel-holder>
+                        <div class=col-md-12>
+                            <div id=carousel-example-generic class=carousel slide data-ride=carousel>
+                                <ol class=carousel-indicators>
+                                    <li data-target=#carousel-example-generic data-slide-to=0 class=active></li>
+                                    <li data-target=#carousel-example-generic data-slide-to=1></li>
+                                    <li data-target=#carousel-example-generic data-slide-to=2></li>
+                                </ol>
+                                <div class=carousel-inner>
+                                    <div class=item active>
+                                        <img class=slide-image src=http://placehold.it/800x300 alt=>
+                                    </div>
+                                    <div class=item>
+                                        <img class=slide-image src=http://placehold.it/800x300 alt=>
+                                    </div>
+                                    <div class=item>
+                                        <img class=slide-image src=http://placehold.it/800x300 alt=>
+                                    </div>
+                                </div>
+                                <a class=left carousel-control href=#carousel-example-generic data-slide=prev>
+                                    <span class=glyphicon glyphicon-chevron-left></span>
+                                </a>
+                                <a class=right carousel-control href=#carousel-example-generic data-slide=next>
+                                    <span class=glyphicon glyphicon-chevron-right></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-			<form method="post" action="index.php?page=controller/importsManager" enctype="multipart/form-data">
-			    <span class="btn btn-default btn-file">
-				    Choisir un fichier
-				    <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-				    <input id="productsFileChooser" accept=".csv,.xls" type="file" name="selectedFile">
-				</span>
-				<span id="importedFile"><i>Aucun fichier selectionné</i></span><br><br>
-			    <input id="importProducts" type="submit" name="submit" value="Importer mes produits" class="btn btn-default" disabled/>
-			</form>
-
-			</div>		
-		</p>
-	</div>
-</div>
-<p class="errormessage" style="color:red"><?php echo $errorMessage; ?></p>
-
-<script src="js/jquery.js"></script>
-<script src="js/displayProducts.js"></script>
+                    <div class=row>";
+}*/
