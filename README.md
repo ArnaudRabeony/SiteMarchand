@@ -9,6 +9,7 @@
 
 
 ## TODO :
+* Fix Categorie/Sport from the products management
 * Add Quantity field in product
 * Delete products function
 * Q : Creation of the filter section 

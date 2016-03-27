@@ -6,28 +6,22 @@ function displayProductList($db, $dataArray)
 {
 	foreach($dataArray as $key)
     {
-    	echo "
+    	echo '
     	<div class=col-sm-4 col-lg-4 col-md-4>
-        	<div class=thumbnail>
-            	<img src=./images/" . $key['photo'] . "> 
+        	<div class="thumbnail">
+            	<img src="./images/' . $key['photo'] . '"> 
                 <div class=caption>
-                   <h4 class=pull-right>" . $key['prix'] . " €</h4>
-                   <h4><a href=#>" . $key['libelle'] . "</a>
+                   <h4 class=pull-right>' . $key['prix'] . ' €</h4>
+                   <h4><a href=#>' . $key['libelle'] . '</a>
                    </h4>
-                    <p>" . $key['description'] . "</p>
+                    <p>' . $key['description'] . '</p>
+                    <div class="availableSizes">
+                        <i>Tailles disponibles : S, M</i>
+                    </div>
                 </div>
-				<div class=ratings>
-                    <p class=pull-right>15 reviews</p>
-                    <p>
-                        <span class=glyphicon glyphicon-star></span>
-                        <span class=glyphicon glyphicon-star></span>
-                        <span class=glyphicon glyphicon-star></span>
-                        <span class=glyphicon glyphicon-star></span>
-                        <span class=glyphicon glyphicon-star></span>
-                    </p>
-                </div>
+				
             </div>
-        </div>";
+        </div>';
 	}
 }
 

@@ -9,4 +9,21 @@ function getIdSportByName($db, $name)
     $req->execute();
     $res = $req->fetch(PDO::FETCH_NUM);
     return $res[0];
-}	
+}
+
+function getSportById($db, $id)
+{
+	$req = $db->prepare('select nomSport from sport where idSport = :idSport');
+    $req->bindValue(':idSport', $id);
+    $req->execute();
+    $res = $req->fetch(PDO::FETCH_NUM);
+    return $res[0];
+}
+
+function getAllSports($db)
+{
+	$req = $db->prepare('select nomSport from sport');
+	$req->execute();
+	$res = $req->fetchAll();
+    return $res;
+}

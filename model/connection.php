@@ -2,7 +2,7 @@
 
 $host='localhost';
 $user='root';
-$password='';
+$password='root';
 $dbname='site_marchand';
 
 /*

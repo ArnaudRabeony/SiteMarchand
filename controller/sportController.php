@@ -1,8 +1,8 @@
 <?php
 
 require_once('./model/produit.php');
-require('./model/connection.php');
-require('./model/sport.php');
+require_once('./model/connection.php');
+require_once('./model/sport.php');
 
 
 function getSportProducts($db, $sport)

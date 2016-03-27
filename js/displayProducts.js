@@ -19,6 +19,7 @@ $(document).ready(function()
 				row.removeClass("secured");
 				// $(this).attr("aria-pressed","false");
 				$(this).html('<i class="fa fa-check"></i>').css("color","#286B0E");
+				row.find(".moreInfo").show();
 			}
 			// else if()//check types
 			// {
@@ -32,6 +33,8 @@ $(document).ready(function()
 				{
 					$(this).attr("disabled",true);
 				});
+
+				row.find(".moreInfo").hide();
 
 				row.addClass("secured");
 				$(this).html('<i class="fa fa-pencil"></i>').css("color","#333");
@@ -57,10 +60,10 @@ $(document).ready(function()
         // });
     });
 
-    $("#importProducts").submit(function()
-    {
-    	e.preventDefault();
+    // $("#importProducts").submit(function()
+    // {
+    // 	e.preventDefault();
 
-    	alert("TODO : csv/PHPExel ajax management --> Delete * from produit + insert all");
-    });
+    // 	alert("TODO : csv/PHPExel ajax management --> Delete * from produit + insert all");
+    // });
 });

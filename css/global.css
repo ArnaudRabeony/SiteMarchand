@@ -233,3 +233,57 @@ form input,form textarea
 {
 	color:red;
 }
+
+td>select
+{
+	padding:0px;
+}
+
+form select
+{
+	margin-bottom: 5px;
+}
+
+#preview
+{
+	display: none;
+	margin: 10px;
+	height: 100px;
+	width: 150px;
+}
+
+.thumbnail
+{
+	height:300px;
+}
+
+.thumbnail img
+{	
+	height:200px;
+}
+
+.thumbnail .caption
+{	
+	height:100px;
+}
+
+.availableSizes
+{
+	float: right;
+	font-size: 111px;
+}
+
+#sizeTable td
+{
+	margin: 10px;
+}
+
+#sizeRow td
+{
+	text-align: center;
+}
+
+#toFillRow input
+{
+	padding: 7px;
+}
