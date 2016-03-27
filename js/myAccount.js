@@ -64,8 +64,10 @@ $(document).ready(function()
 					address:address,
 					phone:phone
 				});
-
-				alert("submitted");
+				relatedTable.find("input, textarea").each(function()
+				{
+					$(this).attr("disabled",true);
+				});
 			}
 
 			e.preventDefault();
@@ -80,7 +82,7 @@ $(document).ready(function()
 
 	$("#deleteMyAccount").click(function()
 	{
-		$.post("controller/deleteCustomer.php",
+		$.post("js/ajax/deleteCustomer.php",
 		{
 			id:$("#myAccountTable").attr("data-id")
 		});
@@ -91,6 +93,7 @@ $(document).ready(function()
 		var currentPassword = $("#currentPassword").val();
 		var currentPasswordConfirmation = $("#currentPasswordConfirmation").val();
 		var newPassword = $("#newPassword").val();
+		var email=$("#newemail").val();
 
 		if(currentPassword!=currentPasswordConfirmation)
 		{
@@ -99,7 +102,19 @@ $(document).ready(function()
 		}
 		else if(newPassword!="")
 		{
-			alert("ok pour hashage php et update");
+			$.post("js/ajax/updatePassword.php",
+			{
+				id:$("#myAccountTable").attr("data-id"),
+				email:email,
+				password:currentPassword,
+				newPassword:newPassword
+			},function(response)
+			{
+				if(response=="passwordError")
+					$("#errorMessage").text("Mot de passe incorrect");
+			});
+
+			// alert("ok pour hachage php et update");
 		}
 
 		e.preventDefault();

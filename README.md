@@ -1,6 +1,7 @@
 # SiteMarchand
 
-# BUGS
+# PRB
+* Customer should be disconnected when he changes his password
 * Display the carousel from the views/displayProducts file
 * Create an account with a non email format value
 * [Resolved] Create an account : mail already exists isn't taken into account
@@ -9,20 +10,21 @@
 
 
 ## TODO :
-* Fix Categorie/Sport from the products management
-* Add Quantity field in product
-* Delete products function
 * Q : Creation of the filter section 
-* A : Project structure (organize files and foldes)
 * A : Mon compte -> update fields TBC
 * A : Mon compte -> delete my account TBC
-* A : Admin : display products
+* A : Mon compte -> delete my account TBC
 * Manage update errors (check fields formats, email already exists...)
 * User settings panel (update phone, address...)
 * Create 
 
 
 #### Done
+* Update password
+* Oneself Update (customer)
+* Add Quantity field in product
+* Admin : Delete product
+* Admin : display products
 * Multiple updates by clicking on "Sauvegarder"
 * Add/display products
 * Display users (for admin accounts)

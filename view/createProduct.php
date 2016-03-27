@@ -1,17 +1,24 @@
 <?php 
     require('./model/connection.php');
    
-
+$price="";
+$libelle="";
+$price="";
+$brandId="";
+$categoryId="";
+$sportId="";
+$description="";
+$photo="";
     if(verifGet(array('id')))
     {
     	$product=getProductById($db,$_GET['id']);
-    	$libelle=$product[0]['libelle']!="" ? $product[0]['libelle'] : "";
-    	$price=$product[0]['prix']!="" ? $product[0]['prix'] : "";
-    	$brandId=$product[0]['idMarque']!="" ? $product[0]['idMarque'] : "";
-    	$categoryId=$product[0]['idCategorie']!="" ? $product[0]['idCategorie'] : "";
-    	$sportId=$product[0]['idSport']!="" ? $product[0]['idSport'] : "";
-    	$description=$product[0]['description']!="" ? $product[0]['description'] : "";
-    	$photo=$product[0]['photo']!="" ? "images/".$product[0]['photo'] : "#";
+    	$libelle=$product[0]['libelle'];
+    	$price=$product[0]['prix'];
+    	$brandId=$product[0]['idMarque'];
+    	$categoryId=$product[0]['idCategorie'];
+    	$sportId=$product[0]['idSport'];
+    	$description=$product[0]['description'];
+    	$photo="images/".$product[0]['photo'];
     }
 
 	$categorySelection='<select class="form-control" name="category" id="selectCategory"><option value="-1">Choisir une catégorie</option>';

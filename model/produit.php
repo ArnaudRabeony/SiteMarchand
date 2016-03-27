@@ -1,9 +1,9 @@
 <?php
 
 require_once('connection.php');
-include('./model/categorie_produit.php');
-include('./model/sport.php');
-include('./model/marque.php');
+require('categorie_produit.php');
+require('sport.php');
+require('marque.php');
 
 function addProduct($db, $dataArray)
 {
@@ -81,39 +81,14 @@ function getProductsBySport($db, $sport)
 
 function displayProducts($db)
 {
-
-	//------------------- /populates the categorie field -------------------
-	$categorySelection='<select disabled class="form-control" id="selectType">';
-	$categories=getAllCategories($db);
-
-	$categoryCptr=1;
-	foreach ($categories as $key => $value)
-		$categorySelection.='<option value="'.$categoryCptr++.'">'.$value['nomCategorie'].'</option>';
-	
-	$categorySelection.='</select>';
-	//------------------- populates the categorie field/ -------------------
-
-	//------------------- /populates the sport field -------------------
-	$sportSelection='<select disabled class="form-control" id="selectType">';
-	$sports=getAllSports($db);
-
-	$sportCptr=1;
-	foreach ($sports as $key => $value)
-		$sportSelection.='<option value="'.$sportCptr++.'">'.$value['nomSport'].'</option>';
-	
-	$sportSelection.='</select>';
-	//------------------- populates the sport field/ -------------------
-
-
 	$head="<thead class='thead-default'>
 		<tr>
 			<th></th>
-			<th class='col-md-2 col-sm-2'>Catégorie</th>
-			<th class='col-md-2 col-sm-2'>Sport</th>
-			<th class='col-md-1 col-sm-1'>Ref</th>
-			<th class='col-md-2 col-sm-2'>Marque</th>
-			<th class='col-md-2 col-sm-1'>Libellé</th>
-			<th class='col-md-1 col-sm-1'>Prix</th>
+			<th>Ref</th>
+			<th>Marque</th>
+			<th>Libellé</th>
+			<th>Description</th>
+			<th>Prix</th>
 		</tr>
 	</thead>";
 
@@ -125,13 +100,12 @@ function displayProducts($db)
 	while($res=$req->fetch(PDO::FETCH_ASSOC))
 	{
 		$brand=getMarqueLabelByName($db,$res['idMarque']);
-		$body.='<tr id="row'.$cptr++.'" class="secured">
+		$body.='<tr id="row'.$res['idProduit'].'" class="secured">
 		<td><a class="moreInfo btn btn-default btn-sm" style="display:none" href="index.php?page=view/createProduct&id='.$res['idProduit'].'"><i class="fa fa-ellipsis-h"></i></a></td>
-		<td data-selection="'.$res['idCategorie'].'">'.$categorySelection.'</td>
-		<td data-selection="'.$res['idSport'].'">'.$sportSelection.'</td>
 		<td><input id="ref" disabled class="form-control" type="text" value="REF'.$res['idProduit'].'"</td>
 		<td><input id="brand" disabled class="form-control" type="text" value="'.$brand.'"</td>
 		<td><input id="label" disabled class="form-control" type="text" value="'.$res['libelle'].'"</td>
+		<td><textarea class="form-control" name="description" id="description" rows=1 disabled style="font-size:13px;">'.$res['description'].'</textarea></td>
 		<td><input id="price" disabled class="form-control" type="text" value="'.$res['prix'].'"</td>
 		<td><button class="editButton btn btn-default btn-sm"><i class="fa fa-pencil"></i></button></td>
 		<td><button class="deleteButton btn btn-default btn-sm"><i class="fa fa-close"></i></button></td>
@@ -152,4 +126,38 @@ function getProductById($db,$id)
 	$req->execute();
 	$res = $req->fetchAll();
     return $res;
+}
+
+function updateProduct($db,$id,$libelle,$description,$prix)
+{
+	$req = $db->prepare('update produit set libelle=:libelle, description=:description, prix=:prix where idProduit=:id');
+	$req->bindValue(':id', $id);
+	$req->bindValue(':libelle', $libelle);
+	$req->bindValue(':description', $description);
+	$req->bindValue(':prix', $prix);
+	$req->execute();
+
+	$req = $db->prepare('select * from produit where libelle=:libelle and description=:description and prix=:prix and idProduit=:id');
+	$req->bindValue(':id', $id);
+	$req->bindValue(':libelle', $libelle);
+	$req->bindValue(':description', $description);
+	$req->bindValue(':prix', $prix);
+	$req->execute();
+	$res=$req->rowCount();
+
+	return $res==1 ? true : false;
+}
+
+function deleteProduct($db,$id)
+{
+	$req=$db->prepare("delete from produit where idProduit=:id");
+	$req->bindValue(":id",$id);
+	$req->execute();
+
+	$req=$db->prepare("select * from produit where idProduit=:id");
+	$req->bindValue(":id",$id);
+	$req->execute();
+	$res=$req->rowCount();
+
+	return $res==0 ? true : false;
 }

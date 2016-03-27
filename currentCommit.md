@@ -18,22 +18,18 @@
 
 --
 
-###Text file to Markdown
-
 ###Import products
 * import products through files
 * db add check (via select query)
-*uploaded files storage : files/
+* 	uploaded files storage : files/
 
-###New pages 
-* single product creation/edition
-* load product by clicking on the left side button
-
-###Soccer page
-* reorganized products div size
-
-Probleme d'include dans importsManager
-Probleme Utilisation fonction addProduct (valeurs en dur pcq pb get ?)
-    $req->bindValue(':idCategorie', 3);
-    $req->bindValue(':idSport', 1);
-    $req->bindValue(':idMarque', 1);
+###28/03
+* Update password
+* Oneself Update (customer)
+* Add Quantity field in product
+* Admin : Delete product
+* Admin : display products
+* Soccer page : reorganized products div size
+* Product edition 
+	* single product creation/edition
+	* load product by clicking on the left side button

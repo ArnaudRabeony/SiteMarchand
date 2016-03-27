@@ -50,6 +50,7 @@
 				</p>
 			</div>
 			<div id="changePasswordContainerForm" style="display:none"><br>
+				<span id="errorMessage" style="color:#A90000;font-size: 13px;"></span>
 					<form action="controller/myAccount.php" method="post" novalidate>
 						<table id="myAccountTable">
 							<tbody>

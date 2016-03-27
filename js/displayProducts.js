@@ -11,7 +11,7 @@ $(document).ready(function()
 			
 			if(row.hasClass('secured'))
 			{
-				row.find('input, select').each(function()
+				row.find('input, select, textarea').each(function()
 				{
 					$(this).attr("disabled",false);
 				});
@@ -29,7 +29,7 @@ $(document).ready(function()
 			{
 				// alert("TODO: Update product");
 			
-				row.find('input, select').each(function()
+				row.find('input, select, textarea').each(function()
 				{
 					$(this).attr("disabled",true);
 				});
@@ -38,7 +38,15 @@ $(document).ready(function()
 
 				row.addClass("secured");
 				$(this).html('<i class="fa fa-pencil"></i>').css("color","#333");
-				// alert("Changement ok ");
+
+				$.get('controller/updateProduct.php',
+				{
+					id:id,
+					libelle:row.find("#label").val(),
+					prix:row.find("#price").val(),
+					description:row.find("#description").val()
+				});
+				alert("Changement ok ");
 			}
 		});
 
@@ -52,18 +60,17 @@ $(document).ready(function()
 
         $("#importedFile i").text(selectedFile);
         $("#importProducts").attr("disabled",false);
-
-        // $.get("/controller/importExcel.php",
-        // {
-        // 	ext:fileExt,
-        // 	fileName:fileName
-        // });
     });
 
-    // $("#importProducts").submit(function()
-    // {
-    // 	e.preventDefault();
+    $(".deleteButton").click(function()
+    {
+    	var row=$(this).parent().parent();
+		var id=row.attr("id").replace('row','');
+		row.hide();
 
-    // 	alert("TODO : csv/PHPExel ajax management --> Delete * from produit + insert all");
-    // });
+		$.get('js/ajax/deleteProduct.php',
+		{
+			id:id
+		});
+    });
 });
