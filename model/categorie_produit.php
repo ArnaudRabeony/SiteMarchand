@@ -1,6 +1,6 @@
 <?php
 
-require_once('connection.php');
+require_once('./connection.php');
 
 function getIdCategorieByName($db, $name)
 {
@@ -32,3 +32,12 @@ function getSizeByCategories($db,$idCategorie)
 
     return $returned;
 }
+
+function getCategorieById($db, $id)
+{
+	$req = $db->prepare('select nomCategorie from categorie_produit where idCategorie=:id');
+    $req->bindValue(':id', $id);
+    $req->execute();
+    $res = $req->fetch(PDO::FETCH_NUM);
+    return $res[0];
+}	

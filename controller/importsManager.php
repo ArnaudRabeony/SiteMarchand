@@ -2,8 +2,7 @@
 
 // echo realpath("../");
 
-include('./model/connection.php');
-require_once('./model/connection.php');
+require_once('./connection.php');
 include('./model/marque.php');
 include('./model/taille.php');
 include('./model/categorie_produit.php');

@@ -1,5 +1,5 @@
 <?php 
-require_once('connection.php');
+require_once('./connection.php');
 
 
 function addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone)

@@ -4,7 +4,7 @@
     //Info site
     $title = 'Site marchand';
     
-    require_once("model/connection.php");
+    require_once("connection.php");
     include('model/functions.php');
     include('model/sql_functions.php');
     // include('model/marque.php');

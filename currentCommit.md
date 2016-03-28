@@ -33,6 +33,9 @@
 * Product edition 
 	* single product creation/edition
 	* load product by clicking on the left side button
+* Change the structure : connection on the root folder (to be ignored by git)
+	* Connection file is unreachable for some pages (ex : categorie_produit.php)
+* Deleted displayProduct page which contained : put contained functions in model/produit.php
 
 ###28/03 Quentin
 * Creation of the product page, a single page to display all the articles

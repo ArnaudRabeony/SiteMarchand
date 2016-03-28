@@ -10,6 +10,7 @@
 
 
 ## TODO :
+* Manage long description display (substr ?)
 * Q : Creation of the filter section 
 * A : Mon compte -> update fields TBC
 * A : Mon compte -> delete my account TBC

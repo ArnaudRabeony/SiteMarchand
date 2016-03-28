@@ -1,5 +1,5 @@
 <?php 
-    require('./model/connection.php');
+    require('./connection.php');
    
 $price="";
 $libelle="";

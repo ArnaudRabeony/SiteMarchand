@@ -20,11 +20,6 @@
 	margin-top: 20px;
 }
 
-#customerMenu .divider
-{
-	margin-bottom: -5px;
-}
-
 #customerContainer
 {
 	position: relative;
@@ -161,12 +156,7 @@ ul.dropdown-menu
 	font-size: small;
 }
 
-.deleteButton
-{
-	color:#A90000;
-}
-
-form input,form textarea
+form input,form textarea,#ordering>select,form select,#customerMenu .divider
 {
 	margin-bottom: 5px;
 }
@@ -199,7 +189,7 @@ form input,form textarea
     display: block;
 }
 
-#importProducts,#deleteMyAccount,#confirmPasswordUpdateButton,#changePassword
+#importProducts,#deleteMyAccount,#confirmPasswordUpdateButton,#changePassword,.deleteButton
 {
 	color:#A90000;	
 }
@@ -239,11 +229,6 @@ td>select
 	padding:0px;
 }
 
-form select
-{
-	margin-bottom: 5px;
-}
-
 #preview
 {
 	display: none;
@@ -270,7 +255,8 @@ form select
 .availableSizes
 {
 	float: right;
-	font-size: 111px;
+	margin-top: 5px;
+	font-size: 13px;
 }
 
 #sizeTable td
@@ -296,4 +282,36 @@ form select
      font: inherit;
      border-bottom:1px solid #444; 
      cursor: pointer;
-}	
+}	*/
+
+#imageContainer
+{
+	margin-top: 10px;
+	padding: 0px;
+}
+
+#displayProduct
+{
+	padding:5px 5px;
+	border-radius: 10px;
+	box-shadow: 3px 4px 10px #888888;
+	height: 450px;
+}
+
+#descriptionContainer
+{
+	padding-left: 35px;
+	border-left: .7px solid #ddd;
+	margin: 10px 30px;
+	height: 350px;
+}
+
+#mainProductTab, #descriptionTab
+{
+	padding-left: 10px;
+}
+
+#productImage
+{
+	height: 250px;
+}

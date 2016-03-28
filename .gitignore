@@ -1,2 +1,2 @@
 #We don't want the connection file to be managed by github
-model/connection.php
+connection.php

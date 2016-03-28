@@ -1,7 +1,7 @@
 <?php
     require_once('./controller/sportController.php');
-    require_once('./model/connection.php');
-    require_once('displayProducts.php');
+    require_once('./connection.php');
+    require_once('./model/produit.php');
 
 ?>
 
