@@ -33,3 +33,6 @@
 * Product edition 
 	* single product creation/edition
 	* load product by clicking on the left side button
+
+###28/03 Quentin
+* Creation of the product page, a single page to display all the articles

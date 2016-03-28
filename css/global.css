@@ -1,4 +1,4 @@
-	#categories
+#categories
 {
 	position:fixed;
 	margin-left:90px;
@@ -287,3 +287,13 @@ form select
 {
 	padding: 7px;
 }
+/*
+.productButton
+{
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     border-bottom:1px solid #444; 
+     cursor: pointer;
+}	

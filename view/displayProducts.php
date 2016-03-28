@@ -12,8 +12,7 @@ function displayProductList($db, $dataArray)
             	<img src="./images/' . $key['photo'] . '"> 
                 <div class=caption>
                    <h4 class=pull-right>' . $key['prix'] . ' €</h4>
-                   <h4><a href=#>' . $key['libelle'] . '</a>
-                   </h4>
+                   <a href =index.php?page=view/productPage&ref='.$key['idProduit'].'> ' . $key['libelle'] . '</a>
                     <p>' . $key['description'] . '</p>
                     <div class="availableSizes">
                         <i>Tailles disponibles : S, M</i>

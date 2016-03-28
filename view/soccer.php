@@ -2,6 +2,7 @@
     require_once('./controller/sportController.php');
     require_once('./model/connection.php');
     require_once('displayProducts.php');
+
 ?>
 
 <div class="col-md-12">
