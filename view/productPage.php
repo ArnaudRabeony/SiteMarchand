@@ -17,13 +17,15 @@ $description=$productData[0]['description'];
 
 ?>
 <div id="displayProduct" class="row">
-	<div id="displayProductContainer" class="col-md-12">
-		<h1><small><?php echo $label ?></small></h1>
-		<div id="imageContainer" class="col-md-6 col-sm-6">
-			<img id="productImage" class="img-responsive" <?php echo "src=".$imagePath ?> alt="preview" /><br>
+	<div id="displayProductContainer">
+	<div id="productHeadingDiv">
+		<h1><small><?php echo $label ?></small><i id="closeIcon" class="material-icons" style="float: right;color:#ddd;">clear</i></h1>
+	</div>
+		<div id="imageContainer" class="col-md-6 col-xs-6">
+			<img id="productImage" <?php echo "src=".$imagePath ?> alt="preview" /><br>
 		</div>
 		<div id="descriptionContainer" <?php echo "data-category='".$productData[0]['idCategorie']."'" ?>class="col-md-5 col-sm-5">
-		<h4 style="margin-bottom: -10px;"><small><?php echo $category." de ".$sport ?> <br></small></h4 style="margin-bottom: -10px;">
+		<h4 style="margin-bottom: -10px;"><small id="categoryNsport"><?php echo $category." de ".$sport ?> <br></small></h4 style="margin-bottom: -10px;">
 		<h5><small><i>Référence : <?php echo $ref ?></i></small></h5>
 			<ul class="nav nav-tabs">
 			  <li class="active"><a data-toggle="tab" href="#mainProductTab">Info</a></li>

@@ -290,7 +290,7 @@ td>select
 	padding: 0px;
 }
 
-#displayProduct
+#displayProduct,#myBasketContainer,#myOrdersContainer
 {
 	padding:5px 5px;
 	border-radius: 10px;
@@ -314,4 +314,14 @@ td>select
 #productImage
 {
 	height: 250px;
+}
+
+#closeIcon
+{
+	cursor: pointer;
+}
+
+#productHeadingDiv
+{
+	padding-left: 10px;
 }

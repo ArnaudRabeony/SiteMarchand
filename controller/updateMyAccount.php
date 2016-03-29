@@ -13,6 +13,5 @@ if(verifGet(array("id","address","phone","lastname","firstname","email")))
 
 	//verifier si mail existe
 	oneselfUpdate($db,$id,$lastname,$firstname,$email,$address,$phone);
-	
 }
  ?>

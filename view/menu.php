@@ -52,8 +52,8 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                 echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname']{0}.'. (Admin) <span class="caret"></span></a></li>
                 <ul class="dropdown-menu">
                     <li><a href="index.php?page=view/myAccount">Mon compte</a></li>
-                    <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>
-                    <li><a href="#">Mon panier</a></li>
+                    <li><a href="index.php?page=view/myOrders">Mes commandes <span id="currentCommand"></span></a></li>
+                    <li><a href="index.php?page=view/myBasket">Mon panier</a></li>
                     <li><a href="index.php?page=view/manageProducts">Gestion des produits</a></li>
                     <li><a href="index.php?page=view/displayCustomers">Gestion des utilisateurs</a></li><hr>
                     <li><a href="index.php?page=controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
@@ -67,8 +67,8 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                 echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname']{0}.'. <span class="caret"></span></a></li>
                 <ul class="dropdown-menu">
                     <li><a href="index.php?page=view/myAccount">Mon compte</a></li>
-                    <li><a href="#">Mes commandes <span id="currentCommand"></span></a></li>
-                    <li><a href="#">Mon panier</a></li><hr>
+                    <li><a href="index.php?page=view/myOrders">Mes commandes <span id="currentCommand"></span></a></li>
+                    <li><a href="index.php?page=view/myBasket">Mon panier</a></li><hr>
                     <li><a href="index.php?page=controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>

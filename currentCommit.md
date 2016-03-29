@@ -39,3 +39,8 @@
 
 ###28/03 Quentin
 * Creation of the product page, a single page to display all the articles
+
+
+###29/03
+* Close button on a product page : back button
+* create empty pages Mon panier, Mes commandes

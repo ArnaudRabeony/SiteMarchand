@@ -10,8 +10,6 @@ if(verifPost(array("id","email","password","newPassword")))
 	if(customerConnection($db,$_POST['email'],$_POST["password"]))
 	{
 		updatePassword($db,$_POST["id"],$_POST["newPassword"]);
-		session_destroy();
-		header("location: index.php?page=view/co_page");
 	}
 	else
 		echo "passwordError";

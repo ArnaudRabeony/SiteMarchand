@@ -10,15 +10,12 @@
 
 
 ## TODO :
+* customer's bakset/Orders
+* add products to customer's basket
 * Manage long description display (substr ?)
 * Q : Creation of the filter section 
-* A : Mon compte -> update fields TBC
-* A : Mon compte -> delete my account TBC
 * A : Mon compte -> delete my account TBC
 * Manage update errors (check fields formats, email already exists...)
-* User settings panel (update phone, address...)
-* Create 
-
 
 #### Done
 * Update password

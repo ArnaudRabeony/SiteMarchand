@@ -12,4 +12,27 @@ $(document).ready(function()
 				// }
 
 			}, "json");
+
+	$('#closeIcon').mouseover(function()
+	{
+		$(this).css("color","black");
+	});
+
+	$('#closeIcon').mouseleave(function()
+	{
+		$(this).css("color","#ddd");
+	});
+
+	// $('#closeIcon').click(function()
+	// {
+	// 	var categoryNsport=$("#categoryNsport").text().split(" ");
+	// 	var sport = categoryNsport[categoryNsport.length-2];
+	// 	var viewPage= sport.toLowerCase()=="football" ? "soccer" : "welcome";
+	// 	document.location.href="index.php?page=view/"+viewPage;
+	// });
+
+	$('#closeIcon').click(function(){
+		parent.history.back();
+		return false;
+	});
 });

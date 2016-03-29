@@ -1,5 +1,5 @@
 <?php 
-require_once('./connection.php');
+include('./connection.php');
 // htmlentities() on all $_POST/$_GET variables
 function protectPostGet() 
 {

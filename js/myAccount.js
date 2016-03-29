@@ -85,6 +85,10 @@ $(document).ready(function()
 		$.post("js/ajax/deleteCustomer.php",
 		{
 			id:$("#myAccountTable").attr("data-id")
+		},function(response)
+		{
+			if(response)
+				document.location.href="index.php?page=controller/deco_page";
 		});
 	});
 
@@ -112,6 +116,8 @@ $(document).ready(function()
 			{
 				if(response=="passwordError")
 					$("#errorMessage").text("Mot de passe incorrect");
+				else
+					document.location.href="index.php?page=controller/deco_page";
 			});
 
 			// alert("ok pour hachage php et update");
