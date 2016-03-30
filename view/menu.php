@@ -40,7 +40,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                 
         if($connected)
         {   
-            echo '<li class="dropdown-toggle" data-toggle="dropdown"><a><span class="glyphicon glyphicon-user"></span>';
+            echo '<li class="dropdown-toggle" data-toggle="dropdown"><a><span class="glyphicon glyphicon-user"> </span>';
 
             if($isAdmin)
             {
@@ -49,7 +49,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
                  * gestion des utilisateurs : liste/modification/suppression des utilisateurs
                  */
 
-                echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname']{0}.'. (Admin) <span class="caret"></span></a></li>
+                echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname']{0}.'. (Admin) <span class="caret"></span></a><i id="shoppingCart" style="display:none" class="fa fa-shopping-cart" color:white;></i></li>
                 <ul class="dropdown-menu">
                     <li><a href="index.php?page=view/myAccount">Mon compte</a></li>
                     <li><a href="index.php?page=view/myOrders">Mes commandes <span id="currentCommand"></span></a></li>
@@ -64,7 +64,7 @@ $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false
             }
             else
             {
-                echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname']{0}.'. <span class="caret"></span></a></li>
+                echo ' '.$_SESSION['firstname'].' '.$_SESSION['lastname']{0}.'. <span class="caret"></span></a><i id="shoppingCart" style="display:none" class="fa fa-shopping-cart" color:white;></i></li>
                 <ul class="dropdown-menu">
                     <li><a href="index.php?page=view/myAccount">Mon compte</a></li>
                     <li><a href="index.php?page=view/myOrders">Mes commandes <span id="currentCommand"></span></a></li>

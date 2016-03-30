@@ -3,6 +3,8 @@
 require_once('./connection.php');
 require_once('./model/categorie_produit.php');
 
+$connected = isset($_SESSION['id']) ? true : false;
+
 $productData = getProductById($db, $_GET['ref']);
 $imagePath="images/".$productData[0]['photo'];
 $ref="REF".$productData[0]['idProduit'];
@@ -11,12 +13,15 @@ $category=getCategorieById($db,$productData[0]['idCategorie']);
 $sport=getSportById($db,$productData[0]['idSport']);
 $price=$productData[0]['prix'];
 $description=$productData[0]['description'];
+
+$status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;
+
 // the product doesn't exist
 
 // $sizes=getSizeByCategories($db,$productData[0]['idCategorie']);
 
 ?>
-<div id="displayProduct" class="row">
+<div id="displayProduct" class="row" <?php echo $status ?>>
 	<div id="displayProductContainer">
 	<div id="productHeadingDiv">
 		<h1><small><?php echo $label ?></small><i id="closeIcon" class="material-icons" style="float: right;color:#ddd;">clear</i></h1>
@@ -41,7 +46,7 @@ $description=$productData[0]['description'];
 					<div id="ordering">
 						<select name="sizeSelector" id="sizeSelector" class="col-md-1 form-control"><option value="-1">Taille</option></select>	
 						<select name="quantitySelector" id="quantitySelector" class="col-md-1 form-control"><option value="-1">Quantité</option></select>
-						<button class="btn btn-default btn-sm btn-primary" style="float: right;">Ajouter au panier</button>
+						<button id="addToBasket" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#myModal" style="float: right;">Ajouter au panier</button>
 					</div>
 			    </p>
 			  </div>
@@ -54,5 +59,23 @@ $description=$productData[0]['description'];
 	</div>
 </div>
 
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter au panier</h4>
+      </div>
+      <div id="modalBody" class="modal-body">
+       	Vous venez d'ajouter un article à votre panier. <br>Souhaitez vous voir votre panier ou bien continuer vos achats ?
+      </div>
+      <div id="modalButtons" class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="js/jquery.js"></script>
 <script src="js/productPage.js"></script>
+<script src="js/global.js"></script>

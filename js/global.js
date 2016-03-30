@@ -14,5 +14,8 @@ $(document).ready(function()
 
 
 	// $('#createAccoundContent form').validator();
-
+	// $('#continueShopping').click(function()
+	// {
+	// 	$("#shoppingCart").show();
+	// })
 });
