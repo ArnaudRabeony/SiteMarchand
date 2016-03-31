@@ -18,4 +18,10 @@ $(document).ready(function()
 	// {
 	// 	$("#shoppingCart").show();
 	// })
+
+	$("#basketNotification a").click(function(e)
+	{
+		e.preventDefault();
+		$(this).hide();
+	});
 });

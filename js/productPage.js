@@ -41,7 +41,7 @@ $(document).ready(function()
 		var status=$("#displayProduct").attr("data-status");
 
 		if(status=="connected")
-			$('#modalButtons').html('<button id="continueShopping" type="button" class="btn btn-default" data-dismiss="modal">Je poursuis mes achats</button><button type="button" class="btn btn-primary"><a href="index.php?page=view/myBasket" style="text-decoration:none;color:white;">Voir mon panier</a></button>');
+			$('#modalButtons').html('<button id="continueShopping" type="button" class="btn btn-default" data-dismiss="modal">Je poursuis mes achats</button><button type="button" class="btn btn-primary"><a href="index.php?page=view/myBasket" id="toBasket" style="text-decoration:none;color:white;">Voir mon panier</a></button>');
 		else
 		{
 			$("#modalBody").css("height","200px");
@@ -52,5 +52,22 @@ $(document).ready(function()
 
 		$("#modalBody").html("Vous devez être connecter pour ajouter cet article à votre panier."+'<div style="margin-left:180px;margin-top:30px;">'+coForm+"</div>");
 		}
+	});
+
+	$(document).on("click","#addToBasket",function()
+	{
+		$('#basketNotification').show();
+		var currentSize=parseInt($("#basketSize").text());
+		// alert(currentSize);
+
+		//TODO : get value from db ?
+		$.post("js/ajax/updateBasket.php",
+		{
+			nb:currentSize
+		},function(response)
+		{
+			$("#basketSize").text(response);
+		});
+
 	});
 });

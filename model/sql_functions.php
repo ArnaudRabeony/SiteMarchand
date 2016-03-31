@@ -1,5 +1,8 @@
 <?php 
-require_once('./connection.php');
+
+$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+
+require_once("$root/SiteMarchand/connection.php");
 
 
 function addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone)
@@ -107,6 +110,7 @@ function setSession($db,$mail)
 	$_SESSION['email']=$mail;
 	$_SESSION['lastname']=$res['nom'];
 	$_SESSION['firstname']=$res['prenom'];
+	$_SESSION['basketItemsNumber']=0;
 }
 
 function updateCustomer($db,$id,$type,$lastname,$firstname,$email)

@@ -10,6 +10,9 @@
 
 
 ## TODO :
+* Manage basket with real db
+* Include co_page in addToBasket modal
+* Manage connection redirection (stay on the page or not)
 * customer's bakset/Orders
 * add products to customer's basket
 * Manage long description display (substr ?)

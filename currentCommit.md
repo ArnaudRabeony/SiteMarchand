@@ -44,3 +44,7 @@
 ###29/03
 * Close button on a product page : back button
 * create empty pages Mon panier, Mes commandes
+
+###31/03
+* Test : Connection redirection (to the last page)
+* BasketItemNumber Label on the navbar: Variable to set in a SESSION and increase. Should be displayed at the deconnection or when the user click it

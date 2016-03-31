@@ -3,9 +3,12 @@
     require_once('./connection.php');
     require_once('./model/produit.php');
 
+$connected = isset($_SESSION['id']) ? true : false;
+$status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;
+
 ?>
 
-<div class="col-md-12">
+<div class="col-md-12" <?php echo $status ?>>
                     <div class="row carousel-holder">
                         <div class="col-md-12">
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

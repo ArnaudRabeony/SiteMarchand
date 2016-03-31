@@ -4,6 +4,6 @@
  include('../../model/sql_functions.php');
 
 if(verifPost(array("id")))
-	return deleteUserById($db,$_POST["id"]);
+	echo deleteUserById($db,$_POST["id"]);
 
 ?>

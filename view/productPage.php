@@ -15,7 +15,6 @@ $price=$productData[0]['prix'];
 $description=$productData[0]['description'];
 
 $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;
-
 // the product doesn't exist
 
 // $sizes=getSizeByCategories($db,$productData[0]['idCategorie']);
