@@ -77,4 +77,3 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 
 <script src="js/jquery.js"></script>
 <script src="js/productPage.js"></script>
-<script src="js/global.js"></script>

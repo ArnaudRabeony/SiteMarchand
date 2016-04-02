@@ -10,6 +10,7 @@
 
 
 ## TODO :
+* Change modal to preview articles div
 * Manage basket with real db
 * Include co_page in addToBasket modal
 * Manage connection redirection (stay on the page or not)
@@ -21,6 +22,7 @@
 * Manage update errors (check fields formats, email already exists...)
 
 #### Done
+* Add to cart icon in article thumbnail div
 * Update password
 * Oneself Update (customer)
 * Add Quantity field in product

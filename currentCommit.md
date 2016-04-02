@@ -48,3 +48,7 @@
 ###31/03
 * Test : Connection redirection (to the last page)
 * BasketItemNumber Label on the navbar: Variable to set in a SESSION and increase. Should be displayed at the deconnection or when the user click it
+
+
+###02/04
+* Add to Cart icon in articles thumbnail div

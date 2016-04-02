@@ -6,5 +6,4 @@
 if(verifPost(array("nb")))
 	//$_SESSION["basketItemsNumber"]++;
 	echo $_POST["nb"]+1;
-
 ?>

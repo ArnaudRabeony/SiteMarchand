@@ -54,7 +54,7 @@ $(document).ready(function()
 		}
 	});
 
-	$(document).on("click","#addToBasket",function()
+	$("body").on("click","#addToBasket",function()
 	{
 		$('#basketNotification').show();
 		var currentSize=parseInt($("#basketSize").text());
@@ -68,6 +68,5 @@ $(document).ready(function()
 		{
 			$("#basketSize").text(response);
 		});
-
 	});
 });

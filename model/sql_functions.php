@@ -113,6 +113,12 @@ function setSession($db,$mail)
 	$_SESSION['basketItemsNumber']=0;
 }
 
+function updateSession()
+{
+	$_SESSION['basketItemsNumber']+=1;
+	return $_SESSION['basketItemsNumber'];
+}
+
 function updateCustomer($db,$id,$type,$lastname,$firstname,$email)
 {
 	//can't add an existing email

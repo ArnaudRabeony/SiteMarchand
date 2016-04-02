@@ -81,9 +81,9 @@
 
 #bannerContainer
 {
-	margin:10px 5px;
+	padding:20px 20px;
 	height:220px;
-	background-color: red;
+	background-color: white;
 }
 
 .imagesContainer

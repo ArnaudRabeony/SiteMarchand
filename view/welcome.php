@@ -1,6 +1,9 @@
 <div id="welcomeContainer">
-	<div class="row" id="bannerContainer">
-		<div class="col-md-10"></div>
+	<div class="row" id="bannerContainer" style="text-align: center;">
+			<p>
+				<h2><small>Ici, un joli titre...</small></h2>
+				Nous sommes spécialisé dans la vente d'articles de sport. Bla bla bla... <br> Et puis bla bla bla...			
+			</p>
 	</div>
 	<div class="row imagesContainer">
 		<div class="col-md-6 col-xs-6">

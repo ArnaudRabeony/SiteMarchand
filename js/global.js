@@ -22,6 +22,42 @@ $(document).ready(function()
 	$("#basketNotification a").click(function(e)
 	{
 		e.preventDefault();
+		alert("TODO : preview article images");
 		$(this).hide();
+	});
+
+	$(".thumbnail").mouseenter(function()
+	{	
+		var isConnected = $(".status").attr("data-status") == "connected" ? true : false;
+		
+		if(isConnected)
+			$(this).find(".toCartThumbnail").show();
+	});
+
+	$(".thumbnail").mouseleave(function()
+	{
+		$(this).find(".toCartThumbnail").hide();
+	});
+
+
+	$(".toCartThumbnail,#addToBasket").click(function()
+	{
+			$("#basketNotification").show();
+			$("#basketNotification a").show();
+	});
+
+	$("body").on("click","#addToBasket,.toCartThumbnail",function()
+	{
+		var currentSize=parseInt($("#basketSize").text());
+		// alert(currentSize);
+
+		//TODO : get value from db ?
+		$.post("js/ajax/updateBasket.php",
+		{
+			nb:currentSize
+		},function(response)
+		{
+			$("#basketSize").text(response);
+		});
 	});
 });
