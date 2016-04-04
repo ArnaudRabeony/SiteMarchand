@@ -2,6 +2,7 @@
     require_once('./controller/sportController.php');
     require_once('./connection.php');
     require_once('./model/produit.php');
+    require_once('clientProducts.php');
 
 $connected = isset($_SESSION['id']) ? true : false;
 $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;

@@ -62,7 +62,7 @@ else
                              'libelle'     => $objPHPExcel->getActiveSheet()->getCell("B" . $row),
                              'description' => $objPHPExcel->getActiveSheet()->getCell("D" . $row),
                              'prix'        => $objPHPExcel->getActiveSheet()->getCell("G" . $row),
-                             'photo'       => 'photo',
+                             'photo'       => $objPHPExcel->getActiveSheet()->getCell("I" . $row),
                              'taille'      => getIdTailleByName($db, $objPHPExcel->getActiveSheet()->getCell("H" . $row)),
                              'categorie'   => getIdCategorieByName($db, $objPHPExcel->getActiveSheet()->getCell("F" . $row)),
                              'sport'       => getIdSportByName($db, $objPHPExcel->getActiveSheet()->getCell("E" . $row)),

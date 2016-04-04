@@ -2,7 +2,7 @@
 
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
-require_once("$root/SiteMarchand/connection.php");
+// require_once("$root/SiteMarchand/connection.php");
 
 
 function addCustomer($db,$email,$lastname,$firstname,$password,$address,$phone)
