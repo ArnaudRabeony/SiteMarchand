@@ -115,13 +115,6 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `idTaille`, `idCategorie`, `idSport`, `idMarque`) VALUES
-(1, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
-(2, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
-(3, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
-(4, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
-(5, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
-(6, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
-(7, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
 (8, 'Maillot home PSG', 'Lorem ipsum', 85, 'photo', 3, 6, 1, 1),
 (9, 'Maillot home Marseil', 'Lorem ipsum', 85, 'photo', 4, 6, 1, 2),
 (10, 'Short Federer', 'Lorem ipsum', 35, 'photo', 2, 2, 2, 1),

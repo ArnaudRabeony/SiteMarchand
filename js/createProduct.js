@@ -102,6 +102,12 @@ $(document).ready(function()
 
 });
 
+$(document).load(function()
+{
+	if($("#preview").attr("src") == "#")
+		$("#preview").hide();
+});
+
 function readURL(input) 
 {
     if (input.files && input.files[0]) 

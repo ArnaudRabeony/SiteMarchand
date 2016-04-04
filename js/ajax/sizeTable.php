@@ -1,4 +1,6 @@
 <?php 
+
+require_once("../../connection.php");
 require("../../model/categorie_produit.php");
 
 $category = $_GET['category'];

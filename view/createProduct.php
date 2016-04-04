@@ -8,7 +8,8 @@ $brandId="";
 $categoryId="";
 $sportId="";
 $description="";
-$photo="";
+$photo="#";
+
     if(verifGet(array('id')))
     {
     	$product=getProductById($db,$_GET['id']);
@@ -18,6 +19,7 @@ $photo="";
     	$categoryId=$product[0]['idCategorie'];
     	$sportId=$product[0]['idSport'];
     	$description=$product[0]['description'];
+    	$photo="images/".$product[0]['photo'];
     	$photo="images/".$product[0]['photo'];
     }
 
@@ -80,7 +82,7 @@ $photo="";
 			    <input id="imageFileChooser" accept=".jpg,.jpeg,.png" type="file" name="selectedImage">
 			</span>
 			<span id="importedImageFile"><i style="font-size: 13px;">Aucun fichier selectionné</i></span><br>
-			<img id="preview" <?php echo "src=".$photo." style='display:block;'"?> alt="preview" /><br>
+			<img id="preview" <?php echo "src=".$photo ?> alt="preview" /><br>
 		    <button class="btn btn-default" id="createProductButton">Enregistrer le produit</button>
 		</form>
 	</div>

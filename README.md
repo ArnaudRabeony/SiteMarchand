@@ -10,6 +10,8 @@
 
 
 ## TODO :
+* Change selected values : remove cptr (update product)
+* Display preview images
 * Change modal to preview articles div
 * Manage basket with real db
 * Include co_page in addToBasket modal
