@@ -22,7 +22,7 @@ function getSportById($db, $id)
 
 function getAllSports($db)
 {
-	$req = $db->prepare('select nomSport from sport');
+	$req = $db->prepare('select * from sport');
 	$req->execute();
 	$res = $req->fetchAll();
     return $res;
