@@ -53,20 +53,4 @@ $(document).ready(function()
 		$("#modalBody").html("Vous devez être connecter pour ajouter cet article à votre panier."+'<div style="margin-left:180px;margin-top:30px;">'+coForm+"</div>");
 		}
 	});
-
-	$("body").on("click","#addToBasket",function()
-	{
-		$('#basketNotification').show();
-		var currentSize=parseInt($("#basketSize").text());
-		// alert(currentSize);
-
-		//TODO : get value from db ?
-		$.post("js/ajax/updateBasket.php",
-		{
-			nb:currentSize
-		},function(response)
-		{
-			$("#basketSize").text(response);
-		});
-	});
 });

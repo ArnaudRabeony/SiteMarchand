@@ -3,10 +3,10 @@
 // echo realpath("../");
 
 require_once('./connection.php');
-include('./model/marque.php');
-include('./model/taille.php');
-include('./model/categorie_produit.php');
-include('./model/sport.php');
+require_once('./model/marque.php');
+require_once('./model/taille.php');
+require_once('./model/categorie_produit.php');
+require_once('./model/sport.php');
 // include('./model/produit.php');
 require_once('./model/produit.php');
 
