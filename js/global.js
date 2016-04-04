@@ -1,5 +1,15 @@
 $(document).ready(function()
 {
+
+	$('.client-filters').change(function()
+	{
+		$(".client-side").html("");
+		$.get("ajax/filteredProducts", 
+			{
+				nb:"ok"	
+			});
+	});
+
 	$('.curtain').mouseover(function()
 		{
 			$(this).find("img").css({ opacity: 0.4 });

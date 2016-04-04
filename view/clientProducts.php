@@ -13,7 +13,7 @@ function displayProductList($db, $dataArray)
 	foreach($dataArray as $key)
     {
     	echo '
-    	<div class="col-sm-4">
+    	<div class="col-sm-4 client-side">
         	<div class="thumbnail">
             	<img src="./images/' . $key['photo'] . '"> 
                 <div class=caption>
