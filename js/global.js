@@ -1,5 +1,15 @@
 $(document).ready(function()
 {
+
+	$('.client-filters').change(function()
+	{
+		$(".client-side").html("");
+		$.get("ajax/filteredProducts", 
+			{
+				nb:"ok"	
+			});
+	});
+
 	$('.curtain').mouseover(function()
 		{
 			$(this).find("img").css({ opacity: 0.4 });
@@ -52,13 +62,13 @@ $(document).ready(function()
 
 	$("body").on("click","#addToBasket,.toCartThumbnail",function()
 	{
-		var currentSize=parseInt($("#basketSize").text());
-		// alert(currentSize);
+		var productId=$("#displayProductContainer").attr("data-productId");
+		console.log(productId);
 
-		//TODO : get value from db ?
-		$.post("js/ajax/updateBasket.php",
+		//TODO : add productId to the cart
+		$.get("js/ajax/updateBasket.php",
 		{
-			nb:currentSize
+			id:productId
 		},function(response)
 		{
 			$("#basketSize").text(response);
@@ -67,16 +77,34 @@ $(document).ready(function()
 
 	$("#multipleDeletionButton").click(function()
 	{
-		$("#customersTable tr").each(function()
+		$("#customersTable .productLine").each(function()
 		{
-			var checkbox=$(this).find(".checkboxContainer");
-			console.log(checkbox.html());
-			// var msg= checkbox.prop("checked") +"checked";
-			// alert(msg);
-			// if($(this).prop("checked"))
-			// 	alert("ok");	
+			var checkbox=$(this).find(".deleteCheckbox");
+			var isChecked = checkbox.prop("checked");
+			var id=checkbox.val().replace("delete","");
+				// console.log("delete product : "+ id );	
 
-			// 	alert($(this).parent().prev().html());
+			if(isChecked)
+				$(this).find(".deleteButton").click();
 		});
 	});
+
+	$(".removeFromBasketButton").click(function()
+	{
+		$(this).parent().parent().hide();
+
+		var productId=$(this).parent().parent().attr("data-productid");
+		// console.log(productId);
+		$.get("js/ajax/removeFromBasket.php",
+		{
+			id:productId
+		});
+
+		if($("#basketItemsContainer basketItem").length==0)
+		{
+			$('#notEmptyBasket').hide();
+			$('#emptyBasket').show();
+			$('#basketSize').hide();
+		}
+	})
 });

@@ -1,6 +1,7 @@
 # SiteMarchand
 
 # PRB
+* Can't display product libelle with composed label
 * Customer should be disconnected when he changes his password
 * Display the carousel from the views/displayProducts file
 * Create an account with a non email format value
@@ -10,10 +11,7 @@
 
 
 ## TODO :
-* delete product 
-* Change selected values : remove cptr (update product)
 * Change modal to preview articles div
-* Manage basket with real db
 * Manage connection redirection (stay on the page or not)
 * customer's bakset/Orders
 * add products to customer's basket
@@ -23,6 +21,9 @@
 * Manage update errors (check fields formats, email already exists...)
 
 #### Done
+* myBasket management
+* Multiple deletion product
+* Change selected values : remove cptr (update product)
 * Include co_page in addToBasket modal
 * Display preview images
 * Add to cart icon in article thumbnail div

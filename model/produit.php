@@ -101,8 +101,8 @@ function displayProducts($db)
 	$cptr=0;
 	while($res=$req->fetch(PDO::FETCH_ASSOC))
 	{
-		$brand=getMarqueLabelByName($db,$res['idMarque']);
-		$body.='<tr id="row'.$res['idProduit'].'" class="secured">
+		$brand=getMarqueById($db,$res['idMarque']);
+		$body.='<tr id="row'.$res['idProduit'].'" class="productLine secured">
 		<td><a class="moreInfo btn btn-default btn-sm" style="display:none" href="index.php?page=view/createProduct&id='.$res['idProduit'].'"><i class="fa fa-ellipsis-h"></i></a></td>
 		<td><input id="ref" disabled class="form-control" type="text" value="REF'.$res['idProduit'].'"</td>
 		<td><input id="brand" disabled class="form-control" type="text" value="'.$brand.'"</td>
@@ -177,6 +177,7 @@ function deleteProduct($db,$id)
 
 	return $res==0 ? true : false;
 }
+
 
 // function used in all the sport pages
 // @param $images an array containing the images for the carousel

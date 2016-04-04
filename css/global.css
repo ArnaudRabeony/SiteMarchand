@@ -109,7 +109,7 @@
 	border-radius: 10px;
 }
 
-.curtain a
+.curtain a, #commandButton a
 {
 	color:white;
 	text-decoration: none;
@@ -334,4 +334,74 @@ button
 .client-filters
 {
 	padding : 5px;
+}
+
+#notEmptyBasket
+{
+	padding: 10px 10px;
+}
+
+#emptyBasket
+{
+	text-align: center;
+	padding: 120px;
+}
+
+#emptyBasket .material-icons
+{
+	font-size: 3em;
+}
+
+#emptyBasket a
+{
+	text-decoration: none;
+	color: white;
+}
+
+.errorMessage
+{
+	color:#A90000;
+	font-size: 13px;
+}
+
+.mismatch
+{
+	font-style: 10px;
+	color: #A90000;
+	position: relative;
+	top: -5px;
+}
+
+.basketItem
+{
+	margin-top: 15px;
+}
+
+.basketItem img
+{
+	width: 90px;
+    height: 65px;
+}
+
+#sizeQuantityContainer
+{
+	padding:16px 10px;
+	font-size: 13px;
+}
+
+#priceContainer
+{
+	font-size: 13px;
+}
+
+#basketItemsContainer
+{
+	height:270px;
+	overflow: hidden;
+}
+
+#toOrderButtonsContainer
+{
+	margin-top: 7px;
+	float:right;
 }

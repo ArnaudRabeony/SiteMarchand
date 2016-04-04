@@ -13,7 +13,16 @@ $photo="#";
     if(verifGet(array('id')))
     {
     	$product=getProductById($db,$_GET['id']);
-    	$libelle=$product[0]['libelle'];
+
+    	//can't get multiple words value : separate words with a special char then split them again
+    	$libelle="";//str_replace(" ", ".", $product[0]['libelle']);
+    	$libellePieces=explode(" ", $product[0]['libelle']);
+
+    	foreach ($libellePieces as $value)
+    		$libelle.=" ".$value;
+
+    	print_r($libelle);
+
     	$price=$product[0]['prix'];
     	$brandId=$product[0]['idMarque'];
     	$categoryId=$product[0]['idCategorie'];

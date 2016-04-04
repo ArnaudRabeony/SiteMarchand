@@ -78,42 +78,39 @@ else
   else if($ext==="csv")
   {   
     $handle=fopen($filePath, "r");
-    $firstRow=true;
-
+    $i =0;
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
     {
-        if($firstRow)
-          $firstRow=false;
-        else
-        {
-            $idCategory= getIdCategorieByName($db,$data[5]);
-            $idSport= getIdSportByName($db,$data[4]);
-            $idSize= getIdTailleByName($db,$data[8]);
-            $idBrand= getIdMarqueByName($db,$data[2]);
+        $idCategory= getIdCategorieByName($db,$data[5]);
+        $idSport= getIdSportByName($db,$data[4]);
+        $idSize= getIdTailleByName($db,$data[7]);
+        $idBrand= getIdMarqueByName($db,$data[2]);
 
-            $productArray=array('reference'   => "REF".$data[0],
-                             'libelle'     => $data[1],
-                             'description' => $data[3],
-                             'prix'        => $data[6],
-                             'photo'       => 'photo',
-                             'taille'      => $idSize,
-                             'categorie'   => $idCategory,
-                             'sport'       => $idSport,
-                             'marque'      => $idBrand
-                             );
+        $productArray=array('reference'   => "REF".$data[0],
+                         'libelle'     => $data[1],
+                         'description' => $data[3],
+                         'prix'        => $data[6],
+                         'photo'       => $data[8],
+                         'taille'      => $idSize,
+                         'categorie'   => $idCategory,
+                         'sport'       => $idSport,
+                         'marque'      => $idBrand
+                         );
 
-            if(addProduct($db, $productArray));
-              $added++;
+        print_r($productArray);
 
-            $cptr++;        
-          }
+        if(addProduct($db, $productArray));
+          $added++;
+
+        $cptr++;        
+          
     }
 
     fclose($handle);
   }
 
 if($added==$cptr)
-  header("location:index.php?page=view/displayProducts"); 
+  header("location:index.php?page=view/manageProducts"); 
 
 }
 ?>

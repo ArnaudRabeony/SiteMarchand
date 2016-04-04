@@ -44,6 +44,9 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <!-- Malihu Scrollbar -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
+
 </head>
 
 <body>
@@ -82,6 +85,9 @@
     
     <!-- Custom JS -->
     <script src="js/global.js"></script>
+    
+    <!-- Malihu ScrollBar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 </body>
 
 </html>

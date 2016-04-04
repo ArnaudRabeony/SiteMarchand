@@ -5,7 +5,7 @@ $connected = isset($_SESSION['id']) ? true : false;
 $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false;
 
 if($connected)
-    $basketItemsNumber=$_SESSION['basketItemsNumber'] == 0 ? "" : $_SESSION['basketItemsNumber'];
+    $basketItemsNumber=count($_SESSION['basketItems']) == 0 ? "" : count($_SESSION['basketItems']);
 // $connected=true;
 // $isAdmin=true;
  ?>

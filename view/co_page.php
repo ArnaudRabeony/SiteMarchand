@@ -32,7 +32,7 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 		</form>
 	</div>
 <br>
-<p class="errormessage" style="color:red"><?php echo $errorMessage; ?></p>
+<p class="errorMessage"><?php echo $errorMessage; ?></p>
 		<a href="#">Mot de passe oublié ?</a><br>
 		<a href="index.php?page=view/createAccount">Vous n'avez pas encore de compte ?</a>
 </div>

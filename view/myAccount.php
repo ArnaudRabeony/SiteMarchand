@@ -7,7 +7,7 @@
 	<div class="formContainer col-md-4">
 	<h4><small>Vos informations </small></h4>
 		<form action="controller/myAccount.php" method="post" novalidate>
-			<table id="myAccountTable" <?php echo "data-id=".$_SESSION["id"]; ?>>
+			<table id="myAccountTable" <?php echo "data-id='".$_SESSION["id"]."'"; ?>>
 				<tbody>
 					<tr>
 						<td><input disabled type="text" name="firstname" class="form-control" id="newfirstname" placeholder="Prénom" <?php echo "value=".$user["prenom"]; ?>></td>
@@ -50,7 +50,7 @@
 				</p>
 			</div>
 			<div id="changePasswordContainerForm" style="display:none"><br>
-				<span id="errorMessage" style="color:#A90000;font-size: 13px;"></span>
+				<span class="errorMessage"></span>
 					<form action="controller/myAccount.php" method="post" novalidate>
 						<table id="myAccountTable">
 							<tbody>

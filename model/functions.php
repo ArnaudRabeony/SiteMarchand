@@ -45,6 +45,49 @@ function verifGet($keys)
 	return true;
 }
 
+function updateSessionBasket($productId)
+{
+	$cptr=count($_SESSION['basketItems']);
+	$_SESSION['basketItems'][$cptr]=$productId;
+	return count($_SESSION['basketItems']);
+}
+
+function displayBasket($db)
+{
+	// print_r($_SESSION['basketItems']);
+	foreach ($_SESSION['basketItems'] as $value) 
+	{
+		$product=getProductById($db,$value);
+		// print_r($product);
+
+		echo '<div class="basketItem" data-productid="'.$value.'">
+				<div id="removeFromBasketContainer">
+					<i class="removeFromBasketButton material-icons" style="color:#ddd;float:right;cursor:pointer">clear</i>
+				</div>
+				<div class="row">
+					<div class="col-md-4" style="text-align:center">
+						<a href="index.php?page=view/productPage&ref='.$product[0]['idProduit'].'"><img src="images/'.$product[0]['photo'].'" style=""></a>
+						<h4><small><i>'.$product[0]['libelle'].'</i></small></h4>
+					</div>
+					<div class="col-md-4" id="sizeQuantityContainer">
+					<table>
+						<tr>
+							<td><b>Taille</b></td>
+							<td><i>TODO : Get Size</i></td>
+						</tr>
+						<tr>
+							<td><b>Quantité</b></td>
+							<td>TODO : Get Qty</td>
+						</tr>
+					</table>
+					</div>
+					<div class="col-md-4" id="priceContainer"><b>Prix</b> <i>TODO : price*qty</i></div>
+				</div>
+				<hr style="margin:5px 0px !important;">
+			</div>';
+	}
+}
+
 // function isExisting($page)
 // {
 // 	$pagesArray=array(

@@ -21,7 +21,7 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 
 ?>
 <div id="displayProduct" class="row" <?php echo $status ?>>
-	<div id="displayProductContainer">
+	<div id="displayProductContainer" <?php echo 'data-productId="'.$productData[0]['idProduit'].'"' ?>>
 	<div id="productHeadingDiv">
 		<h1><small><?php echo $label ?></small><i id="closeIcon" class="material-icons" style="float: right;color:#ddd;">clear</i></h1>
 	</div>

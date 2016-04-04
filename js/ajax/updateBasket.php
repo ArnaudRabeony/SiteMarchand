@@ -2,7 +2,7 @@
 
  include('../../model/functions.php');
 session_start();
-//increase nb in db
-if(verifPost(array("nb")))
-	echo ++$_SESSION["basketItemsNumber"];
+//add productId to session
+if(verifGet(array("id")))
+	echo updateSessionBasket($_GET['id']);
 ?>

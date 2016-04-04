@@ -11,7 +11,7 @@ function getIdMarqueByName($db, $name)
     return $res[0];
 }	
 
-function getMarqueLabelByName($db, $idMarque)
+function getMarqueById($db, $idMarque)
 {
 	$req = $db->prepare('select nomMarque from marque where idMarque = :idMarque');
     $req->bindValue(':idMarque', $idMarque);

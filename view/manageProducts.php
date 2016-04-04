@@ -31,6 +31,7 @@
 		<p>
 			<h3><small>Vous pouvez importer une liste de produits créée au préalable sous la forme d'un fichier csv ou xls</small></h3>
 			Pour cela, il vous suffit de charger votre fichier dans le champs présent ci-dessous puis de cliquer sur le bouton d'import.
+			<div class="fileFormat"><h4><small><i>Votre fichier devra respecter l'ordre des champs suivant : id, libelle, marque, description, sport, catégorie, prix, taille et image</i></small></h4></div>
 			<div class="col-md-8"><br>
 
 			<form method="post" action="index.php?page=controller/importsManager" enctype="multipart/form-data">

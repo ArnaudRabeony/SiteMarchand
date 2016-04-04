@@ -110,13 +110,7 @@ function setSession($db,$mail)
 	$_SESSION['email']=$mail;
 	$_SESSION['lastname']=$res['nom'];
 	$_SESSION['firstname']=$res['prenom'];
-	$_SESSION['basketItemsNumber']=0;
-}
-
-function updateSession()
-{
-	$_SESSION['basketItemsNumber']+=1;
-	return $_SESSION['basketItemsNumber'];
+	$_SESSION['basketItems']=[];
 }
 
 function updateCustomer($db,$id,$type,$lastname,$firstname,$email)
