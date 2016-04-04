@@ -13,7 +13,7 @@ function getIdCategorieByName($db, $name)
 
 function getAllCategories($db)
 {
-	$req = $db->prepare('select nomCategorie from categorie_produit');
+	$req = $db->prepare('select * from categorie_produit');
 	$req->execute();
 	$res = $req->fetchAll();
     return $res;

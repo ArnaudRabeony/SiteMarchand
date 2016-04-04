@@ -1,5 +1,13 @@
 <?php
 
+function filters($filterName, $filter)
+{
+    echo '<div class = "col-sm-4 client-filters"><select class = "form-control" name = ' . $filterName . '><option = 1> Sélectionnez un(e) ' . $filterName .'</option>';
+    foreach ($filter as $key => $value) 
+        echo '<option = ' . $value['id' . ucfirst($filterName)] . '>' . $value['nom' . ucfirst($filterName)] . '</option>';
+    echo '</select></div>';
+}
+
 function displayProductList($db, $dataArray)
 {
 	foreach($dataArray as $key)

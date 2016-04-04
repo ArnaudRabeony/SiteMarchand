@@ -3,6 +3,7 @@
     require_once('./connection.php');
     require_once('./model/produit.php');
     require_once('clientProducts.php');
+    require_once('./model/taille.php');
 
 $connected = isset($_SESSION['id']) ? true : false;
 $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;
@@ -45,6 +46,11 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 
                     <?php
                         //displayCarousel();
+                        echo '<div class = "row" id = filtersContainer>';
+                        filters('taille', getAllTaille($db));
+                        filters('sport', getAllSports($db));
+                        filters('categorie', getAllCategories($db));
+                        echo '</div>';
                         $footballArray = getSportProducts($db, 'Football');
                         displayProductList($db, $footballArray);
                     ?>
