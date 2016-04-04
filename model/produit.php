@@ -162,28 +162,6 @@ function deleteProduct($db,$id)
 	return $res==0 ? true : false;
 }
 
-function displayProductList($db, $dataArray)
-{
-	foreach($dataArray as $key)
-    {
-    	echo '
-    	<div class="col-md-4 col-xs-6">
-        	<div class="thumbnail">
-            	<img src="./images/' . $key['photo'] . '"> 
-                <div class=caption>
-                   <h4 class=pull-right>' . $key['prix'] . ' €</h4>
-                   <a href =index.php?page=view/productPage&ref='.$key['idProduit'].'> ' . $key['libelle'] . '</a>
-                    <p>' . substr($key['description'], 0, 20) . '...</p>
-                    <div class="availableSizes" style="margin-top:10px;">
-                    	<i class="toCartThumbnail fa fa-shopping-cart" style="cursor:pointer;display:none;color:#969696;margin-right:50px;"></i>
-                        <i>Tailles disponibles : S, M</i>
-                    </div>
-                </div>
-            </div>
-        </div>';
-	}
-}
-
 // function used in all the sport pages
 // @param $images an array containing the images for the carousel
 /*function displayCarousel($images)

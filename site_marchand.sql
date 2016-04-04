@@ -1,29 +1,7 @@
-
--- phpMyAdmin SQL Dump
--- version 4.4.10
--- http://www.phpmyadmin.net
---
--- Client :  localhost:8889
--- Généré le :  Ven 25 Mars 2016 à 23:22
--- Version du serveur :  5.5.42
--- Version de PHP :  7.0.0
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
---
--- Base de données :  `site_marchand`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `categorie_produit`
---
 CREATE TABLE `categorie_produit` (
   `idCategorie` int(11) NOT NULL,
   `nomCategorie` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `categorie_produit`
@@ -34,7 +12,8 @@ INSERT INTO `categorie_produit` (`idCategorie`, `nomCategorie`) VALUES
 (2, 'Short'),
 (3, 'Pantalon'),
 (4, 'Vestes'),
-(5, 'Chaussures');
+(5, 'Chaussures'),
+(6, 'Maillot');
 
 -- --------------------------------------------------------
 
@@ -59,7 +38,7 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`idClient`, `type`, `email`, `nom`, `prenom`, `mdp`, `adresse`, `telephone`) VALUES
 (23, 'admin', 'admin', 'NomAdm', 'PrenomAdm', '$2y$10$ftrzKc.OwPhFVY.J6aNPLuy0Ozd4RznDyKJfpVporunWLddfsxrDO', 'Adresse de l''admin', '0123456879'),
-(24, 'client', 'client', 'Client1Nom', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
+(24, 'client', 'client1@client.client', 'Client1Nom', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
 (25, 'client', 'client2@client.client', 'Client2', 'Client2', '$2y$10$/a3tr7PH.Z.eE6g00GvmX.NQzJ2Pl95/r0gmERwuKmdCuwY0MVfTS', 'adresse client', '0123456789'),
 (26, 'client', 'a@a.aa', 'Ajax01', 'aze', '$2y$10$McmGAvMAPOdnl75s1by.nugQLXEaJ2E4roZ6Vw3ia4N3OxSU7nDFO', 'adresse client 3', '0123456789'),
 (27, 'client', 'test@test.test', 'Ajax02', 'test', '$2y$10$Be7peEuldR0clKSz2/bgQuXW0zcWr7YkeBEOcq5C1/90qY3eqCGn6', 'test', 'test'),
@@ -129,7 +108,52 @@ CREATE TABLE `produit` (
   `idCategorie` int(4) NOT NULL,
   `idSport` int(4) NOT NULL,
   `idMarque` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `produit`
+--
+
+INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `idTaille`, `idCategorie`, `idSport`, `idMarque`) VALUES
+(1, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(2, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(3, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(4, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(5, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(6, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(7, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(8, 'Maillot home PSG', 'Lorem ipsum', 85, 'photo', 3, 6, 1, 1),
+(9, 'Maillot home Marseil', 'Lorem ipsum', 85, 'photo', 4, 6, 1, 2),
+(10, 'Short Federer', 'Lorem ipsum', 35, 'photo', 2, 2, 2, 1),
+(11, 'Survêtement', 'Lorem ipsum', 70, 'photo', 5, 3, 3, 4),
+(12, 'Mercurial', 'Lorem ipsum', 140, 'photo', 8, 5, 1, 1),
+(13, 'Maillot home PSG', 'Lorem ipsum', 85, 'photo', 3, 6, 1, 1),
+(14, 'Maillot home Marseil', 'Lorem ipsum', 85, 'photo', 4, 6, 1, 2),
+(15, 'Short Federer', 'Lorem ipsum', 35, 'photo', 2, 2, 2, 1),
+(16, 'Survêtement', 'Lorem ipsum', 70, 'photo', 5, 3, 3, 4),
+(17, 'Pantalon survêtement', 'Lorem ipsum', 80, 'photo', 6, 3, 6, 3),
+(18, 'Short Warriors', 'Lorem ipsum', 45, 'photo', 3, 2, 3, 1),
+(19, 'Short away PSG', 'Lorem ipsum', 35, 'photo', 1, 2, 1, 1),
+(20, 'T-Shirt rugby', 'Lorem ipsum', 15, 'photo', 3, 1, 6, 3),
+(21, 'T-Shirt Jordan', 'Lorem ipsum', 30, 'photo', 4, 1, 3, 2),
+(22, 'Haut Federer', 'Lorem ipsum', 35, 'photo', 5, 1, 2, 1),
+(23, 'Tiempo', 'Lorem ipsum', 100, 'photo', 10, 5, 1, 1),
+(24, 'Hypervenom', 'Lorem ipsum', 200, 'photo', 11, 5, 1, 1),
+(25, 'Survêtement Bulls', 'Lorem ipsum', 90, 'photo', 2, 3, 3, 2),
+(26, 'Mercurial', 'Lorem ipsum', 140, 'Football/mercurial.jpg', 8, 5, 1, 1),
+(27, 'Maillot home PSG', 'Lorem ipsum', 85, 'Football/maillotHomePSG.jpg', 3, 6, 1, 1),
+(28, 'Maillot home Marseil', 'Lorem ipsum', 85, '', 4, 6, 1, 2),
+(29, 'Short Federer', 'Lorem ipsum', 35, '', 2, 2, 2, 1),
+(30, 'Survêtement', 'Lorem ipsum', 70, '', 5, 3, 3, 4),
+(31, 'Pantalon survêtement', 'Lorem ipsum', 80, '', 6, 3, 6, 3),
+(32, 'Short Warriors', 'Lorem ipsum', 45, '', 3, 2, 3, 1),
+(33, 'Short away PSG', 'Lorem ipsum', 35, '', 1, 2, 1, 1),
+(34, 'T-Shirt rugby', 'Lorem ipsum', 15, '', 3, 1, 6, 3),
+(35, 'T-Shirt Jordan', 'Lorem ipsum', 30, '', 4, 1, 3, 2),
+(36, 'Haut Federer', 'Lorem ipsum', 35, '', 5, 1, 2, 1),
+(37, 'Tiempo', 'Lorem ipsum', 100, '', 10, 5, 1, 1),
+(38, 'Hypervenom', 'Lorem ipsum', 200, '', 11, 5, 1, 1),
+(39, 'Survêtement Bulls', 'Lorem ipsum', 90, '', 2, 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -140,7 +164,7 @@ CREATE TABLE `produit` (
 CREATE TABLE `sport` (
   `idSport` int(4) NOT NULL,
   `nomSport` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `sport`
@@ -151,7 +175,8 @@ INSERT INTO `sport` (`idSport`, `nomSport`) VALUES
 (2, 'Tennis'),
 (3, 'Basketball'),
 (4, 'Handball'),
-(5, 'Natation');
+(5, 'Natation'),
+(6, 'Rugby');
 
 -- --------------------------------------------------------
 
@@ -249,7 +274,7 @@ ALTER TABLE `taille`
 -- AUTO_INCREMENT pour la table `categorie_produit`
 --
 ALTER TABLE `categorie_produit`
-  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `client`
 --
@@ -274,12 +299,12 @@ ALTER TABLE `marque`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT pour la table `sport`
 --
 ALTER TABLE `sport`
-  MODIFY `idSport` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `idSport` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `taille`
 --

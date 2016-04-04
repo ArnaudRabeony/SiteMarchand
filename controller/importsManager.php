@@ -3,10 +3,10 @@
 // echo realpath("../");
 
 require_once('./connection.php');
-include('./model/marque.php');
-include('./model/taille.php');
-include('./model/categorie_produit.php');
-include('./model/sport.php');
+require_once('./model/marque.php');
+require_once('./model/taille.php');
+require_once('./model/categorie_produit.php');
+require_once('./model/sport.php');
 // include('./model/produit.php');
 require_once('./model/produit.php');
 
@@ -62,7 +62,7 @@ else
                              'libelle'     => $objPHPExcel->getActiveSheet()->getCell("B" . $row),
                              'description' => $objPHPExcel->getActiveSheet()->getCell("D" . $row),
                              'prix'        => $objPHPExcel->getActiveSheet()->getCell("G" . $row),
-                             'photo'       => 'photo',
+                             'photo'       => $objPHPExcel->getActiveSheet()->getCell("I" . $row),
                              'taille'      => getIdTailleByName($db, $objPHPExcel->getActiveSheet()->getCell("H" . $row)),
                              'categorie'   => getIdCategorieByName($db, $objPHPExcel->getActiveSheet()->getCell("F" . $row)),
                              'sport'       => getIdSportByName($db, $objPHPExcel->getActiveSheet()->getCell("E" . $row)),

@@ -3,7 +3,7 @@
 
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
-include("$root/SiteMarchand/connection.php");
+// include("$root/SiteMarchand/connection.php");
 
 // include('../connection.php');
 // htmlentities() on all $_POST/$_GET variables
