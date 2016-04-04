@@ -5,7 +5,7 @@ $connected = isset($_SESSION['id']) ? true : false;
 $isAdmin = isset($_SESSION['type']) && $_SESSION['type']=="admin" ? true : false;
 
 if($connected)
-    $basketItemsNumber=$_SESSION['basketItemsNumber'];
+    $basketItemsNumber=$_SESSION['basketItemsNumber'] == 0 ? "" : $_SESSION['basketItemsNumber'];
 // $connected=true;
 // $isAdmin=true;
  ?>
@@ -42,7 +42,7 @@ if($connected)
                 
         if($connected)
         {   
-            echo '<li id="basketNotification" style="display:none"><a href="index.php?page=view/myBasket"><i class="fa fa-shopping-cart"></i><span id="basketSize" style="position:relative;font-size: 10px;top:8px;color:red"><b>'.$basketItemsNumber.'</b></span></a></li>
+            echo '<li id="basketNotification"><a href="index.php?page=view/myBasket"><i class="fa fa-shopping-cart"></i><span id="basketSize" style="position:relative;font-size: 10px;top:8px;color:red"><b>'.$basketItemsNumber.'</b></span></a></li>
             <li class="dropdown-toggle" data-toggle="dropdown"><a><span class="glyphicon glyphicon-user"> </span>';
 
             if($isAdmin)

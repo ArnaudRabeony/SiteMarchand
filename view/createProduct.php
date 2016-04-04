@@ -20,7 +20,6 @@ $photo="#";
     	$sportId=$product[0]['idSport'];
     	$description=$product[0]['description'];
     	$photo="images/".$product[0]['photo'];
-    	$photo="images/".$product[0]['photo'];
     }
 
 	$categorySelection='<select class="form-control" name="category" id="selectCategory"><option value="-1">Choisir une catégorie</option>';
@@ -28,10 +27,10 @@ $photo="#";
 
 	$categoryCptr=1;
 	foreach ($categories as $key => $value)
-		if($categoryCptr == $categoryId)
-			$categorySelection.='<option value="'.$categoryCptr++.'" selected>'.$value['nomCategorie'].'</option>';
+		if($value['idCategorie'] == $categoryId)
+			$categorySelection.='<option value="'.$value['idCategorie'].'" selected>'.$value['nomCategorie'].'</option>';
 		else
-			$categorySelection.='<option value="'.$categoryCptr++.'">'.$value['nomCategorie'].'</option>';
+			$categorySelection.='<option value="'.$value['idCategorie'].'">'.$value['nomCategorie'].'</option>';
 	
 	$categorySelection.='</select>';
 
@@ -82,7 +81,13 @@ $photo="#";
 			    <input id="imageFileChooser" accept=".jpg,.jpeg,.png" type="file" name="selectedImage">
 			</span>
 			<span id="importedImageFile"><i style="font-size: 13px;">Aucun fichier selectionné</i></span><br>
-			<img id="preview" <?php echo "src=".$photo ?> alt="preview" /><br>
+			
+			<?php 
+				if($photo=="#")
+					echo '<img id="preview" src="'.$photo.'" alt="preview" style="display: none"/><br>';
+				else
+					echo '<img id="preview" src="'.$photo.'" alt="preview" style="display: block"/><br>';
+			 ?>
 		    <button class="btn btn-default" id="createProductButton">Enregistrer le produit</button>
 		</form>
 	</div>

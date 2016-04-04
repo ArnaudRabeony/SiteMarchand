@@ -1,6 +1,8 @@
 <?php
 
-require_once('./connection.php');
+require_once(dirname(__FILE__) . '/../connection.php');
+
+// require_once('./connection.php');
 
 function getIdSportByName($db, $name)
 {

@@ -10,11 +10,10 @@
 
 
 ## TODO :
+* delete product 
 * Change selected values : remove cptr (update product)
-* Display preview images
 * Change modal to preview articles div
 * Manage basket with real db
-* Include co_page in addToBasket modal
 * Manage connection redirection (stay on the page or not)
 * customer's bakset/Orders
 * add products to customer's basket
@@ -24,6 +23,8 @@
 * Manage update errors (check fields formats, email already exists...)
 
 #### Done
+* Include co_page in addToBasket modal
+* Display preview images
 * Add to cart icon in article thumbnail div
 * Update password
 * Oneself Update (customer)

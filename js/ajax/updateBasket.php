@@ -1,9 +1,8 @@
 <?php 
 
  include('../../model/functions.php');
-
+session_start();
 //increase nb in db
 if(verifPost(array("nb")))
-	//$_SESSION["basketItemsNumber"]++;
-	echo $_POST["nb"]+1;
+	echo ++$_SESSION["basketItemsNumber"];
 ?>
