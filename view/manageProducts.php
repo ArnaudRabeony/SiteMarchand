@@ -1,3 +1,13 @@
+<?php 
+
+require_once("./model/produit.php");
+
+$emptyTable=isProduitEmpty($db);
+
+$visibleEmptyContainer= $emptyTable ? 'style="display:block;"' : 'style="display:none;"';
+$visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block;"';
+ ?>
+
 <div class="displayContainer">
 	<p>
 		<h3><small>Cette page vous permet de gérer les produits</small></h3>
@@ -10,23 +20,37 @@
 		 Seuls quelques champs sont visible dans le tableau ci-dessous. Cependant, si vous désirez procéder à la mise à jour approfondie d'un produit, il vous suffit de survoler la ligne désirée puis de cliquer sur le bouton situé à gauche de celle dernière.
 		 <hr>
 	</p>
-	<div class="tableContainer table-responsive">
-		<div class="newProduct">
+	<div class="tableContainer">
+		<div id="notEmptyBasket" class="table-responsive" <?php echo $visibleContainer ?>>
+			<div class="newProduct">
 			<a id="addProduct" class="btn btn-default btn-sm btn-primary" href="index.php?page=view/createProduct">Ajouter un produit</a></button>
+			</div>
+			<div class="buttonsContainer" style="float:right">
+				<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>
+				<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
+				<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
+			</div><br>
+			<table class="table table-hover table-condensed" id="customersTable">
+				<?php echo displayProducts($db);?>
+			</table>
+			<div class="buttonsContainer">
+					<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>
+					<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
+				<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
+			</div>
 		</div>
-		<div class="buttonsContainer" style="float:right">
-			<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>
-			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
-			<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
-		</div><br>
-		<table class="table table-hover table-condensed" id="customersTable">
-			<?php echo displayProducts($db);?>
-		</table>
-		<div class="buttonsContainer">
-			<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>
-			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
-			<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
-		</div><br>
+		<div id="emptyProductTableContainer"<?php echo $visibleEmptyContainer ?>>
+			<div id="emptyProductTable">
+				<p>
+					<i class="material-icons">list</i>
+					<h3>Aucun produit dans la base de données</h3>
+					<h5>La base de données peut être alimentée en créant des produits ou via un fichier</h5>
+					<button class="btn btn-sm btn-default btn-success"><a id="importFromCsv" href="#">Importer depuis un fichier</a></button>
+					<button class="btn btn-sm btn-default btn-success"><a id="createSingleArticle" href="index.php?page=view/createProduct">Créer un article</a></button>
+				</p>
+			</div>
+		</div>
+		<br>
 		<hr>
 		<p>
 			<h3><small>Vous pouvez importer une liste de produits créée au préalable sous la forme d'un fichier csv ou xls</small></h3>

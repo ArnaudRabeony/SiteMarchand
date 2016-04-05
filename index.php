@@ -88,6 +88,9 @@
     
     <!-- Malihu ScrollBar -->
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+     <!-- ElevateZoom -->
+    <script src="js/jquery.elevatezoom.js"></script>
 </body>
 
 </html>

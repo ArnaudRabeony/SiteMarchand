@@ -58,7 +58,7 @@ function displayBasket($db)
 	foreach ($_SESSION['basketItems'] as $value) 
 	{
 		$product=getProductById($db,$value);
-		// print_r($product);
+		print_r($product);
 
 		echo '<div class="basketItem" data-productid="'.$value.'">
 				<div id="removeFromBasketContainer">
@@ -66,7 +66,7 @@ function displayBasket($db)
 				</div>
 				<div class="row">
 					<div class="col-md-4" style="text-align:center">
-						<a href="index.php?page=view/productPage&ref='.$product[0]['idProduit'].'"><img src="images/'.$product[0]['photo'].'" style=""></a>
+						<a href="index.php?page=view/productPage&ref='.$product[0]['ref'].'"><img src="images/'.$product[0]['photo'].'"></a>
 						<h4><small><i>'.$product[0]['libelle'].'</i></small></h4>
 					</div>
 					<div class="col-md-4" id="sizeQuantityContainer">

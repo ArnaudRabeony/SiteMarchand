@@ -21,6 +21,9 @@
 * Manage update errors (check fields formats, email already exists...)
 
 #### Done
+* quick add to cart
+* Export Csv
+* Zoom on images
 * myBasket management
 * Multiple deletion product
 * Change selected values : remove cptr (update product)

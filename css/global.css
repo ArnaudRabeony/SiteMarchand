@@ -109,7 +109,7 @@
 	border-radius: 10px;
 }
 
-.curtain a, #commandButton a
+.curtain a, #commandButton a, #downloadButton a, #emptyProductTableContainer a
 {
 	color:white;
 	text-decoration: none;
@@ -290,7 +290,7 @@ td>select
 	padding: 0px;
 }
 
-#displayProduct,#myBasketContainer,#myOrdersContainer
+#displayProduct,#myBasketContainer,#myOrdersContainer,#emptyProductTableContainer
 {
 	padding:5px 5px;
 	border-radius: 10px;
@@ -341,13 +341,13 @@ button
 	padding: 10px 10px;
 }
 
-#emptyBasket
+#emptyBasket,#emptyProductTable
 {
 	text-align: center;
 	padding: 120px;
 }
 
-#emptyBasket .material-icons
+#emptyBasket .material-icons,#emptyProductTable .material-icons
 {
 	font-size: 3em;
 }

@@ -117,7 +117,7 @@ function displayProducts($db)
 
 	$lastRow='<tr>
 		<td></td>
-		<td></td>
+		<td><button id="downloadButton" class="btn btn-primary btn-sm"><a href="controller/download.php"><i class="fa fa-download"></i></a></button></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -172,6 +172,15 @@ function deleteProduct($db,$id)
 
 	$req=$db->prepare("select * from produit where idProduit=:id");
 	$req->bindValue(":id",$id);
+	$req->execute();
+	$res=$req->rowCount();
+
+	return $res==0 ? true : false;
+}
+
+function isProduitEmpty($db)
+{
+	$req=$db->prepare("select * from produit");
 	$req->execute();
 	$res=$req->rowCount();
 

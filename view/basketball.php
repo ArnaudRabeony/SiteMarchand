@@ -2,9 +2,13 @@
     require_once('./controller/sportController.php');
     require_once('./connection.php');
     require_once('clientProducts.php');
+
+$connected = isset($_SESSION['id']) ? true : false;
+$status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;
+
 ?>
 
-<div class="col-md-12">
+<div class="status col-md-12" <?php echo $status ?>>
                     <div class="row carousel-holder">
                         <div class="col-md-12">
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

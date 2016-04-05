@@ -14,13 +14,14 @@ function displayProductList($db, $dataArray)
     {
     	echo '
     	<div class="col-sm-4 client-side">
-        	<div class="thumbnail">
+        	<div class="thumbnail" data-productid="'.$key['idProduit'].'">
             	<img src="./images/' . $key['photo'] . '"> 
                 <div class=caption>
                    <h4 class=pull-right>' . $key['prix'] . ' €</h4>
                    <a href =index.php?page=view/productPage&ref='.$key['idProduit'].'> ' . $key['libelle'] . '</a>
                     <p>' . substr($key['description'], 0, 20) . '...</p>
-                    <div class="availableSizes">
+                    <div class="availableSizes" style="margin-top:10px;">
+                        <i class="toCartThumbnail fa fa-shopping-cart" style="cursor:pointer;display:none;color:#969696;margin-right:50px;"></i>
                         <i>Tailles disponibles : S, M</i>
                     </div>
                 </div>

@@ -1,5 +1,7 @@
 $(document).ready(function()
 {
+	$("#productImage").elevateZoom({zoomType: "lens",borderSize:1,lensSize:150,lensShape:"round", containLensZoom: true, cursor: 'pointer',});
+
 	$.get('js/ajax/sizeTable.php',
 				{category:$("#descriptionContainer").attr("data-category")},
 			function(response)

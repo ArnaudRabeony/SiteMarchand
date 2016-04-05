@@ -21,12 +21,12 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 
 ?>
 <div id="displayProduct" class="row" <?php echo $status ?>>
-	<div id="displayProductContainer" <?php echo 'data-productId="'.$productData[0]['idProduit'].'"' ?>>
+	<div id="displayProductContainer" <?php echo 'data-productid="'.$productData[0]['idProduit'].'"' ?>>
 	<div id="productHeadingDiv">
 		<h1><small><?php echo $label ?></small><i id="closeIcon" class="material-icons" style="float: right;color:#ddd;">clear</i></h1>
 	</div>
 		<div id="imageContainer" class="col-md-6 col-xs-6">
-			<img id="productImage" <?php echo "src=".$imagePath ?> alt="preview" /><br>
+			<img id="productImage" <?php echo "data-zoom-image='".$imagePath."' src=".$imagePath ?> alt="preview" /><br>
 		</div>
 		<div id="descriptionContainer" <?php echo "data-category='".$productData[0]['idCategorie']."'" ?>class="col-md-5 col-sm-5">
 		<h4 style="margin-bottom: -10px;"><small id="categoryNsport"><?php echo $category." de ".$sport ?> <br></small></h4 style="margin-bottom: -10px;">

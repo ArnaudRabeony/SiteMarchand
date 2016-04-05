@@ -1,6 +1,12 @@
 $(document).ready(function()
 {
 
+	$("#importFromCsv").click(function()
+	{
+		// e.preventDefault();
+		$("#productsFileChooser").click();
+	});
+
 	$('.client-filters').change(function()
 	{
 		$(".client-side").html("");
@@ -29,14 +35,6 @@ $(document).ready(function()
 	// 	$("#shoppingCart").show();
 	// })
 
-	$("#basketNotification a").click(function(e)
-	{
-		// e.preventDefault();
-		alert("TODO : preview article images");
-		// $(this).hide();
-		// $('#basketSize').hide();
-	});
-
 	$(".thumbnail").mouseenter(function()
 	{	
 		var isConnected = $(".status").attr("data-status") == "connected" ? true : false;
@@ -60,10 +58,13 @@ $(document).ready(function()
 				$('#basketSize').show();
 	});
 
-	$("body").on("click","#addToBasket,.toCartThumbnail",function()
+	$("body").on("click","#addToBasket,.toCartThumbnail",function(e)
 	{
-		var productId=$("#displayProductContainer").attr("data-productId");
-		console.log(productId);
+		var productNode= $(e.target).is('.toCartThumbnail') ? $(this).parent().parent().parent() : $("#displayProductContainer");
+		var productId=productNode.attr("data-productid");
+
+		alert("TODO : Select size through a modal ?");
+		// console.log(productId);
 
 		//TODO : add productId to the cart
 		$.get("js/ajax/updateBasket.php",
@@ -98,13 +99,17 @@ $(document).ready(function()
 		$.get("js/ajax/removeFromBasket.php",
 		{
 			id:productId
-		});
-
-		if($("#basketItemsContainer basketItem").length==0)
+		},function(response)
 		{
-			$('#notEmptyBasket').hide();
-			$('#emptyBasket').show();
-			$('#basketSize').hide();
-		}
+			$("#basketSize").text(response);
+
+			if(response==0)
+			{	
+				// alert("vide");
+				$('#notEmptyBasket').hide();
+				$('#emptyBasket').show();
+				$('#basketSize').hide();
+			}
+		});
 	})
 });

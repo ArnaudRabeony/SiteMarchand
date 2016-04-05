@@ -79,31 +79,36 @@ else
   {   
     $handle=fopen($filePath, "r");
     $i =0;
+    $firstRow=true;
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
     {
-        $idCategory= getIdCategorieByName($db,$data[5]);
-        $idSport= getIdSportByName($db,$data[4]);
-        $idSize= getIdTailleByName($db,$data[7]);
-        $idBrand= getIdMarqueByName($db,$data[2]);
+        if($firstRow)
+          $firstRow=false;
+        else
+        {
+          $idCategory= getIdCategorieByName($db,$data[5]);
+          $idSport= getIdSportByName($db,$data[4]);
+          $idSize= getIdTailleByName($db,$data[7]);
+          $idBrand= getIdMarqueByName($db,$data[2]);
 
-        $productArray=array('reference'   => "REF".$data[0],
-                         'libelle'     => $data[1],
-                         'description' => $data[3],
-                         'prix'        => $data[6],
-                         'photo'       => $data[8],
-                         'taille'      => $idSize,
-                         'categorie'   => $idCategory,
-                         'sport'       => $idSport,
-                         'marque'      => $idBrand
-                         );
+          $productArray=array('reference'   => "REF".$data[0],
+                           'libelle'     => $data[1],
+                           'description' => $data[3],
+                           'prix'        => $data[6],
+                           'photo'       => $data[8],
+                           'taille'      => $idSize,
+                           'categorie'   => $idCategory,
+                           'sport'       => $idSport,
+                           'marque'      => $idBrand
+                           );
 
-        print_r($productArray);
+          // print_r($productArray);
 
-        if(addProduct($db, $productArray));
-          $added++;
+          if(addProduct($db, $productArray));
+            $added++;
 
-        $cptr++;        
-          
+          $cptr++;        
+        }          
     }
 
     fclose($handle);
