@@ -81,26 +81,35 @@ function getProductsBySport($db, $sport)
     return $res;
 }
 
-function displayProducts($db)
+//query must content bindValues as : "x=:param0, y=:param1"
+//if where clause isn't use set where to "" and bindValuesArray to null or array()
+//bindValuesArray contains values which will be set as values in the query
+//commonParam=true if the array contain a single value which has to be bound to all param
+function displayProducts($db,$where,$bindValuesArray,$commonParam)
 {
-	$head="<thead class='thead-default'>
-		<tr>
-			<th></th>
-			<th>Ref</th>
-			<th>Marque</th>
-			<th>Libellé</th>
-			<th>Description</th>
-			<th>Prix</th>
-		</tr>
-	</thead>";
 
-	$req=$db->prepare('select * from produit');
+	//TODO: check $where for security
+	$cpt=0;
+	$req=$db->prepare("select * from produit ".$where);
+
+	$paramNumber=substr_count($where,":param");
+
+	if(!is_null($bindValuesArray) && count($bindValuesArray)!=0)//bindValues
+	{
+		if($commonParam)//all param bound to the single value
+			for ($i=0; $i < $paramNumber; $i++) 
+				$req->bindValue(":param".$i,$bindValuesArray[0].'%');
+		else
+			for ($i=0; $i < $paramNumber; $i++) 
+				$req->bindValue(":param".$i,$bindValuesArray[$i].'%');
+	}
+
 	$req->execute();
-	
-	$body='<tbody>';
-	$cptr=0;
+	echo $req->rowCount();
+	$body='';
 	while($res=$req->fetch(PDO::FETCH_ASSOC))
 	{
+		// echo $res['idProduit']."\n";
 		$brand=getMarqueById($db,$res['idMarque']);
 		$body.='<tr id="row'.$res['idProduit'].'" class="productLine secured">
 		<td><a class="moreInfo btn btn-default btn-sm" style="display:none" href="index.php?page=view/createProduct&id='.$res['idProduit'].'"><i class="fa fa-ellipsis-h"></i></a></td>
@@ -128,11 +137,10 @@ function displayProducts($db)
 				<button class="btn btn-sm" id="multipleDeletionButton" style="background-color: #A90000"><i class="fa fa-close" style="color:white;"></i></button>
 			</div></td>
 	</tr>';
-	$tableContent=$head.$body.$lastRow.'</tbody>';
+
+	$tableContent=$body.$lastRow;
 
 	return $tableContent;
-	// while($res=$req->fetch(PDO::FETCH_ASSOC))
-	// 	echo 'Nom : '.$res['nom'];
 }
 
 function getProductById($db,$id)

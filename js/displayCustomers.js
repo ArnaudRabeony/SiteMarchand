@@ -1,6 +1,6 @@
 $(document).ready(function()
 	{
-		$('.editButton').on("click",function()
+		$('body').on("click",'.editButton',function()
 		{
 			var row=$(this).parent().parent();
 			var id=row.attr("id").replace('row','');
@@ -58,7 +58,7 @@ $(document).ready(function()
 			$('#customersTable').append(newRow);
 		});*/
 
-		$('#saveButton').on("click",function()
+		$("body").on("click",'#saveButton',function()
 		{
 			$('tr').each(function()
 			{
@@ -67,7 +67,7 @@ $(document).ready(function()
 			});
 		});
 
-		$('#cancelButton').on("click",function()
+		$("body").on("click",'#cancelButton',function()
 		{
 
 		});

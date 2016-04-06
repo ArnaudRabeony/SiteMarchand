@@ -1,6 +1,35 @@
 $(document).ready(function()
 {
-	$('.editButton').on("click",function()
+	if($('#searchInBase').val()=="")
+		$.get("js/ajax/searchProduct.php")
+
+	$("#searchBy").change(function()
+	{
+		if($(this).find("option:selected").val()=="ref")
+			$("#searchInBase").val("REF");
+		else
+			$("#searchInBase").val("");
+	});
+
+	$("#searchInBase").keyup(function(e)
+	{	
+		var str=$(this).val();
+		console.log(str);
+
+		var filter=$("#searchBy").val();
+		console.log(filter);
+
+		$.get("js/ajax/searchProduct.php",
+		{
+			str:str,
+			filter:filter
+		},function(response)
+		{
+			$("#productsTable tbody").html(response);
+		});
+	});
+
+	$("body").on("click",'.editButton',function()
 		{
 			var row=$(this).parent().parent();
 			var id=row.attr("id").replace('row','');

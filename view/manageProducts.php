@@ -22,6 +22,21 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 	</p>
 	<div class="tableContainer">
 		<div id="notEmptyBasket" class="table-responsive" <?php echo $visibleContainer ?>>
+			<form class="form-inline">
+			<div id="searchContainer" class="form-inline col-md-6">
+				<div class="form-group ">
+					<select class="form-control col-md-2" name="searchBy" id="searchBy">
+						<option value="all">Tout</option>
+						<option value="ref">Référence</option>
+						<option value="brand">Marque</option>
+						<option value="label">Libelle</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="searchInBase" name="searchInBase" placeholder="Nike...">
+			    </div>
+			</div><br><br>
+			</form>
 			<div class="newProduct">
 			<a id="addProduct" class="btn btn-default btn-sm btn-primary" href="index.php?page=view/createProduct">Ajouter un produit</a></button>
 			</div>
@@ -30,8 +45,20 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 				<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
 				<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
 			</div><br>
-			<table class="table table-hover table-condensed" id="customersTable">
-				<?php echo displayProducts($db);?>
+			<table class="table table-hover table-condensed" id="productsTable">
+			<thead class='thead-default'>
+				<tr>
+					<th></th>
+					<th>Ref</th>
+					<th>Marque</th>
+					<th>Libellé</th>
+					<th>Description</th>
+					<th>Prix</th>
+				</tr>
+			</thead>
+				<tbody>
+					<?php echo displayProducts($db,"",null,null);?>
+				</tbody>
 			</table>
 			<div class="buttonsContainer">
 					<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>

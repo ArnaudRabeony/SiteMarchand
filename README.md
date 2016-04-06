@@ -11,6 +11,7 @@
 
 
 ## TODO :
+* Display all products on a page and use a string filter
 * Change modal to preview articles div
 * Manage connection redirection (stay on the page or not)
 * customer's bakset/Orders
@@ -21,6 +22,7 @@
 * Manage update errors (check fields formats, email already exists...)
 
 #### Done
+* productManagement : string filter
 * quick add to cart
 * Export Csv
 * Zoom on images
