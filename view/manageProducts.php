@@ -33,7 +33,7 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 					</select>
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" id="searchInBase" name="searchInBase" placeholder="Nike...">
+					<input type="text" class="form-control" id="searchInBase" name="searchInBase" placeholder="Nike, 45, Maillot...">
 			    </div>
 			</div><br><br>
 			</form>
@@ -57,7 +57,7 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 				</tr>
 			</thead>
 				<tbody>
-					<?php echo displayProducts($db,"",null,null);?>
+					<?php echo displayProducts($db,null,null,null);?>
 				</tbody>
 			</table>
 			<div class="buttonsContainer">

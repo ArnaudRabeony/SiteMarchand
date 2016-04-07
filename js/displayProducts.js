@@ -5,19 +5,35 @@ $(document).ready(function()
 
 	$("#searchBy").change(function()
 	{
-		if($(this).find("option:selected").val()=="ref")
-			$("#searchInBase").val("REF");
-		else
-			$("#searchInBase").val("");
+		// alert($(this).find("option:selected").val());
+		switch($(this).find("option:selected").val())
+		{
+			case "ref":
+					$("#searchInBase").val("REF").attr("placeholder","REF...");
+					break;
+
+			case "all":
+					$("#searchInBase").val("").attr("placeholder","Nike, 45, Maillot...");
+					break;
+
+			case "brand":
+					$("#searchInBase").val("").attr("placeholder","Nike...");
+					break;
+
+			case "label":
+					$("#searchInBase").val("").attr("placeholder","Maillot...");
+					break;
+		}	
+		// $('#searchInBase').val("");
 	});
 
 	$("#searchInBase").keyup(function(e)
 	{	
 		var str=$(this).val();
-		console.log(str);
+		// console.log(str);
 
 		var filter=$("#searchBy").val();
-		console.log(filter);
+		// console.log(filter);
 
 		$.get("js/ajax/searchProduct.php",
 		{

@@ -1,6 +1,6 @@
 <?php 
     include('../model/functions.php');
-    include('../model/sql_functions.php');
+    include('../model/client.php');
 
 if(verifGet(array("id","type","lastname","firstname","email")))
 {

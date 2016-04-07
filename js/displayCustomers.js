@@ -1,5 +1,50 @@
 $(document).ready(function()
 	{
+		$("#searchBy").change(function()
+		{
+			// alert($(this).find("option:selected").val());
+			switch($(this).find("option:selected").val())
+			{
+				case "type":
+						$("#searchInBase").val("").attr("placeholder","client, admin...");
+						break;
+
+				case "all":
+						$("#searchInBase").val("").attr("placeholder","client, Jean, Dupond...");
+						break;
+
+				case "lastname":
+						$("#searchInBase").val("").attr("placeholder","Dupond...");
+						break;
+
+				case "firstname":
+						$("#searchInBase").val("").attr("placeholder","Jean...");
+						break;
+
+				case "mail":
+						$("#searchInBase").val("").attr("placeholder","jean@gmail.com...");
+						break;
+			}	
+		});
+
+		$("#searchInBase").keyup(function(e)
+		{	
+			var str=$(this).val();
+			console.log(str);
+
+			var filter=$("#searchBy").val();
+			console.log(filter);
+
+			$.get("js/ajax/searchCustomer.php",
+			{
+				str:str,
+				filter:filter
+			},function(response)
+			{
+				$("#customersTable tbody").html(response);
+			});
+		});
+
 		$('body').on("click",'.editButton',function()
 		{
 			var row=$(this).parent().parent();

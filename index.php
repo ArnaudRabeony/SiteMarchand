@@ -6,7 +6,7 @@
     
     require_once("connection.php");
     include('model/functions.php');
-    include('model/sql_functions.php');
+    include('model/client.php');
     // include('model/marque.php');
     // include('model/taille.php');
     // include('model/categorie_produit.php');
@@ -56,6 +56,7 @@
             <div id="containedPage" class="col-md-9">
                 <?php include($containedPage.'.php');   
                 ob_end_flush() ?> 
+                    <i id="top" class="fa fa-3x fa-arrow-circle-up" style="color:#888 ;display : none;bottom:20px;right:20px;height:2cm;width:2cm;position:fixed;cursor:pointer"></i>
             </div>
 
         </div>

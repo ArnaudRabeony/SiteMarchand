@@ -1,7 +1,7 @@
 <?php 
 
  include('../../model/functions.php');
- include('../../model/sql_functions.php');
+ include('../../model/client.php');
 
 if(verifPost(array("id")))
 {

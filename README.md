@@ -11,6 +11,7 @@
 
 
 ## TODO :
+* create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
 * Change modal to preview articles div
 * Manage connection redirection (stay on the page or not)

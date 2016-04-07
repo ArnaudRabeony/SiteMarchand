@@ -1,5 +1,27 @@
 $(document).ready(function()
 {
+	$(window).scroll(function()
+	{
+		console.log($(window).scrollTop());
+		if ($(window).scrollTop() > 200)
+		{	
+			console.log("opacity--");
+			$('#top').fadeIn();
+			$(".navbar").animate({opacity: 0.7}, 'fast');
+		}
+		else
+		{	
+			console.log("opacity++");
+			$(".navbar").animate({opacity: 1}, 'fast');
+			$('#top').fadeOut();
+		}
+	});
+
+	$('#top').click(function() 
+	{ 
+		console.log('click fleche');
+		$('html,body').animate({scrollTop: 0}, 'slow');
+	});
 
 	$("#importFromCsv").click(function()
 	{

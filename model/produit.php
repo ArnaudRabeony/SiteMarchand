@@ -81,37 +81,10 @@ function getProductsBySport($db, $sport)
     return $res;
 }
 
-//query must content bindValues as : "x=:param0, y=:param1"
-//if where clause isn't use set where to "" and bindValuesArray to null or array()
-//bindValuesArray contains values which will be set as values in the query
-//commonParam=true if the array contain a single value which has to be bound to all param
-function displayProducts($db,$where,$bindValuesArray,$commonParam)
+function addRowInProductTable($db,$res)
 {
-
-	//TODO: check $where for security
-	$cpt=0;
-	$req=$db->prepare("select * from produit ".$where);
-
-	$paramNumber=substr_count($where,":param");
-
-	if(!is_null($bindValuesArray) && count($bindValuesArray)!=0)//bindValues
-	{
-		if($commonParam)//all param bound to the single value
-			for ($i=0; $i < $paramNumber; $i++) 
-				$req->bindValue(":param".$i,$bindValuesArray[0].'%');
-		else
-			for ($i=0; $i < $paramNumber; $i++) 
-				$req->bindValue(":param".$i,$bindValuesArray[$i].'%');
-	}
-
-	$req->execute();
-	echo $req->rowCount();
-	$body='';
-	while($res=$req->fetch(PDO::FETCH_ASSOC))
-	{
-		// echo $res['idProduit']."\n";
-		$brand=getMarqueById($db,$res['idMarque']);
-		$body.='<tr id="row'.$res['idProduit'].'" class="productLine secured">
+	$brand=getMarqueById($db,$res['idMarque']);
+		$toReturn='<tr id="row'.$res['idProduit'].'" class="productLine secured">
 		<td><a class="moreInfo btn btn-default btn-sm" style="display:none" href="index.php?page=view/createProduct&id='.$res['idProduit'].'"><i class="fa fa-ellipsis-h"></i></a></td>
 		<td><input id="ref" disabled class="form-control" type="text" value="REF'.$res['idProduit'].'"</td>
 		<td><input id="brand" disabled class="form-control" type="text" value="'.$brand.'"</td>
@@ -122,7 +95,50 @@ function displayProducts($db,$where,$bindValuesArray,$commonParam)
 		<td><button class="deleteButton btn btn-default btn-sm"><i class="fa fa-close"></i></button></td>
 		<td class="checkboxContainer" style="text-align:center;padding-top:10px;"><input class="deleteCheckbox" type="checkbox" value="delete'.$res['idProduit'].'"></td>
 		</tr>';
+
+	return $toReturn;
+}
+
+//query must content bindValues as : "x=:param0, y=:param1"
+//if where clause isn't use set where to "" and bindValuesArray to null or array()
+//bindValuesArray contains values which will be set as values in the query
+//commonParam=true if the array contain a single value which has to be bound to all param
+function displayProducts($db,$whereArray,$bindValuesArray,$sameValueForAll)
+{
+	//possibility : $operation=["like" | "=" | "!="]
+	$query="select * from produit natural join marque ";
+
+	if(!is_null($whereArray) && count($whereArray)!=0)
+	{
+		$query.="where ";
+		$cptWhere=count($whereArray);
+
+		for ($i=0; $i < $cptWhere; $i++) 
+			if($i+1 == $cptWhere)//last
+				$query.=$whereArray[$i]." like ? ";		
+			else
+				$query.=$whereArray[$i]." like ? or ";
 	}
+
+	$req=$db->prepare($query);
+
+	$paramNumber=substr_count($query,"?");
+
+	if(!is_null($bindValuesArray) && count($bindValuesArray)!=0)//bindValues
+	{
+		if($sameValueForAll)//all param bound to the single value
+			for ($i=0; $i < $paramNumber; $i++) 
+				$req->bindValue($i+1,$bindValuesArray[0].'%');
+		else
+			for ($i=0; $i < $paramNumber; $i++) 
+				$req->bindValue($i+1,$bindValuesArray[$i].'%');
+	}
+
+	$req->execute();
+	// echo $req->rowCount();
+	$body='';
+	while($res=$req->fetch(PDO::FETCH_ASSOC))
+		$body.= addRowInProductTable($db,$res);
 
 	$lastRow='<tr>
 		<td></td>

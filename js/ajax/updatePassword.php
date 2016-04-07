@@ -2,7 +2,6 @@
 
  include('../../model/functions.php');
  include('../../model/client.php');
- include('../../model/sql_functions.php');
 
 if(verifPost(array("id","email","password","newPassword")))
 {

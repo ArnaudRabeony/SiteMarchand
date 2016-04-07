@@ -1,5 +1,7 @@
 <?php 
 
+include('../model/client.php');
+
 if(verifPost(array("email","firstname","lastname","password","address","phone")))
 {
 	$email= $_POST['email'];

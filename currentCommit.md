@@ -52,3 +52,7 @@
 
 ###02/04
 * Add to Cart icon in articles thumbnail div
+
+###07/04
+* String filters (Admin)
+* set functions related to customers in client

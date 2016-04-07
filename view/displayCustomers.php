@@ -1,4 +1,7 @@
 <?php 
+
+require_once("./model/client.php");
+
 $type="";
 $errorMessage="";
 $invalidMail="";
@@ -30,9 +33,37 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 	 </ul>
 	 <hr>
 </p>
+			<form class="form-inline">
+			<div id="searchContainer" class="form-inline col-md-6">
+				<div class="form-group ">
+					<select class="form-control col-md-2" name="searchBy" id="searchBy">
+						<option value="all">Tout</option>
+						<option value="type">Type</option>
+						<option value="lastname">Nom</option>
+						<option value="firstname">Prenom</option>
+						<option value="mail">Mail</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="searchInBase" name="searchInBase" placeholder="client, Jean, Dupond...">
+			    </div>
+			</div><br><br>
+			</form>
 	<div class="tableContainer table-responsive" style="/*background-color: blue;*/">
 		<table class="table table-hover table-condensed" id="customersTable">
-			<?php echo displayCustomers($db,$_SESSION['id']);?>
+		<thead class='thead-default'>
+			<tr>
+				<th>Type</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Mail</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php echo displayCustomers($db,$_SESSION['id'],null,null,null);?>
+		</tbody>	
 		</table>
 		<div class="buttonsContainer" style="float:right">
 			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayCustomers">Annuler</a></button>
