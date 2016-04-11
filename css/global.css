@@ -464,3 +464,23 @@ button
 {
 	font-size: 12px;
 }
+
+#stock
+{
+	height: 300px;
+}
+
+#stockTable th,#stockTable td
+{
+	text-align: center;
+}
+
+#rightPanel
+{
+	margin-top: 30px;
+}
+
+#createProductPageContent
+{
+	margin-top: -10px;
+}

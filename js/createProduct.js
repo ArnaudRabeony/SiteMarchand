@@ -142,17 +142,20 @@ $(document).ready(function()
 				},function(response)
 				{
 					// alert("retour");
-					if(!response)
-					{
-						$("#selectedSize").addClass("necessary");
-						$("#qty").addClass("necessary");
-					}
-					else
-					{
-						// alert("ok");
-						$("#selectedSize").addClass("success");
-						$("#qty").addClass("success");
-					}
+
+					$('#stockTable tbody').html(response);
+
+					// if(!response)
+					// {
+					// 	$("#selectedSize").addClass("necessary");
+					// 	$("#qty").addClass("necessary");
+					// }
+					// else
+					// {
+					// 	// alert("ok");
+					// 	$("#selectedSize").addClass("success");
+					// 	$("#qty").addClass("success");
+					// }
 				});
 			// alert(size+"   "+qty);
 		}

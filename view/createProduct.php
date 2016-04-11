@@ -1,6 +1,7 @@
 <?php 
     require('./connection.php');
 require_once("./model/taille.php");
+require_once("./model/stock.php");
 
 $price="";
 $libelle="";
@@ -34,10 +35,13 @@ $creation=true;
 
     	$shoeSizes= $categoryId==5 ? true : false;
     	$creation=false;
+    	$idProduit=$_GET['id'];
     }
 
+    $displayStock = !count(getStockByProductId($db,$idProduit)) ? "style='display:none'" : ""; 
+
    	$displaySizesManager = $creation ? "style='display:none'" : ""; 
-   	$dataId = !$creation ? "data-productid=".$_GET['id'] : ""; 
+   	$dataId = !$creation ? "data-productid=".$idProduit : ""; 
 
 	$categorySelection='<select class="form-control" name="category" id="selectCategory"><option value="-1">Choisir une catégorie</option>';
 	$categories=getAllCategories($db);
@@ -120,41 +124,66 @@ $creation=true;
 				<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>
 		</div>
 	</div>
+	<div id="rightPanel">
+		<div id="stockManagement" class="shadow col-md-5" <?php echo $displaySizesManager ?>>
+			<div id="editStock" style="display:none">
+				<h3><small>Gestion du stock</small></h3>
+				<div class="col-md-6">
+				<select name="selectedSize" class="form-control col-md-2" id="selectedSize">
+				<?php 
 
-	<div id="stockManagement" class="shadow col-md-5" <?php echo $displaySizesManager ?>>
-		<div id="editStock" style="display:none">
-			<h3><small>Gestion du stock</small></h3>
-			<div class="col-md-6">
-			<select name="selectedSize" class="form-control col-md-2" id="selectedSize">
-			<?php 
+					if($shoeSizes)
+						$sizes=getShoeSizes($db);
+					else
+						$sizes=getSizes($db);
 
-				if($shoeSizes)
-					$sizes=getShoeSizes($db);
-				else
-					$sizes=getSizes($db);
-
-    			echo '<option value="notSelected">Taille</option>';
-				foreach ($sizes as $key => $value)
-    				echo '<option value="'.$value.'">'.$value.'</option>';
-			 ?>
-			</select>
+	    			echo '<option value="notSelected">Taille</option>';
+					foreach ($sizes as $key => $value)
+	    				echo '<option value="'.$value.'">'.$value.'</option>';
+				 ?>
+				</select>
+				</div>
+				<div class="col-md-6">
+					<input type="text" name="qty" id="qty" class="form-control" placeholder="3...">
+				</div>
+				<button id="addToStock" class="btn btn-primary btn-sm">Ajouter au stock</button>
 			</div>
-			<div class="col-md-6">
-				<input type="text" name="qty" id="qty" class="form-control" placeholder="3...">
-			</div>
-			<button id="addToStock" class="btn btn-primary btn-sm">Ajouter au stock</button>
-		</div>
 
-		<div id="hiddenEditStock" >
-			<h3><small>Gestion du stock</small></h3>
-			Gérez vos stocks en associant la quantité à la taille désirée <br>
-			<button id="stockPanel" class="btn btn-default btn-sm">Gérer le stock</button>
+			<div id="hiddenEditStock" >
+				<h3><small>Gestion du stock</small></h3>
+				Gérez vos stocks en associant la quantité à la taille désirée <br>
+				<button id="stockPanel" class="btn btn-default btn-sm">Gérer le stock</button>
+			</div>
 		</div>
-		
+		<div id="stock" class="shadow col-md-5" <?php echo $displayStock ?>>
+			<h3><small>Stock actuel</small></h3>
+			<table class="table table-condensed table-hover" id="stockTable">
+				<thead>
+					<tr>
+						<th>Taille</th>
+						<th>Quantité</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php 
+
+					$availableSizes = getStockByProductId($db,$idProduit);
+					
+					foreach ($availableSizes as $key => $value)
+					{
+						echo "<tr>
+						<td class='availableSizeCell'>".$key."</td>
+						<td class='availableQtyCell'>".$value."</td>
+						</tr>";
+					}	
+				 ?>
+				</tbody>
+			</table>	
+		</div>
 	</div>
+	
 </div>
 
 
 <script src="js/jquery.js"></script>
 <script src="js/createProduct.js"></script>
-
