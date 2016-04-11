@@ -1,24 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.4.10
--- http://www.phpmyadmin.net
---
--- Client :  localhost:8889
--- Généré le :  Lun 11 Avril 2016 à 10:30
--- Version du serveur :  5.5.42
--- Version de PHP :  7.0.0
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
---
--- Base de données :  `site_marchand`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `categorie_produit`
---
 
 CREATE TABLE `categorie_produit` (
   `idCategorie` int(11) NOT NULL,

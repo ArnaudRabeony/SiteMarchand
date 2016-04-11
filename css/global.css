@@ -145,6 +145,19 @@ li.dropdown-toggle
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
 }
 
+.success
+{
+	border-color: #48A23E;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.success:focus
+{
+	border-color: #1A5A16;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #3C9032;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #3C9032;
+}
+
 ul.dropdown-menu
 {
     margin-right: 75px;
@@ -192,15 +205,6 @@ form input,form textarea,#ordering>select,form select,#customerMenu .divider
 #importProducts,#deleteMyAccount,#confirmPasswordUpdateButton,#changePassword,.deleteButton
 {
 	color:#A90000;	
-}
-
-#passwordContainer,#deleteMyAccountContainer
-{
-	text-align:center;
-	padding:5px 5px;
-	border-radius: 10px;
-	box-shadow: 3px 4px 10px #888888;
-	margin-bottom: 10px;
 }
 
 #myAccountDisplayContainer
@@ -290,12 +294,21 @@ td>select
 	padding: 0px;
 }
 
-#displayProduct,#myBasketContainer,#myOrdersContainer,#emptyProductTableContainer
+.shadow450
 {
 	padding:5px 5px;
 	border-radius: 10px;
 	box-shadow: 3px 4px 10px #888888;
 	height: 450px;
+}
+
+#passwordContainer,#deleteMyAccountContainer,.shadow
+{
+	text-align:center;
+	padding:15px 15px;
+	border-radius: 10px;
+	box-shadow: 3px 4px 10px #888888;
+	margin-bottom: 10px;
 }
 
 #descriptionContainer
@@ -410,4 +423,44 @@ button
 {
 	margin-top:-10px;
 	padding:0px;
+}
+
+.clothesSize td, .shoesSize td
+{
+	width:50px;
+	margin-right: 2px;
+	text-align: center;
+	padding:0 !important;
+}
+
+#createProductButton
+{
+	float:left;
+}
+
+#stockManagement
+{
+	padding-top: -10px;
+	margin-top: 25px;
+	height: 150px;
+}
+
+#editStock
+{
+	margin-top: -20px;
+}
+
+#stockPanel,#addToStock
+{
+	margin-top: 10px;
+}
+
+#hiddenEditStock
+{
+	margin-top: -18px;
+}
+
+#stockResponse
+{
+	font-size: 12px;
 }

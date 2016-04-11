@@ -66,7 +66,7 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 				<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
 			</div>
 		</div>
-		<div id="emptyProductTableContainer"<?php echo $visibleEmptyContainer ?>>
+		<div id="emptyProductTableContainer" class="shadow450" <?php echo $visibleEmptyContainer ?>>
 			<div id="emptyProductTable">
 				<p>
 					<i class="material-icons">list</i>

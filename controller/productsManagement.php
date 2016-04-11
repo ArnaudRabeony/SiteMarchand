@@ -17,25 +17,30 @@ if(verifPost(array("category","sport","price","label","description","brand")))
 		echo "error image";
 	else
 	{
-		echo "TODO : add into db";
+		// echo "TODO : add into db";
 		//Save on the server
-		// $to ="./images/".$sportLabel."/".$_FILES['selectedImage']['name'];
-		// move_uploaded_file($_FILES['selectedImage']['tmp_name'], $to);	 
-		// echo "uploaded"; 
+		$to ="./images/".$sportLabel."/".$_FILES['selectedImage']['name'];
+		move_uploaded_file($_FILES['selectedImage']['tmp_name'], $to);	 
+		echo "uploaded"; 
 
- 	// 	$productArray=array( 'libelle'     => $label,
-  //                            'description' => $description,
-  //                            'prix'        => $price,
-  //                            'photo'       => $to,
-  //                            'categorie'   => $category,
-  //                            'sport'       => $sport,
-  //                            'marque'      => $brand
-  //                            );
+ 		$productArray=array( 'libelle'     => $label,
+                             'description' => $description,
+                             'prix'        => $price,
+                             'photo'       => $to,
+                             'categorie'   => $category,
+                             'sport'       => $sport,
+                             'marque'      => $brand
+                             );
 
-  //       if(addNewSingleProduct($db, $productArray))
-		// 	header('location: index.php?page=view/manageProducts');		
-		// else
-		// 	echo "error";
+ 		// $sizes=array(
+ 		// 		''
+ 		// 	);
+
+        if(addNewSingleProduct($db, $productArray/*,$sizes)*/))
+			header('location: index.php?page=view/manageProducts');		
+		else
+			echo "error";
+        // echo addNewSingleProduct($db,$productArray);
 	}
 }
 else

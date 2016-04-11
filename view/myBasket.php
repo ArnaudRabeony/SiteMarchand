@@ -11,7 +11,7 @@ $visibleContainer= $emptyBasket==true ? 'style="display:none;"' : 'style="displa
 
 <hr>
 <div id="myBasket" class="row">
-	<div id="myBasketContainer" >
+	<div id="myBasketContainer" class="shadow450" >
 		<div id="notEmptyBasket" <?php echo $visibleContainer ?>>
 		<div style="margin-left: 30px;">
 			<h3><small>Vous trouverez ci-dessous le contenu de votre panier.</small></h3>

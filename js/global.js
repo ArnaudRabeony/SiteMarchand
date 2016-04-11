@@ -133,5 +133,14 @@ $(document).ready(function()
 				$('#basketSize').hide();
 			}
 		});
-	})
+	});
+
+	// $('body').on('change',"#selectCategory",function()
+	// {
+	// 	// alert("ok");
+	// 	$('#sizeRow').each(function()
+	// 	{
+	// 		console.log($(this).html());
+	// 	});
+	// });
 });

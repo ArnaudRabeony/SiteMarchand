@@ -11,6 +11,7 @@
 
 
 ## TODO :
+* Replace the sizeTable filler by hidden divs for XS S M ans dor 40 41 42 43 -> display them regarding the selectedItemValue
 * create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
 * Change modal to preview articles div

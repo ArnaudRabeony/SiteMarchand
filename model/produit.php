@@ -6,12 +6,11 @@ require_once(dirname(__FILE__) . '/../connection.php');
 require('categorie_produit.php');
 require('sport.php');
 require('marque.php');
+require('stock.php');
 
 function addProduct($db, $dataArray)
 {
-
 	// echo "id Categorie : ".$dataArray['categorie']."<br>";
-
 	$req = $db->prepare('insert into produit(libelle, description, prix, photo, idTaille, idCategorie, idSport, idMarque)
 							values(:libelle, :description, :prix, :photo, :idTaille, :idCategorie, :idSport, :idMarque)');
 	$req->bindValue(':libelle', $dataArray['libelle']);
@@ -39,10 +38,13 @@ function addProduct($db, $dataArray)
 	return $res==1 ? true : false;
 }
 
-function addNewSingleProduct($db, $dataArray)
+function addNewSingleProduct($db, $dataArray/*, $sizeArray*/)
 {
-	$req = $db->prepare('insert into produit(libelle, description, prix, photo, idCategorie, idSport, idMarque)
-							values(:libelle, :description, :prix, :photo, :idCategorie, :idSport, :idMarque)');
+
+	$sizeId = $dataArray['categorie'] == 5 ? 7 : 3;
+
+	$req = $db->prepare('insert into produit(libelle, description, prix, photo, idCategorie, idSport, idMarque, idTaille)
+							values(:libelle, :description, :prix, :photo, :idCategorie, :idSport, :idMarque, :idTaille)');
 	$req->bindValue(':libelle', $dataArray['libelle']);
 	$req->bindValue(':description', $dataArray['description']);
 	$req->bindValue(':prix', $dataArray['prix']);
@@ -50,20 +52,32 @@ function addNewSingleProduct($db, $dataArray)
 	$req->bindValue(':idCategorie', $dataArray['categorie']);
 	$req->bindValue(':idSport', $dataArray['sport']);
 	$req->bindValue(':idMarque', $dataArray['marque']);
+	$req->bindValue(':idTaille', $sizeId);
 	$req->execute();
 
-	$req=$db->prepare('select * from produit where libelle=:libelle and description=:description and prix=:prix and photo=:photo and idCategorie=:idCategorie and idSport=:idSport and idMarque=:idMarque');
-	$req->bindValue(':libelle', $dataArray['libelle']);
-	$req->bindValue(':description', $dataArray['description']);
-	$req->bindValue(':prix', $dataArray['prix']);
-	$req->bindValue(':photo', $dataArray['photo']);
-	$req->bindValue(':idCategorie', $dataArray['categorie']);
-	$req->bindValue(':idSport', $dataArray['sport']);
-	$req->bindValue(':idMarque', $dataArray['marque']);
+	$req=$db->prepare('select idProduit from produit order by idProduit desc limit 1');
 	$req->execute();
-	$res=$req->rowCount();
+	$res = $req->fetch(PDO::FETCH_NUM);
+	$idProduit=$res[0];
 
-	return $res==1 ? true : false;
+	//TODO : get idProduit
+	// foreach taille 
+	// si taille != ""
+		// insert into stock values (idProduit, idTaille, quantite)
+
+	// foreach ($sizeArray as $size => $qty)
+	// {
+	// 	if($qty!="")
+	// 	{
+	// 		$insertReq = $db->prepare('insert into stock values(:idProduit, :idTaille,:quantite)');
+	// 		$insertReq->bindValue(":idProduit",$idProduit);
+	// 		$insertReq->bindValue(":idTaille",$size);
+	// 		$insertReq->bindValue(":quantite",$qty);
+	// 		$insertReq->execute();
+	// 	}
+	// }
+
+	return count(getProductById($db,$idProduit));// && count(getStockByProductId($db,$idProduit));
 }
 
 function deleteProductTable($db)
@@ -120,7 +134,7 @@ function displayProducts($db,$whereArray,$bindValuesArray,$sameValueForAll)
 				$query.=$whereArray[$i]." like ? or ";
 	}
 
-	$req=$db->prepare($query);
+	$req=$db->prepare($query." order by idProduit");
 
 	$paramNumber=substr_count($query,"?");
 

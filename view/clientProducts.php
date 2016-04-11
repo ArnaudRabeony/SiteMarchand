@@ -12,10 +12,12 @@ function displayProductList($db, $dataArray)
 {
 	foreach($dataArray as $key)
     {
+        $photo= strpos($key['photo'], "./images/") !== false ? $key['photo'] : "./images/".$key['photo'];
+
     	echo '
     	<div class="col-sm-4 client-side">
         	<div class="thumbnail" data-productid="'.$key['idProduit'].'">
-            	<img src="./images/' . $key['photo'] . '"> 
+            	<img src="' . $photo . '"> 
                 <div class=caption>
                    <h4 class=pull-right>' . $key['prix'] . ' €</h4>
                    <a href =index.php?page=view/productPage&ref='.$key['idProduit'].'> ' . $key['libelle'] . '</a>

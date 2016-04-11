@@ -6,7 +6,10 @@ require_once('./model/categorie_produit.php');
 $connected = isset($_SESSION['id']) ? true : false;
 
 $productData = getProductById($db, $_GET['ref']);
-$imagePath="images/".$productData[0]['photo'];
+
+$imagePath=strpos($productData[0]['photo'], "images/") !== false ? $productData[0]['photo']: "images/".$productData[0]['photo'];
+
+
 $ref="REF".$productData[0]['idProduit'];
 $label=$productData[0]['libelle'];
 $category=getCategorieById($db,$productData[0]['idCategorie']);
@@ -20,7 +23,7 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 // $sizes=getSizeByCategories($db,$productData[0]['idCategorie']);
 
 ?>
-<div id="displayProduct" class="row" <?php echo $status ?>>
+<div id="displayProduct" class="shadow450 row" <?php echo $status ?>>
 	<div id="displayProductContainer" <?php echo 'data-productid="'.$productData[0]['idProduit'].'"' ?>>
 	<div id="productHeadingDiv">
 		<h1><small><?php echo $label ?></small><i id="closeIcon" class="material-icons" style="float: right;color:#ddd;">clear</i></h1>

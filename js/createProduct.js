@@ -1,6 +1,7 @@
 $(document).ready(function()
 {
 	var filledSizesTable=true;
+	// var sizeTable=[];
 
 	$("body").on("change","#selectCategory",function()
 	{
@@ -16,6 +17,7 @@ $(document).ready(function()
 				{
 					$('#sizeRow').append("<td>"+response[i]+"</td>");
 					$('#toFillRow').append("<td><input id='qty"+response[i]+"' class='form-control' type='text' placeholder='Qté'/></td>");
+					// sizeTable.push(response[i]);
 				}
 
 			}, "json");
@@ -33,12 +35,12 @@ $(document).ready(function()
 	$('form button').click(function(e)
 	{
 
-		$("#toFillRow input").each(function()
-		{
-			// alert($(this).attr("id")+ "| val:"+$(this).val());
-			if(filledSizesTable && $(this).val()=="")
-				filledSizesTable=false;
-		});
+		// $("#toFillRow input").each(function()
+		// {
+		// 	// alert($(this).attr("id")+ "| val:"+$(this).val());
+		// 	if(filledSizesTable && $(this).val()=="")
+		// 		filledSizesTable=false;
+		// });
 
 		var selectCategory=$("#selectCategory").val();
 		var selectSport=$("#selectSport").val();
@@ -48,7 +50,7 @@ $(document).ready(function()
 		var description=$("#description").val();
 		var image=$("#importedImageFile i").text();
 
-		var noSize=filledSizesTable;
+		// var noSize=filledSizesTable;
 		var noCategpory= selectCategory == -1 ? true : false;
 		var noSport= selectSport == -1 ? true : false;
 		var noBrand= selectBrand == -1 ? true : false;
@@ -57,7 +59,7 @@ $(document).ready(function()
 		var noDescription= description =="" ? true : false;
 		var noImage= image =="Aucun fichier selectionné" ? true : false;
 
-		if(noCategpory || noSport || noBrand || noPrice || noLabel || noDescription || noImage || noSize)
+		if(noCategpory || noSport || noBrand || noPrice || noLabel || noDescription || noImage)// || noSize)
 		{
 			e.preventDefault();
 			if(noCategpory)
@@ -100,6 +102,61 @@ $(document).ready(function()
 	    readURL(this);
 	});
 
+	$("#stockPanel").click(function(e)
+	{
+		e.preventDefault();
+		$("#hiddenEditStock").hide();
+		$("#editStock").show();
+	});
+
+	$('#selectedSize').change(function()
+	{
+		$("#selectedSize").removeClass("necessary").removeClass("success");
+		$("#qty").removeClass("necessary").removeClass("success");
+	});
+
+	$("#addToStock").click(function(e)
+	{	
+		var size=$("#selectedSize").val();
+		var qty=$("#qty").val();
+		// alert($("#createProductContent").attr("data-productid"));
+		
+		if(size=="notSelected" || qty=="")
+		{
+			e.preventDefault();
+			if(size=="notSelected")
+				$("#selectedSize").addClass("necessary");
+			if(qty=="")
+				$("#qty").addClass("necessary");
+		}
+		else
+		{
+			$("#selectedSize").removeClass("necessary");
+			$("#qty").removeClass("necessary");
+
+			$.get('js/ajax/stockManager.php',
+				{
+					id:$("#createProductContent").attr("data-productid"),
+					size:size,
+					qty:qty
+				},function(response)
+				{
+					// alert("retour");
+					if(!response)
+					{
+						$("#selectedSize").addClass("necessary");
+						$("#qty").addClass("necessary");
+					}
+					else
+					{
+						// alert("ok");
+						$("#selectedSize").addClass("success");
+						$("#qty").addClass("success");
+					}
+				});
+			// alert(size+"   "+qty);
+		}
+	});
 });
 
 $(document).load(function()

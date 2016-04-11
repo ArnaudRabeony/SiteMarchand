@@ -1,7 +1,7 @@
 <hr>
 <div id="myOrders" class="row">
-	<div id="myOrdersContainer" >
-		<div class="emtpyOrderList"  style="text-align: center; padding:120px;">
+	<div id="myOrdersContainer" class="shadow450" >
+		<div class="emtpyOrderList" style="text-align: center; padding:120px;">
 			<p>
 			<i class="material-icons" style="font-size: 3em;">format_list_bulleted</i>
 				<h3>Vous n'avez aucune commande en cours</h3>
