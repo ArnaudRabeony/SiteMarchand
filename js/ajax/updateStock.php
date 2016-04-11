@@ -1,9 +1,5 @@
 <?php 
 
-
-
-
-
 require("../../model/functions.php");
 require("../../model/stock.php");
 require("../../model/taille.php");

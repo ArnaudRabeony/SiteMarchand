@@ -61,19 +61,21 @@ function displayCustomers($db,$id,$whereArray,$bindValuesArray,$sameValueForAll)
 {
 	//possibility : $operation=["like" | "=" | "!="]
 	$query="select * from client ";
+	
+	$query.="where ";
 
 	if(!is_null($whereArray) && count($whereArray)!=0)
 	{
-		$query.="where ";
 		$cptWhere=count($whereArray);
-
+		$query.="(";
 		for ($i=0; $i < $cptWhere; $i++) 
 			if($i+1 == $cptWhere)//last
-				$query.=$whereArray[$i]." like ? ";		
+				$query.=$whereArray[$i]." like ? )and ";		
 			else
 				$query.=$whereArray[$i]." like ? or ";
 	}
 
+	$query.="idClient!= ?";
 	$req=$db->prepare($query);
 
 	$paramNumber=substr_count($query,"?");
@@ -81,13 +83,16 @@ function displayCustomers($db,$id,$whereArray,$bindValuesArray,$sameValueForAll)
 	if(!is_null($bindValuesArray) && count($bindValuesArray)!=0)//bindValues
 	{
 		if($sameValueForAll)//all param bound to the single value
-			for ($i=0; $i < $paramNumber; $i++) 
+			for ($i=0; $i < $paramNumber-1; $i++) 
 				$req->bindValue($i+1,$bindValuesArray[0].'%');
 		else
-			for ($i=0; $i < $paramNumber; $i++) 
+			for ($i=0; $i < $paramNumber-1; $i++) 
 				$req->bindValue($i+1,$bindValuesArray[$i].'%');
 	}
 
+	$req->bindValue($paramNumber,$id);
+
+	// echo $query;
 	$req->execute();
 	
 	$body='';

@@ -29,7 +29,11 @@ function getStockByProductId($db,$idProduit)
     $returned=array();
 
     while($res = $req->fetch(PDO::FETCH_NUM))
-         $returned += [$res[0] => $res[1]];
+    	 $returned[$res[0]] = $res[1];
+    	
+    	// $returned=array_merge(array($res[0] => $res[1]),$returned);
+
+         // $returned += [$res[0] => $res[1]];
 
     // print_r($returned);
     return $returned;

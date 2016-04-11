@@ -132,10 +132,8 @@ $creation=true;
 				<select name="selectedSize" class="form-control col-md-2" id="selectedSize">
 				<?php 
 
-					if($shoeSizes)
-						$sizes=getShoeSizes($db);
-					else
-						$sizes=getSizes($db);
+					$sizes=getStockByProductId($db,$idProduit);
+					
 
 	    			echo '<option value="notSelected">Taille</option>';
 					foreach ($sizes as $key => $value)

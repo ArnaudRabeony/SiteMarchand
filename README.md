@@ -11,7 +11,8 @@
 
 
 ## TODO :
-* Replace the sizeTable filler by hidden divs for XS S M ans dor 40 41 42 43 -> display them regarding the selectedItemValue
+* Get price, qty, size in the basket
+* gather same products in the basket
 * create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
 * Change modal to preview articles div
@@ -24,6 +25,8 @@
 * Manage update errors (check fields formats, email already exists...)
 
 #### Done
+* addToBasket via thumbnail
+* Stock management
 * productManagement : string filter
 * quick add to cart
 * Export Csv

@@ -484,3 +484,11 @@ button
 {
 	margin-top: -10px;
 }
+
+#thumbnailOrder
+{
+	 padding-top: 8px;
+  padding-bottom: 8px;
+  color: #777;
+  text-align: left;
+}

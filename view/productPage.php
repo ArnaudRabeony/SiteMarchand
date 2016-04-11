@@ -46,7 +46,17 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 					<span id="priceSpan"><b><?php echo $price."€" ?></b></span>
 					<hr>
 					<div id="ordering">
-						<select name="sizeSelector" id="sizeSelector" class="col-md-1 form-control"><option value="-1">Taille</option></select>	
+
+					<select name="sizeSelector" class="form-control col-md-2" id="sizeSelector">
+					<?php 
+
+						$sizes=getStockByProductId($db,$productData[0]['idProduit']);
+
+		    			echo '<option value="notSelected">Taille</option>';
+						foreach ($sizes as $key => $value)
+		    				echo '<option value="'.$key.'">'.$key.'</option>';
+					 ?>
+					</select>
 						<select name="quantitySelector" id="quantitySelector" class="col-md-1 form-control"><option value="-1">Quantité</option></select>
 						<button id="addToBasket" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#myModal" style="float: right;">Ajouter au panier</button>
 					</div>

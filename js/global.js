@@ -80,12 +80,18 @@ $(document).ready(function()
 				$('#basketSize').show();
 	});
 
-	$("body").on("click","#addToBasket,.toCartThumbnail",function(e)
+	$('.toCartThumbnail').click(function()
 	{
-		var productNode= $(e.target).is('.toCartThumbnail') ? $(this).parent().parent().parent() : $("#displayProductContainer");
+		$(this).parent().hide();
+		$(this).parent().parent().find("#thumbnailOrder").show();
+	});
+
+	$("body").on("click","#addToBasket,#thumbnailOrderButton",function(e)
+	{
+		var productNode= $(e.target).is('#thumbnailOrderButton') ? $(this).parent().parent().parent() : $("#displayProductContainer");
 		var productId=productNode.attr("data-productid");
 
-		alert("TODO : Select size through a modal ?");
+		// alert("TODO : Select size through a modal ?");
 		// console.log(productId);
 
 		//TODO : add productId to the cart
@@ -97,6 +103,20 @@ $(document).ready(function()
 			$("#basketSize").text(response);
 		});
 	});
+
+	$("#selectedSize").change(function()
+	{
+		var size=$(this).val();
+		var productId = $(this).parent().parent().parent().parent().attr("data-productid");
+		$.get("js/ajax/stockItems.php",
+		{
+			id:productId,
+			size:size
+		},function(response)
+		{
+			$("#selectedQty").html(response);
+		});
+	})
 
 	$("#multipleDeletionButton").click(function()
 	{
