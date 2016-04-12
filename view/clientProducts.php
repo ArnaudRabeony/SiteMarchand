@@ -1,5 +1,7 @@
 <?php
-require_once("./model/stock.php");
+
+    require_once(dirname(__FILE__) . '/../model/stock.php');
+// require_once("./model/stock.php");
 
 function filters($filterName, $filter)
 {

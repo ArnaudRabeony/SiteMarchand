@@ -1,7 +1,7 @@
 <?php
 
-require_once('./connection.php');
-require_once('./model/categorie_produit.php');
+require_once(dirname(__FILE__) . '/../connection.php');
+require_once(dirname(__FILE__) . '/../model/categorie_produit.php');
 
 $connected = isset($_SESSION['id']) ? true : false;
 

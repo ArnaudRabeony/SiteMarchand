@@ -1,6 +1,10 @@
 <?php 
 
-require_once("./model/client.php");
+require_once(dirname(__FILE__) . '/../model/functions.php');
+require_once(dirname(__FILE__) . '/../model/client.php');
+
+if(pageRestriction(array("admin")))
+{
 
 $type="";
 $errorMessage="";
@@ -67,7 +71,7 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 		</table>
 		<div class="buttonsContainer" style="float:right">
 			<button id="cancelButton" class="btn btn-default btn-sm" ><a href="index.php?page=view/displayCustomers">Annuler</a></button>
-			<button id="saveButton" class="btn btn-default btn-sm" >Sauvegarder</button>
+			<button id="saveButton" class="btn btn-primary btn-sm" >Sauvegarder</button>
 			<!--<button id="addCustomer" class="btn btn-default btn-sm"><i class="fa fa-user-plus" style="color:#28497D;"></i></button>-->
 		</div>
 	</div>
@@ -77,3 +81,5 @@ if(isset($_GET['error']) && $_GET['error']=="true" && isset($_GET['errortype']))
 
 <script src="js/jquery.js"></script>
 <script src="js/displayCustomers.js"></script>
+
+<?php } ?>

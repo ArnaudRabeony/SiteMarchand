@@ -91,7 +91,7 @@ $(document).ready(function()
 					prix:row.find("#price").val(),
 					description:row.find("#description").val()
 				});
-				alert("Changement ok ");
+				// alert("Changement ok ");
 			}
 		});
 

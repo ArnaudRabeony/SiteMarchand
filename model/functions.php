@@ -1,11 +1,8 @@
 <?php 
 
 
-$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+require_once(dirname(__FILE__) . '/../connection.php');
 
-// include("$root/SiteMarchand/connection.php");
-
-// include('../connection.php');
 // htmlentities() on all $_POST/$_GET variables
 function protectPostGet() 
 {
@@ -21,6 +18,26 @@ function htmlentitiesArray (&$tab)
 		else
 			$value = htmlentities($value);
 	}
+}
+
+// $authorizedTypes is an array which contains types that are allowed to access the page
+function pageRestriction($authorizedTypes)
+{
+	$access = false;
+	$connected=isset($_SESSION) && count($_SESSION);
+
+	if($connected)
+	{
+		$access = true;
+		if (!(in_array($_SESSION['type'], $authorizedTypes)))
+			$access = false;
+	}
+	else if (!($access) && !$connected)
+		echo "<div class='alert alert-danger accessMessage' role='alert'>Vous n'êtes pas connecté(e)<br> <a href='index.php'>Accueil</a></div>";
+	else
+		echo "<div class='alert alert-danger accessMessage' role='alert'>Vous n'avez pas la permission d'acceder à ce contenu <br> <a href='index.php'>Accueil</a></div>";
+
+	return $access;
 }
 
  //Check that $_POST contains keys from $keys without empty values

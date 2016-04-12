@@ -56,3 +56,8 @@
 ###07/04
 * String filters (Admin)
 * set functions related to customers in client
+
+###13/04
+* page restriction : a client can't access an admin page via the url
+* documents
+* stock management

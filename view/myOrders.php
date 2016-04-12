@@ -1,3 +1,7 @@
+<?php 
+
+if(pageRestriction(array("admin","client")))
+{ ?>
 <hr>
 <div id="myOrders" class="row">
 	<div id="myOrdersContainer" class="shadow450" >
@@ -14,3 +18,4 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/myBasket.js"></script>
+<?php } ?>

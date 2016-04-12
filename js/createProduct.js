@@ -1,35 +1,26 @@
 $(document).ready(function()
 {
 	var filledSizesTable=true;
-	// var sizeTable=[];
-
-	$("body").on("change","#selectCategory",function()
+	
+	$("#clearStock").click(function(e)
 	{
-		var value=$(this).val()==1 || $(this).val()==2 || $(this).val()==3 || $(this).val()==4 ? 1 : $(this).val();
-		if(value!=-1)
+		e.preventDefault();
+		$.get('js/ajax/clearStock.php',
 		{
-			$.get('js/ajax/sizeTable.php',
-				{category:value},
-			function(response)
-			{
-				// console.log(response);
-				for(i=0;i<response.length-1;i++)
-				{
-					$('#sizeRow').append("<td>"+response[i]+"</td>");
-					$('#toFillRow').append("<td><input id='qty"+response[i]+"' class='form-control' type='text' placeholder='Qté'/></td>");
-					// sizeTable.push(response[i]);
-				}
-
-			}, "json");
-
-			var tableToAdd='<table ><tr id="sizeRow"><td><b style="margin-right:10px;">Taille</b></td></tr>';
-			tableToAdd+='<tr id="toFillRow"><td><b style="margin-right:10px;">Quantité</b></td></tr>';
-			tableToAdd+='</table>';
-			$('#sizeTable').html("<h4 id='sizeMessage' style='margin-top:-5px;'><small>Vous devez choisir au moins une taille</small></h4>"+tableToAdd).show();
-		}
-		else
-			$('#sizeTable').hide();
+			id:$("#createProductContent").attr("data-productid")
+		});
 	});
+
+	$("#deleteStockRow").click(function()
+	{
+		$.get('js/ajax/clearStock.php',
+		{
+			id:$("#createProductContent").attr("data-productid"),
+			size:$(this).prev().text()
+		});
+
+		alert("ok");
+	})
 
 	//UI form validation
 	$('form button').click(function(e)

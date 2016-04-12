@@ -1,6 +1,11 @@
 <?php 
 
-require_once("./model/produit.php");
+
+require_once(dirname(__FILE__) . '/../model/functions.php');
+require_once(dirname(__FILE__) . '/../model/produit.php');
+
+if(pageRestriction(array("admin")))
+{
 
 $emptyTable=isProduitEmpty($db);
 
@@ -102,3 +107,5 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 
 <script src="js/jquery.js"></script>
 <script src="js/displayProducts.js"></script>
+
+<?php } ?>

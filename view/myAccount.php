@@ -1,3 +1,9 @@
+<?php 
+
+if(pageRestriction(array("admin","client")))
+{
+?>
+
 <div class="myAccountDisplayContainer" style="/*background-color: red;*/padding:10px 10px;">
 <p>
 	<h3><small>Cette page vous permet de gérer les informations relatives à votre compte.</small></h3>
@@ -86,3 +92,4 @@
 <script src="js/jquery.js"></script>
 <script src="js/myAccount.js"></script>
 
+<?php } ?>

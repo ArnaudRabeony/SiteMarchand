@@ -2,19 +2,28 @@ $(document).ready(function()
 {
 	$(window).scroll(function()
 	{
-		console.log($(window).scrollTop());
-		if ($(window).scrollTop() > 200)
-		{	
-			console.log("opacity--");
-			$('#top').fadeIn();
-			$(".navbar").animate({opacity: 0.7}, 'fast');
-		}
-		else
-		{	
-			console.log("opacity++");
-			$(".navbar").animate({opacity: 1}, 'fast');
-			$('#top').fadeOut();
-		}
+		// console.log($(window).scrollTop());
+		// if ($(window).scrollTop() > 200)
+		// {	
+		// 	console.log("opacity--");
+		// 	$('#top').fadeIn();
+		// 	$(".navbar").animate({opacity: 0.7}, 'fast');
+		// }
+		// else
+		// {	
+		// 	console.log("opacity++");
+		// 	$(".navbar").animate({opacity: 1}, 'fast');
+		// 	$('#top').fadeOut();
+		// }
+	});
+
+	$("#updateProductButton").click(function(e)
+	{
+		e.preventDefault();
+		$.get("ajax/filteredProducts", 
+			{
+				nb:"ok"	
+			});
 	});
 
 	$('#top').click(function() 

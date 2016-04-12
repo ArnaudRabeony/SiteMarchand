@@ -1,4 +1,6 @@
 <?php 
+if(pageRestriction(array("admin","client")))
+{
 
 $connected = isset($_SESSION['id']) ? true : false;
 
@@ -38,3 +40,4 @@ $visibleContainer= $emptyBasket==true ? 'style="display:none;"' : 'style="displa
 
 <script src="js/jquery.js"></script>
 <!-- <script src="js/myBasket.js"></script> -->
+<?php } ?>

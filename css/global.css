@@ -66,7 +66,7 @@
 	font-size: 11px;
 }
 
-.panel-title a
+.panel-title a, #cancelButton a
 {
 	text-decoration: none;
 	font-size: 12px;
@@ -202,7 +202,7 @@ form input,form textarea,#ordering>select,form select,#customerMenu .divider
     display: block;
 }
 
-#importProducts,#deleteMyAccount,#confirmPasswordUpdateButton,#changePassword,.deleteButton
+#importProducts,#deleteMyAccount,#confirmPasswordUpdateButton,#changePassword,.deleteButton,#clearStock,.fa-close
 {
 	color:#A90000;	
 }
@@ -477,7 +477,7 @@ button
 
 #rightPanel
 {
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 }
 
 #createProductPageContent
@@ -492,3 +492,13 @@ button
   color: #777;
   text-align: left;
 }
+
+.accessMessage
+{
+	font-size: 13px;
+}
+
+/*#stock>h3>small
+{
+	margin-top: 0;
+}*/

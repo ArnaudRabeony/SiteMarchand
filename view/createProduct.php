@@ -1,7 +1,12 @@
 <?php 
-    require('./connection.php');
-require_once("./model/taille.php");
-require_once("./model/stock.php");
+
+require_once(dirname(__FILE__) . '/../connection.php');
+require_once(dirname(__FILE__) . '/../model/functions.php');
+require_once(dirname(__FILE__) . '/../model/taille.php');
+require_once(dirname(__FILE__) . '/../model/stock.php');
+
+if(pageRestriction(array("admin")))
+{
 
 $price="";
 $libelle="";
@@ -41,9 +46,10 @@ $creation=true;
     $displayStock = !count(getStockByProductId($db,$idProduit)) ? "style='display:none'" : ""; 
 
    	$displaySizesManager = $creation ? "style='display:none'" : ""; 
+   	$disableField = !$creation ? " disabled " : ""; 
    	$dataId = !$creation ? "data-productid=".$idProduit : ""; 
 
-	$categorySelection='<select class="form-control" name="category" id="selectCategory"><option value="-1">Choisir une catégorie</option>';
+	$categorySelection='<select class="form-control" name="category" id="selectCategory"'.$disableField.'><option value="-1">Choisir une catégorie</option>';
 	$categories=getAllCategories($db);
 
 	$categoryCptr=1;
@@ -56,7 +62,7 @@ $creation=true;
 	$categorySelection.='</select>';
 
 
-	$sportSelection='<select class="form-control" name="sport" id="selectSport"><option value="-1">Choisir un sport</option>';
+	$sportSelection='<select class="form-control" name="sport" id="selectSport"'.$disableField.'><option value="-1">Choisir un sport</option>';
 	$sports=getAllSports($db);
 
 	$sportCptr=1;
@@ -69,7 +75,7 @@ $creation=true;
 	$sportSelection.='</select>';
 
 
-	$brandSelection='<select class="form-control" name="brand" id="selectBrand"><option value="-1">Choisir une marque</option>';
+	$brandSelection='<select class="form-control" name="brand" id="selectBrand"'.$disableField.'><option value="-1">Choisir une marque</option>';
 	$brands=getAllMarques($db);
 
 	$brandCptr=1;
@@ -89,39 +95,59 @@ $creation=true;
 		<div id="createProductContent" class="row" <?php echo $dataId ?> >
 
 			<?php 
-				if($libelle=="")
+				if($creation)
+				{
 					echo "<h3><small>Enregistrement d'un produit</small></h3>";
+					echo '<h4><small>Tous les champs sont requis</small></h4>';
+				}	
 				else
-					echo "<h3><small>Modification d'un produit</small></h3>";
-
+				{
+					echo "<h3><small>Fiche produit</small></h3>";
+					echo "<h5><small><i>Référence : REF".$idProduit."</i></small></h5>";
+				}
 			?>
-			<h4><small>Tous les champs sont requis</small></h4>
 			<form action="index.php?page=controller/productsManagement" method="post" class="col-md-9 col-sm-3" enctype="multipart/form-data" novalidate>
 			    <?php echo $categorySelection; ?>		   
 			    <?php //echo $sizeTable; ?>
 			    <?php echo $sportSelection; ?>
 			    <?php echo $brandSelection; ?>
-			    <input type="text" name="price" class="form-control" id="price" placeholder="20" <?php echo "value=".$price ?>>
-			    <input type="text" name="label" class="form-control" id="label" placeholder="Libellé" <?php echo "value=".$libelle ?>>
-				<textarea class="form-control" name="description" id="description" rows="2" placeholder="Description"><?php echo $description ?></textarea>
-				<span class="btn btn-default btn-file">
-				    Choisir un fichier
-				    <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-				    <input id="imageFileChooser" accept=".jpg,.jpeg,.png" type="file" name="selectedImage">
-				</span>
-				<span id="importedImageFile"><i style="font-size: 13px;">Aucun fichier selectionné</i></span><br>
+			    <input <?php echo $disableField ?> type="text" name="price" class="form-control" id="price" placeholder="20" <?php echo "value=".$price ?>>
+			    <input <?php echo $disableField ?> type="text" name="label" class="form-control" id="label" placeholder="Libellé" <?php echo "value=".$libelle ?>>
+				<textarea <?php echo $disableField ?> class="form-control" name="description" id="description" rows="2" placeholder="Description"><?php echo $description ?></textarea>
 				
+				<?php 			
+
+				if($creation)
+				{
+				?>
+					<span class="btn btn-default btn-file">
+					    Choisir un fichier
+					    <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+					    <input id="imageFileChooser" accept=".jpg,.jpeg,.png" type="file" name="selectedImage">
+					</span>
+					<span id="importedImageFile"><i style="font-size: 13px;">Aucun fichier selectionné</i></span><br>
 				<?php 
+				}
 					if($photo=="#")
 						echo '<img id="preview" src="'.$photo.'" alt="preview" style="display: none"/><br>';
 					else
 						echo '<img id="preview" src="'.$photo.'" alt="preview" style="display: block"/><br>';
+				
+					if($creation)
+						echo '<button class="btn btn-primary btn-sm" id="createProductButton">Enregistrer</button>';
 				 ?>
-			    <button class="btn btn-primary btn-sm" id="createProductButton">Enregistrer le produit</button>
 			</form>
 		</div>
 		<div class="buttons" style="margin-top: 5px;float: left;">
-				<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>
+			<?php 
+
+			if($creation)
+				echo '<a class="btn btn-default btn-sm" href="index.php?page=view/manageProducts">Annuler</a></button>';
+			else
+				echo '<a class="btn btn-danger btn-sm" href="index.php?page=view/manageProducts">Retour</a></button>';
+
+			 ?>
+
 		</div>
 	</div>
 	<div id="rightPanel">
@@ -132,8 +158,11 @@ $creation=true;
 				<select name="selectedSize" class="form-control col-md-2" id="selectedSize">
 				<?php 
 
-					$sizes=getStockByProductId($db,$idProduit);
-					
+
+					if($shoeSizes)
+						$sizes=getShoeSizes($db);
+					else
+						$sizes=getSizeByCategories($db,1);
 
 	    			echo '<option value="notSelected">Taille</option>';
 					foreach ($sizes as $key => $value)
@@ -151,15 +180,21 @@ $creation=true;
 				<h3><small>Gestion du stock</small></h3>
 				Gérez vos stocks en associant la quantité à la taille désirée <br>
 				<button id="stockPanel" class="btn btn-default btn-sm">Gérer le stock</button>
-			</div>
+			</div>	
 		</div>
-		<div id="stock" class="shadow col-md-5" <?php echo $displayStock ?>>
-			<h3><small>Stock actuel</small></h3>
+		<?php 	
+		if(getStockByProductId($db,$idProduit))
+		{
+		 ?>
+		
+		<div id="stock" class="shadow col-md-5">
+			<h3 style="margin-top: 0px;"><small>Stock actuel</small></h3>
 			<table class="table table-condensed table-hover" id="stockTable">
 				<thead>
 					<tr>
 						<th>Taille</th>
 						<th>Quantité</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -176,8 +211,11 @@ $creation=true;
 					}	
 				 ?>
 				</tbody>
-			</table>	
+			</table>
+
+			<button class="btn btn-sm btn-default" id="clearStock">Détruire le stock</button>	
 		</div>
+		<?php } ?>
 	</div>
 	
 </div>
@@ -185,3 +223,7 @@ $creation=true;
 
 <script src="js/jquery.js"></script>
 <script src="js/createProduct.js"></script>
+
+<?php 
+}
+ ?>

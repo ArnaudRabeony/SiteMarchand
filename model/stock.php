@@ -79,3 +79,24 @@ function sizeExists($db,$idProduit,$idTaille)
 
     return $res == 1 ? true : false;
 }
+
+function deleteStockByProductId($db,$idProduit)
+{
+    $req = $db->prepare('delete from stock where idProduit=:id');
+    $req->bindValue(':id', $idProduit);
+    $req->execute();
+    $res = $req->rowCount();
+
+    return $res == 1 ? true : false;
+}
+
+function deleteStockByProductIdAndSize($db,$idProduit,$idTaille)
+{
+    $req = $db->prepare('delete from stock where idProduit=:id and idTaille=:idTaille');
+    $req->bindValue(':id', $idProduit);
+    $req->bindValue(':idTaille', $idTaille);
+    $req->execute();
+    $res = $req->rowCount();
+
+    return $res == 1 ? true : false;
+}

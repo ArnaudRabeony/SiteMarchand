@@ -23,7 +23,8 @@ if(verifGet(array("id","size","qty")))
 	{
 		$tableBody.="<tr>
 		<td class='availableSizeCell'>".$key."</td>
-		<td class='availableQtyCell'>".$value."</td>
+		<td class='availableQtyCell' style='margin-left:2px;'>".$value."</td>
+		<td><i id='deleteStockRow' class='material-icons' style='float: right; color: rgb(221, 221, 221);cursor:pointer'>clear</i></td>
 		</tr>";
 	}	
 
