@@ -58,7 +58,7 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 					 ?>
 					</select>
 						<select name="quantitySelector" id="quantitySelector" class="col-md-1 form-control"><option value="-1">Quantité</option></select>
-						<button id="addToBasket" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#myModal" style="float: right;">Ajouter au panier</button>
+						<button id="addToBasket" class="btn btn-default btn-sm btn-primary" data-toggle="modal" style="float: right;">Ajouter au panier</button>
 					</div>
 			    </p>
 			  </div>

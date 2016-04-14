@@ -3,10 +3,10 @@
 require_once(dirname(__FILE__) . '/../connection.php');
 
 // require_once('./connection.php');
-require('categorie_produit.php');
-require('sport.php');
-require('marque.php');
-require('stock.php');
+require_once('categorie_produit.php');
+require_once('sport.php');
+require_once('marque.php');
+require_once('stock.php');
 
 function addProduct($db, $dataArray)
 {

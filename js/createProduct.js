@@ -8,19 +8,29 @@ $(document).ready(function()
 		$.get('js/ajax/clearStock.php',
 		{
 			id:$("#createProductContent").attr("data-productid")
+		},function(response)
+		{
+			$("#stockTable tbody").html(response);
+			$("#stock").hide();
+
 		});
 	});
 
-	$("#deleteStockRow").click(function()
+	$("body").on("click","#deleteStockRow",function()
 	{
 		$.get('js/ajax/clearStock.php',
 		{
 			id:$("#createProductContent").attr("data-productid"),
-			size:$(this).prev().text()
+			size:$(this).parent().parent().find(".availableSizeCell").text()
+		},function(response)
+		{
+			$("#stockTable tbody").html(response);
+			if(response==="")
+				$("#stock").hide();
 		});
 
-		alert("ok");
-	})
+		// alert("ok");
+	});
 
 	//UI form validation
 	$('form button').click(function(e)
@@ -132,23 +142,9 @@ $(document).ready(function()
 					qty:qty
 				},function(response)
 				{
-					// alert("retour");
-
 					$('#stockTable tbody').html(response);
-
-					// if(!response)
-					// {
-					// 	$("#selectedSize").addClass("necessary");
-					// 	$("#qty").addClass("necessary");
-					// }
-					// else
-					// {
-					// 	// alert("ok");
-					// 	$("#selectedSize").addClass("success");
-					// 	$("#qty").addClass("success");
-					// }
+					$("#stock").show();
 				});
-			// alert(size+"   "+qty);
 		}
 	});
 });

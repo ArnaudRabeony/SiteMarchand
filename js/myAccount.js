@@ -115,7 +115,7 @@ $(document).ready(function()
 			},function(response)
 			{
 				if(response=="passwordError")
-					$("#errorMessage").text("Mot de passe incorrect");
+					$(".errorMessage").text("Mot de passe incorrect");
 				else
 					document.location.href="index.php?page=controller/deco_page";
 			});

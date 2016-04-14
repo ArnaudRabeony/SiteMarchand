@@ -62,11 +62,28 @@ function verifGet($keys)
 	return true;
 }
 
-function updateSessionBasket($productId)
+function updateSessionBasket($productId,$size,$qty)
 {
 	$cptr=count($_SESSION['basketItems']);
-	$_SESSION['basketItems'][$cptr]=$productId;
+	$newItem = array ('idProduit' => $productId , 'size' => $size,'qty' => $qty);
+	$_SESSION['basketItems'][$cptr]=$newItem;
+
+	// print_r($_SESSION['basketItems']);
 	return count($_SESSION['basketItems']);
+}
+
+function totalBasketPrice($db)
+{
+	$price=0;
+
+	foreach ($_SESSION['basketItems'] as $value) 
+	{
+		$product=getProductById($db,$value["idProduit"]);
+		//print_r($product);
+		$price+=$value["qty"]*$product[0]['prix'];
+	}
+
+	return $price;
 }
 
 function displayBasket($db)
@@ -74,10 +91,10 @@ function displayBasket($db)
 	// print_r($_SESSION['basketItems']);
 	foreach ($_SESSION['basketItems'] as $value) 
 	{
-		$product=getProductById($db,$value);
+		$product=getProductById($db,$value["idProduit"]);
 		//print_r($product);
 
-		echo '<div class="basketItem" data-productid="'.$value.'">
+		echo '<div class="basketItem" data-productid="'.$value["idProduit"].'">
 				<div id="removeFromBasketContainer">
 					<i class="removeFromBasketButton material-icons" style="color:#ddd;float:right;cursor:pointer">clear</i>
 				</div>
@@ -90,15 +107,19 @@ function displayBasket($db)
 					<table>
 						<tr>
 							<td><b>Taille</b></td>
-							<td><i>TODO : Get Size</i></td>
+							<td style="float:right;" class="chosenSize"> '.$value["size"].'</i></td>
 						</tr>
 						<tr>
 							<td><b>Quantité</b></td>
-							<td>TODO : Get Qty</td>
+							<td style="float:right;" class="chosenQty"> '.$value["qty"].'</td>
+						</tr>
+						<tr>
+							<td><b>PU</b></td>
+							<td style="float:right;"> '.$product[0]['prix'].' €</i></td>
 						</tr>
 					</table>
 					</div>
-					<div class="col-md-4" id="priceContainer"><b>Prix</b> <i>TODO : price*qty</i></div>
+					<div class="col-md-4" id="priceContainer"><b>Prix</b> <i> '.$value["qty"]*$product[0]['prix'].' €</i></div>
 				</div>
 				<hr style="margin:5px 0px !important;">
 			</div>';

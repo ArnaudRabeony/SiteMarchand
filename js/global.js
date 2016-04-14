@@ -97,33 +97,80 @@ $(document).ready(function()
 
 	$("body").on("click","#addToBasket,#thumbnailOrderButton",function(e)
 	{
+
 		var productNode= $(e.target).is('#thumbnailOrderButton') ? $(this).parent().parent().parent() : $("#displayProductContainer");
 		var productId=productNode.attr("data-productid");
 
-		// alert("TODO : Select size through a modal ?");
-		// console.log(productId);
+		var sizeNode = $(e.target).is('#thumbnailOrderButton') ? $(this).parent().find("#selectedSize") : $(this).parent().find("#sizeSelector");
+		var qtyNode = $(e.target).is('#thumbnailOrderButton') ? $(this).parent().find("#selectedQty") : $(this).parent().find("#quantitySelector");
 
-		//TODO : add productId to the cart
-		$.get("js/ajax/updateBasket.php",
+		var size = sizeNode.val();
+		var qty = qtyNode.val();
+
+		sizeNode.toggleClass("necessary");
+		qtyNode.toggleClass("necessary");
+
+		if(size!="notSelected" && qty!="notSelected")
 		{
-			id:productId
-		},function(response)
-		{
-			$("#basketSize").text(response);
-		});
+			$.get("js/ajax/updateBasket.php",
+			{
+				id:productId,
+				size:size,
+				qty:qty
+			},function(response)
+			{
+				$("#basketSize").text(response);
+			});
+
+			if($(e.target).is('#thumbnailOrderButton'))
+			{
+				$(this).parent().parent().prev().show();
+				$(this).parent().parent().hide();
+			}
+			else if($(e.target).is('#addToBasket'))
+			{
+				// alert("ok");
+				var status=$("#displayProduct").attr("data-status");
+
+				if(status=="connected")
+					$('#modalButtons').html('<button id="continueShopping" type="button" class="btn btn-default" data-dismiss="modal">Je poursuis mes achats</button><button type="button" class="btn btn-primary"><a href="index.php?page=view/myBasket" id="toBasket" style="text-decoration:none;color:white;">Voir mon panier</a></button>');
+				else
+				{
+					$("#modalBody").css("height","200px");
+					var coForm='<form action="index.php?page=controller/check_co" method="post" class="col-md-5 col-sm-3" novalidate>'
+				    +'<input type="email" class="form-control" name="email" id="email" placeholder="exemple@mail.com">'
+				    +'<input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe">'	
+				   	+'<button class="btn btn-default" type="submit">Connexion</button></form>';
+
+					$("#modalBody").html("Vous devez être connecter pour ajouter cet article à votre panier."+'<div style="margin-left:180px;margin-top:30px;">'+coForm+"</div>");
+				}
+
+				$("#myModal").modal();
+			}
+		}
+		else
+		{			
+			sizeNode.addClass("necessary");
+			qtyNode.addClass("necessary");
+		}
 	});
 
-	$("#selectedSize").change(function()
+	$("#selectedSize,#sizeSelector").change(function(e)
 	{
 		var size=$(this).val();
-		var productId = $(this).parent().parent().parent().parent().attr("data-productid");
+		var productId = $(e.target).is('#selectedSize') ? $(this).parent().parent().parent().parent().attr("data-productid") : $(this).parent().parent().parent().parent().parent().attr("data-productid")
+		
 		$.get("js/ajax/stockItems.php",
 		{
 			id:productId,
 			size:size
 		},function(response)
 		{
-			$("#selectedQty").html(response);
+			console.log(response);
+			if($(e.target).is('#selectedSize'))
+				$(e.target).parent().next().find("#selectedQty").html(response);
+			else
+				$(e.target).next().html(response);
 		});
 	})
 
@@ -147,20 +194,32 @@ $(document).ready(function()
 
 		var productId=$(this).parent().parent().attr("data-productid");
 		// console.log(productId);
+
 		$.get("js/ajax/removeFromBasket.php",
 		{
-			id:productId
+			id:productId,
+			size:$(this).parent().parent().find(".chosenSize").text(),
+			qty:$(this).parent().parent().find(".chosenQty").text()
 		},function(response)
 		{
-			$("#basketSize").text(response);
+			alert(response);
 
-			if(response==0)
+			var price = response['price'];
+			var nb = response['nb'];
+			// var price = response['price'];
+
+			console.log(price);
+			$("#basketSize").text(nb);
+
+			if(nb==0)
 			{	
 				// alert("vide");
 				$('#notEmptyBasket').hide();
 				$('#emptyBasket').show();
 				$('#basketSize').hide();
 			}
+
+			$('#totalPrice b').text("Total : "+price+" €");
 		});
 	});
 

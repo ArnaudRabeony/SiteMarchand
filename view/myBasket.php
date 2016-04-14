@@ -24,6 +24,7 @@ $visibleContainer= $emptyBasket==true ? 'style="display:none;"' : 'style="displa
 		 	<?php echo displayBasket($db) ?>
 		 </div>
 		 <div id="toOrderButtonsContainer">
+		 	<span id="totalPrice" style="margin-right:10px;"><b>Total : <?php echo totalBasketPrice($db) ?> €</b></span>
 		 	<button id="commandButton" class="btn btn-primary btn-sm"><a href="index.php?page=view/myOrders">Commander</a></button>
 		 </div>
 		</div>

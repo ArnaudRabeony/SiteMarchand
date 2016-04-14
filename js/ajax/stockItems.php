@@ -12,7 +12,7 @@ if(verifGet(array("id","size")))
 	$options="";
 
 	$sizes = getQtyByProductIdAndSize($db,$idProduit,$idTaille);
-
+	// print_r($sizes);
 	// $options.='<option value="notSelected">Qté</option>';
 
 	for ($i=1; $i <= $sizes; $i++)

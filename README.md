@@ -1,6 +1,7 @@
 # SiteMarchand
 
 # PRB
+* Undefined total price when an article is removed from the basket
 * Can't display product libelle with composed label
 * Customer should be disconnected when he changes his password
 * Display the carousel from the views/displayProducts file
@@ -11,8 +12,8 @@
 
 
 ## TODO :
-* Get price, qty, size in the basket
-* gather same products in the basket
+* basketItems number : increment regarding products or qty ?
+* Connection on the fly -> add product to basket
 * create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
 * Change modal to preview articles div
@@ -25,6 +26,8 @@
 * Manage update errors (check fields formats, email already exists...)
 
 #### Done
+* gather same products in the basket
+* Get price, qty, size in the basket
 * addToBasket via thumbnail
 * Stock management
 * productManagement : string filter

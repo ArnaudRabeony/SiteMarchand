@@ -171,7 +171,7 @@ $creation=true;
 				</select>
 				</div>
 				<div class="col-md-6">
-					<input type="text" name="qty" id="qty" class="form-control" placeholder="3...">
+					<input type="number" min="0" name="qty" id="qty" class="form-control" placeholder="3...">
 				</div>
 				<button id="addToStock" class="btn btn-primary btn-sm">Ajouter au stock</button>
 			</div>
@@ -183,11 +183,10 @@ $creation=true;
 			</div>	
 		</div>
 		<?php 	
-		if(getStockByProductId($db,$idProduit))
-		{
+			$display=getStockByProductId($db,$idProduit) ? 'style=""' : 'style="display:none"';
 		 ?>
 		
-		<div id="stock" class="shadow col-md-5">
+		<div id="stock" class="shadow col-md-5" <?php echo $display ?>>
 			<h3 style="margin-top: 0px;"><small>Stock actuel</small></h3>
 			<table class="table table-condensed table-hover" id="stockTable">
 				<thead>
@@ -207,6 +206,7 @@ $creation=true;
 						echo "<tr>
 						<td class='availableSizeCell'>".$key."</td>
 						<td class='availableQtyCell'>".$value."</td>
+						<td><i id='deleteStockRow' class='material-icons' style='float: right; color: rgb(221, 221, 221);cursor:pointer'>clear</i></td>
 						</tr>";
 					}	
 				 ?>
@@ -215,7 +215,6 @@ $creation=true;
 
 			<button class="btn btn-sm btn-default" id="clearStock">Détruire le stock</button>	
 		</div>
-		<?php } ?>
 	</div>
 	
 </div>
