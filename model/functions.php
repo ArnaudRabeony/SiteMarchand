@@ -30,12 +30,20 @@ function pageRestriction($authorizedTypes)
 	{
 		$access = true;
 		if (!(in_array($_SESSION['type'], $authorizedTypes)))
+		{
 			$access = false;
+			echo '<div class="permissionDenied row shadow">'."<br><i class='material-icons'style='font-size:3em'>pan_tool</i>".'<br>'."Vous n'avez pas la permission d'acceder au contenu de cette page".'				
+				<br><br><button class="btn btn-sm btn-primary" id="backToIndex"><a href="index.php" style="text-decoration:none;color:white;">Accueil</a></button>
+			  </div>';
+		}
 	}
 	else if (!($access) && !$connected)
-		echo "<div class='alert alert-danger accessMessage' role='alert'>Vous n'êtes pas connecté(e)<br> <a href='index.php'>Accueil</a></div>";
-	else
-		echo "<div class='alert alert-danger accessMessage' role='alert'>Vous n'avez pas la permission d'acceder à ce contenu <br> <a href='index.php'>Accueil</a></div>";
+	{
+		echo '<div class="permissionDenied row shadow">'."<br><i class='material-icons' style='font-size:4em'>account_circle</i>".'<br>'."Vous n'êtes pas connecté(e)".'				
+				<br><br><button class="btn btn-sm btn-primary" id="backToIndex"><a href="index.php" style="text-decoration:none;color:white;">Accueil</a></button>
+			  </div>';
+	}
+
 
 	return $access;
 }

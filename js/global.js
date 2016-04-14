@@ -202,10 +202,8 @@ $(document).ready(function()
 			qty:$(this).parent().parent().find(".chosenQty").text()
 		},function(response)
 		{
-			alert(response);
-
-			var price = response['price'];
-			var nb = response['nb'];
+			var price = response.price;
+			var nb = response.nb;
 			// var price = response['price'];
 
 			console.log(price);
@@ -220,7 +218,7 @@ $(document).ready(function()
 			}
 
 			$('#totalPrice b').text("Total : "+price+" €");
-		});
+		},"json");
 	});
 
 	// $('body').on('change',"#selectCategory",function()

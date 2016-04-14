@@ -14,6 +14,7 @@
 ## TODO :
 * basketItems number : increment regarding products or qty ?
 * Connection on the fly -> add product to basket
+* Connection on the fly -> show the modal before selections checking
 * create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
 * Change modal to preview articles div

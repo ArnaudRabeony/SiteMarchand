@@ -41,9 +41,9 @@ $creation=true;
     	$shoeSizes= $categoryId==5 ? true : false;
     	$creation=false;
     	$idProduit=$_GET['id'];
+    	$displayStock = !count(getStockByProductId($db,$idProduit)) ? "style='display:none'" : ""; 
     }
 
-    $displayStock = !count(getStockByProductId($db,$idProduit)) ? "style='display:none'" : ""; 
 
    	$displaySizesManager = $creation ? "style='display:none'" : ""; 
    	$disableField = !$creation ? " disabled " : ""; 
@@ -111,7 +111,7 @@ $creation=true;
 			    <?php //echo $sizeTable; ?>
 			    <?php echo $sportSelection; ?>
 			    <?php echo $brandSelection; ?>
-			    <input <?php echo $disableField ?> type="text" name="price" class="form-control" id="price" placeholder="20" <?php echo "value=".$price ?>>
+			    <input <?php echo $disableField ?> type="text" name="price" class="form-control" id="price" placeholder="20 (en euros)" <?php echo "value=".$price ?>>
 			    <input <?php echo $disableField ?> type="text" name="label" class="form-control" id="label" placeholder="Libellé" <?php echo "value=".$libelle ?>>
 				<textarea <?php echo $disableField ?> class="form-control" name="description" id="description" rows="2" placeholder="Description"><?php echo $description ?></textarea>
 				
@@ -126,15 +126,12 @@ $creation=true;
 					    <input id="imageFileChooser" accept=".jpg,.jpeg,.png" type="file" name="selectedImage">
 					</span>
 					<span id="importedImageFile"><i style="font-size: 13px;">Aucun fichier selectionné</i></span><br>
+					<img id="preview" src="'.$photo.'" alt="preview" style="display: none"/><br>
+					<button class="btn btn-primary btn-sm" id="createProductButton">Enregistrer</button>
 				<?php 
 				}
-					if($photo=="#")
-						echo '<img id="preview" src="'.$photo.'" alt="preview" style="display: none"/><br>';
-					else
-						echo '<img id="preview" src="'.$photo.'" alt="preview" style="display: block"/><br>';
-				
-					if($creation)
-						echo '<button class="btn btn-primary btn-sm" id="createProductButton">Enregistrer</button>';
+				else
+					echo '<img id="preview" src="'.$photo.'" alt="preview" style="display: block"/><br>';
 				 ?>
 			</form>
 		</div>
@@ -183,10 +180,11 @@ $creation=true;
 			</div>	
 		</div>
 		<?php 	
-			$display=getStockByProductId($db,$idProduit) ? 'style=""' : 'style="display:none"';
+			if(!$creation)
+				$display=getStockByProductId($db,$idProduit) ? 'style=""' : 'style="display:none"';
 		 ?>
 		
-		<div id="stock" class="shadow col-md-5" <?php echo $display ?>>
+		<div id="stock" class="shadow col-md-5" <?php if($creation) echo "style='display:none'" ?>>
 			<h3 style="margin-top: 0px;"><small>Stock actuel</small></h3>
 			<table class="table table-condensed table-hover" id="stockTable">
 				<thead>
@@ -198,7 +196,8 @@ $creation=true;
 				</thead>
 				<tbody>
 				<?php 
-
+				if(!$creation)
+				{
 					$availableSizes = getStockByProductId($db,$idProduit);
 					
 					foreach ($availableSizes as $key => $value)
@@ -209,6 +208,7 @@ $creation=true;
 						<td><i id='deleteStockRow' class='material-icons' style='float: right; color: rgb(221, 221, 221);cursor:pointer'>clear</i></td>
 						</tr>";
 					}	
+				}
 				 ?>
 				</tbody>
 			</table>

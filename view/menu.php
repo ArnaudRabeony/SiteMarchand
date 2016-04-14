@@ -43,7 +43,7 @@ if($connected)
         if($connected)
         {   
             echo '<li id="basketNotification"><a href="index.php?page=view/myBasket"><i class="fa fa-shopping-cart"></i><span id="basketSize" style="position:relative;font-size: 10px;top:8px;color:red"><b>'.$basketItemsNumber.'</b></span></a></li>
-            <li class="dropdown-toggle" data-toggle="dropdown"><a><span class="glyphicon glyphicon-user"> </span>';
+            <li class="dropdown-toggle" data-toggle="dropdown"><a class="connectionLink"><i class="material-icons userIcon">account_circle</i>';
 
             if($isAdmin)
             {
@@ -82,7 +82,7 @@ if($connected)
         else
         {
             echo '
-              <li><a href="index.php?page=view/co_page"><span class="glyphicon glyphicon-user"></span> Connexion</a></li>';
+              <li><a href="index.php?page=view/co_page" class="connectionLink"><i class="material-icons userIcon">account_circle</i> Connexion</a></li>';
         }
 
         ?>
