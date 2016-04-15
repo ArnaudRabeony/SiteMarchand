@@ -1,15 +1,15 @@
-"id";"libelle";"marque";"description";"sport";"categorie";"prix";"taille";"image"
-1;Mercurial;1;Lorem ipsum;1;5;140;8;Football/mercurial.jpg
-2;Maillot home PSG;1;Lorem ipsum;1;6;85;3;Football/maillotHomePSG.jpg
-3;Maillot home Marseille;2;Lorem ipsum;1;6;85;4;Football/maillotHomeMarseille.jpg
-4;Short Federer;1;Lorem ipsum;2;2;35;2;Tennis/shortFederer.jpg
-5;Survêtement Cleveland;4;Lorem ipsum;3;3;70;5;Basketball/survetementCleveland.jpg
-6;Pantalon survêtement;3;Lorem ipsum;6;3;130;6;Rugby/survetementRugby.jpg
-7;Short Warriors;1;Lorem ipsum;3;2;45;3;Basketball/shortWarriors.jpg
-8;Short away PSG;1;Lorem ipsum;1;2;35;1;Football/shortAwayPSG.jpg
-9;T-Shirt rugby;3;Lorem ipsum;6;1;15;3;Rugby/t-shirtRugby.jpg
-10;T-Shirt Jordan;2;Lorem ipsum;3;1;30;4;Basketball/t-shirtJordan.jpg
-11;T-Shirt Federer;1;Lorem ipsum;2;1;35;5;Tennis/t-shirtFederer.jpg
-12;Tiempo;1;Lorem ipsum;1;5;100;10;Football/tiempo.jpg
-13;Hypervenom;1;Lorem ipsum;1;5;200;11;Football/hypervenom.jpg
-14;Survêtement Bulls;2;Lorem ipsum;3;3;90;2;Basketball/survetementBulls.jpg
+"id";"libelle";"marque";"description";"sport";"categorie";"prix";"image"
+1,Mercurial,1,Lorem ipsum,1,5,140,Football/mercurial.jpg
+2,Maillot home PSG,1,Lorem ipsum,1,6,85,Football/maillotHomePSG.jpg
+3,Maillot home Marseille,2,Lorem ipsum,1,6,85,Football/maillotHomeMarseille.jpg
+4,Short Federer,1,Lorem ipsum,2,2,35,Tennis/shortFederer.jpg
+5,Survêtement Cleveland,4,Lorem ipsum,3,3,70,Basketball/survetementCleveland.jpg
+6,Pantalon survêtement,3,Lorem ipsum,6,3,130,Rugby/survetementRugby.jpg
+7,Short Warriors,1,Lorem ipsum,3,2,45,Basketball/shortWarriors.jpg
+8,Short away PSG,1,Lorem ipsum,1,2,35,Football/shortAwayPSG.jpg
+9,T-Shirt rugby,3,Lorem ipsum,6,1,15,Rugby/t-shirtRugby.jpg
+10,T-Shirt Jordan,2,Lorem ipsum,3,1,30,Basketball/t-shirtJordan.jpg
+11,T-Shirt Federer,1,Lorem ipsum,2,1,35,Tennis/t-shirtFederer.jpg
+12,Tiempo,1,Lorem ipsum,1,5,100,Football/tiempo.jpg
+13,Hypervenom,1,Lorem ipsum,1,5,200,Football/hypervenom.jpg
+14,Survêtement Bulls,2,Lorem ipsum,3,3,90,Basketball/survetementBulls.jpg

@@ -66,18 +66,19 @@ $(document).ready(function()
 	// 	$("#shoppingCart").show();
 	// })
 
-	$(".thumbnail").mouseenter(function()
-	{	
-		var isConnected = $(".status").attr("data-status") == "connected" ? true : false;
+	// $("body").on("mouseenter",".thumbnail",function()
+	// {	
+	// 	var isConnected = $(".status").attr("data-status") == "connected" ? true : false;
 		
-		if(isConnected)
-			$(this).find(".toCartThumbnail").show();
-	});
+	// 	alert($(".status").html());
+	// 	if(isConnected)
+	// 		$(this).find(".toCartThumbnail").show();
+	// });
 
-	$(".thumbnail").mouseleave(function()
-	{
-		$(this).find(".toCartThumbnail").hide();
-	});
+	// $(".thumbnail").mouseleave(function()
+	// {
+	// 	$(this).find(".toCartThumbnail").hide();
+	// });
 
 
 	$(".toCartThumbnail,#addToBasket").click(function()
@@ -174,14 +175,13 @@ $(document).ready(function()
 		});
 	})
 
-	$("#multipleDeletionButton").click(function()
+	$("body").on("click","#multipleDeletionButton",function()
 	{
-		$("#customersTable .productLine").each(function()
+		$("#productsTable .productLine").each(function()
 		{
 			var checkbox=$(this).find(".deleteCheckbox");
 			var isChecked = checkbox.prop("checked");
 			var id=checkbox.val().replace("delete","");
-				// console.log("delete product : "+ id );	
 
 			if(isChecked)
 				$(this).find(".deleteButton").click();
@@ -229,4 +229,11 @@ $(document).ready(function()
 	// 		console.log($(this).html());
 	// 	});
 	// });
+
+	$("body").on("click","#downloadButton a",function()
+	{
+		var str = $("#searchInBase").val();
+		var filter = $("#searchBy").val();		
+		$(this).attr("href","controller/download.php?str="+str+"&filter="+filter);
+	});
 });

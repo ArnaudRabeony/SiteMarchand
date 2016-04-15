@@ -12,6 +12,7 @@
 
 
 ## TODO :
+* XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
 * Use the carousel as a product filter (by brand, sport...)
 * Delete idTaille from produit table
 * basketItems number : increment regarding products or qty ?

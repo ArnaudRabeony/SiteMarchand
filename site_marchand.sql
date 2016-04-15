@@ -1,6 +1,32 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.13.1deb1
+-- http://www.phpmyadmin.net
+--
+-- Client :  localhost
+-- Généré le :  Ven 15 Avril 2016 à 21:26
+-- Version du serveur :  5.6.28-0ubuntu0.15.10.1
+-- Version de PHP :  5.6.11-1ubuntu3.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
-CREATE TABLE `categorie_produit` (
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `site_marchand`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie_produit`
+--
+
+CREATE TABLE IF NOT EXISTS `categorie_produit` (
   `idCategorie` int(11) NOT NULL,
   `nomCategorie` varchar(30) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -23,7 +49,7 @@ INSERT INTO `categorie_produit` (`idCategorie`, `nomCategorie`) VALUES
 -- Structure de la table `client`
 --
 
-CREATE TABLE `client` (
+CREATE TABLE IF NOT EXISTS `client` (
   `idClient` int(11) NOT NULL,
   `type` varchar(10) NOT NULL DEFAULT 'client',
   `email` varchar(50) NOT NULL,
@@ -32,7 +58,7 @@ CREATE TABLE `client` (
   `mdp` varchar(60) DEFAULT NULL,
   `adresse` varchar(50) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `client`
@@ -40,11 +66,12 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`idClient`, `type`, `email`, `nom`, `prenom`, `mdp`, `adresse`, `telephone`) VALUES
 (23, 'admin', 'admin', 'NomAdm', 'PrenomAdm', '$2y$10$ftrzKc.OwPhFVY.J6aNPLuy0Ozd4RznDyKJfpVporunWLddfsxrDO', 'Adresse de l''admin', '0123456879'),
-(24, 'client', 'client', 'Client1Nom', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
+(24, 'client', 'client', 'Client1Nom1', 'Client1', '$2y$10$AqfzuDl2BIBGukmMLCkwQuFTdWnYp9k2XCiCNlEv3oUDHZ2vSK4Za', 'Adresse du client', '0123456789'),
 (25, 'client', 'client2@client.client', 'Client2', 'Client2', '$2y$10$/a3tr7PH.Z.eE6g00GvmX.NQzJ2Pl95/r0gmERwuKmdCuwY0MVfTS', 'adresse client', '0123456789'),
 (26, 'client', 'a@a.aa', 'Ajax01', 'aze', '$2y$10$McmGAvMAPOdnl75s1by.nugQLXEaJ2E4roZ6Vw3ia4N3OxSU7nDFO', 'adresse client 3', '0123456789'),
 (27, 'client', 'test@test.test', 'Ajax02', 'test', '$2y$10$Be7peEuldR0clKSz2/bgQuXW0zcWr7YkeBEOcq5C1/90qY3eqCGn6', 'test', 'test'),
-(33, 'client', 'jean', 'Jean', 'Jean', '$2y$10$R2LFDeXFdEVOFioKlN45PuZzsyCtvzB5xBQc5KlYzml8KgtHTP8Eq', 'jean', 'jean');
+(33, 'client', 'jean', 'Jean1', 'Jean', '$2y$10$R2LFDeXFdEVOFioKlN45PuZzsyCtvzB5xBQc5KlYzml8KgtHTP8Eq', 'jean1', 'jean'),
+(34, 'client', 'aze@aze.aze', 'Nomtest', 'Test', '$2y$10$S12OCkTsAZXunuPZ./bzYOk9TMm/vcYwSEi9PhTTdTEq.w7.Lwutu', 'aze', 'aze');
 
 -- --------------------------------------------------------
 
@@ -52,7 +79,7 @@ INSERT INTO `client` (`idClient`, `type`, `email`, `nom`, `prenom`, `mdp`, `adre
 -- Structure de la table `commande`
 --
 
-CREATE TABLE `commande` (
+CREATE TABLE IF NOT EXISTS `commande` (
   `idCommande` int(11) NOT NULL,
   `dateCommande` date DEFAULT NULL,
   `prixCommande` float DEFAULT NULL,
@@ -66,7 +93,7 @@ CREATE TABLE `commande` (
 -- Structure de la table `ligne_commande`
 --
 
-CREATE TABLE `ligne_commande` (
+CREATE TABLE IF NOT EXISTS `ligne_commande` (
   `idProduit` int(11) NOT NULL,
   `idCommande` int(11) NOT NULL,
   `quantite` int(11) DEFAULT NULL
@@ -78,7 +105,7 @@ CREATE TABLE `ligne_commande` (
 -- Structure de la table `marque`
 --
 
-CREATE TABLE `marque` (
+CREATE TABLE IF NOT EXISTS `marque` (
   `idMarque` int(4) NOT NULL,
   `nomMarque` varchar(30) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -100,37 +127,32 @@ INSERT INTO `marque` (`idMarque`, `nomMarque`) VALUES
 -- Structure de la table `produit`
 --
 
-CREATE TABLE `produit` (
+CREATE TABLE IF NOT EXISTS `produit` (
   `idProduit` int(11) NOT NULL,
   `libelle` varchar(100) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `prix` float DEFAULT NULL,
   `photo` varchar(100) DEFAULT NULL,
-  `idTaille` int(4) NOT NULL,
   `idCategorie` int(4) NOT NULL,
   `idSport` int(4) NOT NULL,
   `idMarque` int(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `produit`
 --
 
-INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `idTaille`, `idCategorie`, `idSport`, `idMarque`) VALUES
-(1, 'Mercurial', 'Lorem ipsum', 140, 'Football/mercurial.jpg', 8, 5, 1, 1),
-(2, 'Maillot home PSG', 'Lorem ipsum', 85, 'Football/maillotHomePSG.jpg', 3, 6, 1, 1),
-(3, 'Maillot home Marseille', 'Lorem ipsum', 85, 'Football/maillotHomeMarseille.jpg', 4, 6, 1, 2),
-(4, 'Short Federer', 'Lorem ipsum', 35, 'Tennis/shortFederer.jpg', 2, 2, 2, 1),
-(5, 'Survêtement Cleveland', 'Lorem ipsum', 70, 'Basketball/survetementCleveland.jpg', 5, 3, 3, 4),
-(6, 'Pantalon survêtement', 'Lorem ipsum', 130, 'Rugby/survetementRugby.jpg', 6, 3, 6, 3),
-(7, 'Short Warriors', 'Lorem ipsum', 45, 'Basketball/shortWarriors.jpg', 3, 2, 3, 1),
-(8, 'Short away PSG', 'Lorem ipsum', 35, 'Football/shortAwayPSG.jpg', 1, 2, 1, 1),
-(9, 'T-Shirt rugby', 'Lorem ipsum', 15, 'Rugby/t-shirtRugby.jpg', 3, 1, 6, 3),
-(10, 'T-Shirt Jordan', 'Lorem ipsum', 30, 'Basketball/t-shirtJordan.jpg', 4, 1, 3, 2),
-(11, 'T-Shirt Federer', 'Lorem ipsum', 35, 'Tennis/t-shirtFederer.jpg', 5, 1, 2, 1),
-(12, 'Tiempo', 'Lorem ipsum', 100, 'Football/tiempo.jpg', 10, 5, 1, 1),
-(13, 'Hypervenom', 'Lorem ipsum', 200, 'Football/hypervenom.jpg', 11, 5, 1, 1),
-(14, 'Survêtement Bulls', 'Lorem ipsum', 90, 'Basketball/survetementBulls.jpg', 2, 3, 3, 2);
+INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `idCategorie`, `idSport`, `idMarque`) VALUES
+(16, 'Mercurial', 'Lorem ipsum', 140, 'Football/mercurial.jpg', 5, 1, 1),
+(17, 'Maillot home PSG', 'Lorem ipsum', 85, 'Football/maillotHomePSG.jpg', 6, 1, 1),
+(18, 'Maillot home Marseille', 'Lorem ipsum', 85, 'Football/maillotHomeMarseille.jpg', 6, 1, 2),
+(19, 'Short Federer', 'Lorem ipsum', 35, 'Tennis/shortFederer.jpg', 2, 2, 1),
+(20, 'Survêtement Cleveland', 'Lorem ipsum', 70, 'Basketball/survetementCleveland.jpg', 3, 3, 4),
+(21, 'Pantalon survêtement', 'Lorem ipsum', 130, 'Rugby/survetementRugby.jpg', 3, 6, 3),
+(22, 'Short Warriors', 'Lorem ipsum', 45, 'Basketball/shortWarriors.jpg', 2, 3, 1),
+(23, 'Short away PSG', 'Lorem ipsum', 35, 'Football/shortAwayPSG.jpg', 2, 1, 1),
+(24, 'T-Shirt rugby', 'Lorem ipsum', 15, 'Rugby/t-shirtRugby.jpg', 1, 6, 3),
+(25, 'T-Shirt Jordan', 'Lorem ipsum', 30, 'Basketball/t-shirtJordan.jpg', 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -138,7 +160,7 @@ INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `
 -- Structure de la table `sport`
 --
 
-CREATE TABLE `sport` (
+CREATE TABLE IF NOT EXISTS `sport` (
   `idSport` int(4) NOT NULL,
   `nomSport` varchar(30) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -161,10 +183,10 @@ INSERT INTO `sport` (`idSport`, `nomSport`) VALUES
 -- Structure de la table `stock`
 --
 
-CREATE TABLE `stock` (
+CREATE TABLE IF NOT EXISTS `stock` (
   `idProduit` int(11) NOT NULL,
   `idTaille` int(11) NOT NULL,
-  `quantité` int(11) NOT NULL
+  `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -173,7 +195,7 @@ CREATE TABLE `stock` (
 -- Structure de la table `taille`
 --
 
-CREATE TABLE `taille` (
+CREATE TABLE IF NOT EXISTS `taille` (
   `idTaille` int(4) NOT NULL,
   `nomTaille` varchar(10) NOT NULL,
   `idCategorie` int(4) NOT NULL
@@ -239,7 +261,6 @@ ALTER TABLE `produit`
   ADD PRIMARY KEY (`idProduit`),
   ADD KEY `FK_PRODUIT_idCategorie` (`idCategorie`),
   ADD KEY `idSport` (`idSport`),
-  ADD KEY `idTaille` (`idTaille`),
   ADD KEY `idMarque` (`idMarque`);
 
 --
@@ -276,7 +297,7 @@ ALTER TABLE `categorie_produit`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
+  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
@@ -296,7 +317,7 @@ ALTER TABLE `marque`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT pour la table `sport`
 --
@@ -330,18 +351,21 @@ ALTER TABLE `ligne_commande`
 ALTER TABLE `produit`
   ADD CONSTRAINT `FK_PRODUIT_idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie_produit` (`idCategorie`),
   ADD CONSTRAINT `FK_PRODUIT_idMarque` FOREIGN KEY (`idMarque`) REFERENCES `marque` (`idMarque`),
-  ADD CONSTRAINT `FK_PRODUIT_idSport` FOREIGN KEY (`idSport`) REFERENCES `sport` (`idSport`),
-  ADD CONSTRAINT `FK_PRODUIT_idTaille` FOREIGN KEY (`idTaille`) REFERENCES `taille` (`idTaille`);
+  ADD CONSTRAINT `FK_PRODUIT_idSport` FOREIGN KEY (`idSport`) REFERENCES `sport` (`idSport`);
 
 --
 -- Contraintes pour la table `stock`
 --
 ALTER TABLE `stock`
-  ADD CONSTRAINT `FK_STOCK_idTaille` FOREIGN KEY (`idTaille`) REFERENCES `taille` (`idTaille`),
-  ADD CONSTRAINT `FK_STOCK_idProduit` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`idProduit`);
+  ADD CONSTRAINT `FK_STOCK_idProduit` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`idProduit`),
+  ADD CONSTRAINT `FK_STOCK_idTaille` FOREIGN KEY (`idTaille`) REFERENCES `taille` (`idTaille`);
 
 --
 -- Contraintes pour la table `taille`
 --
 ALTER TABLE `taille`
   ADD CONSTRAINT `FK_TAILLE_idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie_produit` (`idCategorie`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

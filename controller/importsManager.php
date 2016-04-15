@@ -62,8 +62,7 @@ else
                              'libelle'     => $objPHPExcel->getActiveSheet()->getCell("B" . $row),
                              'description' => $objPHPExcel->getActiveSheet()->getCell("D" . $row),
                              'prix'        => $objPHPExcel->getActiveSheet()->getCell("G" . $row),
-                             'photo'       => $objPHPExcel->getActiveSheet()->getCell("I" . $row),
-                             'taille'      => getIdTailleByName($db, $objPHPExcel->getActiveSheet()->getCell("H" . $row)),
+                             'photo'       => $objPHPExcel->getActiveSheet()->getCell("H" . $row),
                              'categorie'   => getIdCategorieByName($db, $objPHPExcel->getActiveSheet()->getCell("F" . $row)),
                              'sport'       => getIdSportByName($db, $objPHPExcel->getActiveSheet()->getCell("E" . $row)),
                              'marque'      => getIdMarqueByName($db, $objPHPExcel->getActiveSheet()->getCell("C" . $row))
@@ -86,17 +85,15 @@ else
           $firstRow=false;
         else
         {
-          $idCategory= getIdCategorieByName($db,$data[5]);
-          $idSport= getIdSportByName($db,$data[4]);
-          $idSize= getIdTailleByName($db,$data[7]);
-          $idBrand= getIdMarqueByName($db,$data[2]);
-
+          $idCategory= $data[5];
+          $idSport= $data[4];
+          $idBrand= $data[2];
+          
           $productArray=array('reference'   => "REF".$data[0],
                            'libelle'     => $data[1],
                            'description' => $data[3],
                            'prix'        => $data[6],
-                           'photo'       => $data[8],
-                           'taille'      => $idSize,
+                           'photo'       => $data[7],
                            'categorie'   => $idCategory,
                            'sport'       => $idSport,
                            'marque'      => $idBrand

@@ -184,7 +184,10 @@ $creation=true;
 				$display=getStockByProductId($db,$idProduit) ? 'style=""' : 'style="display:none"';
 		 ?>
 		
-		<div id="stock" class="shadow col-md-5" <?php if($creation) echo "style='display:none'" ?>>
+		<div id="stock" class="shadow col-md-5" <?php if($creation)
+															echo "style='display:none'";
+													   else 
+													   	echo $displayStock ?>>
 			<h3 style="margin-top: 0px;"><small>Stock actuel</small></h3>
 			<table class="table table-condensed table-hover" id="stockTable">
 				<thead>

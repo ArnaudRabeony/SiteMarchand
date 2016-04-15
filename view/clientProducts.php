@@ -68,7 +68,7 @@ function displayProductList($db, $dataArray)
                     </div>';
 
                     if($displayCartIcon)
-                        echo '<i class="toCartThumbnail fa fa-shopping-cart" style="cursor: pointer;color: rgb(150, 150, 150);margin-right: 55px;position: relative;display: none;top: 10px;"></i>';
+                        echo '<i class="toCartThumbnail fa fa-shopping-cart" style="cursor: pointer;color: rgb(150, 150, 150);margin-right: 55px;position: relative;top: 10px;"></i>';
                     echo '
                 </div>
                 <div id="thumbnailOrder" style="height:100px;display:none">

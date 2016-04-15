@@ -8,9 +8,9 @@ require_once(dirname(__FILE__) . '/../controller/sportController.php');
 
 $connected = isset($_SESSION['id']) ? true : false;
 $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;
-
 ?>
-
+                <div id="productsContainer">
+                    </div class="status" <?php echo $status ?>>
 <!-- Products are displayed in this area -->
 
                     <?php

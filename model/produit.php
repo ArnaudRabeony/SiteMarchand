@@ -11,24 +11,22 @@ require_once('stock.php');
 function addProduct($db, $dataArray)
 {
 	// echo "id Categorie : ".$dataArray['categorie']."<br>";
-	$req = $db->prepare('insert into produit(libelle, description, prix, photo, idTaille, idCategorie, idSport, idMarque)
-							values(:libelle, :description, :prix, :photo, :idTaille, :idCategorie, :idSport, :idMarque)');
+	$req = $db->prepare('insert into produit(libelle, description, prix, photo,idCategorie, idSport, idMarque)
+							values(:libelle, :description, :prix, :photo, :idCategorie, :idSport, :idMarque)');
 	$req->bindValue(':libelle', $dataArray['libelle']);
 	$req->bindValue(':description', $dataArray['description']);
 	$req->bindValue(':prix', $dataArray['prix']);
 	$req->bindValue(':photo', $dataArray['photo']);
-	$req->bindValue(':idTaille', $dataArray['taille']);
 	$req->bindValue(':idCategorie', $dataArray['categorie']);
 	$req->bindValue(':idSport', $dataArray['sport']);
 	$req->bindValue(':idMarque', $dataArray['marque']);
 	$req->execute();
 
-	$req=$db->prepare('select * from produit where libelle=:libelle and description=:description and prix=:prix and photo=:photo and idTaille=:idTaille and idCategorie=:idCategorie and idSport=:idSport and idMarque=:idMarque');
+	$req=$db->prepare('select * from produit where libelle=:libelle and description=:description and prix=:prix and photo=:photo and idCategorie=:idCategorie and idSport=:idSport and idMarque=:idMarque');
 	$req->bindValue(':libelle', $dataArray['libelle']);
 	$req->bindValue(':description', $dataArray['description']);
 	$req->bindValue(':prix', $dataArray['prix']);
 	$req->bindValue(':photo', $dataArray['photo']);
-	$req->bindValue(':idTaille', $dataArray['taille']);
 	$req->bindValue(':idCategorie', $dataArray['categorie']);
 	$req->bindValue(':idSport', $dataArray['sport']);
 	$req->bindValue(':idMarque', $dataArray['marque']);
@@ -40,11 +38,8 @@ function addProduct($db, $dataArray)
 
 function addNewSingleProduct($db, $dataArray/*, $sizeArray*/)
 {
-
-	$sizeId = $dataArray['categorie'] == 5 ? 7 : 3;
-
-	$req = $db->prepare('insert into produit(libelle, description, prix, photo, idCategorie, idSport, idMarque, idTaille)
-							values(:libelle, :description, :prix, :photo, :idCategorie, :idSport, :idMarque, :idTaille)');
+	$req = $db->prepare('insert into produit(libelle, description, prix, photo, idCategorie, idSport, idMarque)
+							values(:libelle, :description, :prix, :photo, :idCategorie, :idSport, :idMarque)');
 	$req->bindValue(':libelle', $dataArray['libelle']);
 	$req->bindValue(':description', $dataArray['description']);
 	$req->bindValue(':prix', $dataArray['prix']);
@@ -52,7 +47,6 @@ function addNewSingleProduct($db, $dataArray/*, $sizeArray*/)
 	$req->bindValue(':idCategorie', $dataArray['categorie']);
 	$req->bindValue(':idSport', $dataArray['sport']);
 	$req->bindValue(':idMarque', $dataArray['marque']);
-	$req->bindValue(':idTaille', $sizeId);
 	$req->execute();
 
 	$req=$db->prepare('select idProduit from produit order by idProduit desc limit 1');
@@ -157,6 +151,46 @@ function displayProducts($db,$whereArray,$bindValuesArray,$sameValueForAll)
 	return $body;
 }
 
+function productsToCsv($db,$whereArray,$bindValuesArray,$sameValueForAll)
+{
+	//possibility : $operation=["like" | "=" | "!="]
+	$query="select * from produit natural join marque ";
+
+	if(!is_null($whereArray) && count($whereArray)!=0)
+	{
+		$query.="where ";
+		$cptWhere=count($whereArray);
+
+		for ($i=0; $i < $cptWhere; $i++) 
+			if($i+1 == $cptWhere)//last
+				$query.=$whereArray[$i]." like ? ";		
+			else
+				$query.=$whereArray[$i]." like ? or ";
+	}
+
+	$req=$db->prepare($query." order by idProduit");
+
+	$paramNumber=substr_count($query,"?");
+
+	if(!is_null($bindValuesArray) && count($bindValuesArray)!=0)//bindValues
+	{
+		if($sameValueForAll)//all param bound to the single value
+			for ($i=0; $i < $paramNumber; $i++) 
+				$req->bindValue($i+1,'%'.$bindValuesArray[0].'%');
+		else
+			for ($i=0; $i < $paramNumber; $i++) 
+				$req->bindValue($i+1,'%'.$bindValuesArray[$i].'%');
+	}
+
+	$req->execute();
+	// echo $req->rowCount();
+	?>id;libelle;marque;description;sport;categorie;prix;image<?php
+	while($res=$req->fetch(PDO::FETCH_ASSOC))
+	{
+		echo "\n".$res['idProduit'].";".$res['libelle'].";".$res['idMarque'].";".$res['description'].";".$res['idSport'].";".$res['idCategorie'].";".$res['prix'].";".$res['photo'];
+	}
+}
+
 function getProductById($db,$id)
 {
 	$req = $db->prepare('select * from produit where idProduit = :id');
@@ -188,14 +222,32 @@ function updateProduct($db,$id,$libelle,$description,$prix)
 
 function deleteProduct($db,$id)
 {
-	$req=$db->prepare("delete from produit where idProduit=:id");
-	$req->bindValue(":id",$id);
-	$req->execute();
+	$res = -1;
+	if(count(getStockByProductId($db,$id)))
+	{
+		if(deleteStockByProductId($db,$id))
+		{
+			$req=$db->prepare("delete from produit where idProduit=:id");
+			$req->bindValue(":id",$id);
+			$req->execute();
 
-	$req=$db->prepare("select * from produit where idProduit=:id");
-	$req->bindValue(":id",$id);
-	$req->execute();
-	$res=$req->rowCount();
+			$req=$db->prepare("select * from produit where idProduit=:id");
+			$req->bindValue(":id",$id);
+			$req->execute();
+			$res=$req->rowCount();
+		}
+	}
+	else
+	{
+		$req=$db->prepare("delete from produit where idProduit=:id");
+			$req->bindValue(":id",$id);
+			$req->execute();
+
+			$req=$db->prepare("select * from produit where idProduit=:id");
+			$req->bindValue(":id",$id);
+			$req->execute();
+			$res=$req->rowCount();
+	}
 
 	return $res==0 ? true : false;
 }

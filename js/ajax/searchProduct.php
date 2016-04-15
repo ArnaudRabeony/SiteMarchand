@@ -25,23 +25,23 @@ if(verifGet(array("str","filter")))
 
 	switch ($filter) {
 		case 'all':
-			echo displayProducts($db,array("libelle","idProduit","description","marque.nomMarque"),array($str),true);//.$lastRow;
+			echo displayProducts($db,array("libelle","idProduit","description","marque.nomMarque"),array($str),true).$lastRow;
 			break;
 
 		case 'ref':
-			echo displayProducts($db,array("idProduit"),array(str_replace ("REF", "", $str)),true);//.$lastRow;
+			echo displayProducts($db,array("idProduit"),array(str_replace ("REF", "", $str)),true).$lastRow;
 			break;
 
 		case 'description':
-			echo displayProducts($db,array("description"),array($str),true);//.$lastRow;
+			echo displayProducts($db,array("description"),array($str),true).$lastRow;
 			break;
 
 		case 'label':
-			echo displayProducts($db,array("libelle"),array($str),true);//.$lastRow;
+			echo displayProducts($db,array("libelle"),array($str),true).$lastRow;
 			break;
 
 		case 'brand':
-			echo displayProducts($db,array("marque.nomMarque"),array($str),true);//.$lastRow;
+			echo displayProducts($db,array("marque.nomMarque"),array($str),true).$lastRow;
 			break;
 	}
 }

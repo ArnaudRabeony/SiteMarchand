@@ -1,16 +1,41 @@
 <?php 
 
 require_once(dirname(__FILE__) . '/../connection.php');
+require("../model/functions.php");
+require("../model/produit.php");
 
 header("Content-Type: text/csv; charset=UTF-8");
 header('Content-Disposition: attachment; filename="produits.csv"');
 
-$req = $db->prepare('select * from produit');
-$req->execute();
-?>id;libelle;marque;description;sport;categorie;prix;taille;image<?php
-while($res=$req->fetch(PDO::FETCH_ASSOC))
+if(verifGet(array("str","filter")))
 {
-	echo "\n".$res['idProduit'].";".$res['libelle'].";".$res['idMarque'].";".$res['description'].";".$res['idSport'].";".$res['idCategorie'].";".$res['prix'].";".$res['idTaille'].";".$res['photo'];
+	$filter=$_GET['filter'];
+	$str=$_GET['str'];
+
+	switch ($filter) {
+		case 'all':
+			productsToCsv($db,array("libelle","idProduit","description","marque.nomMarque"),array($str),true);//.$lastRow;
+			break;
+
+		case 'ref':
+			productsToCsv($db,array("idProduit"),array(str_replace ("REF", "", $str)),true);//.$lastRow;
+			break;
+
+		case 'description':
+			productsToCsv($db,array("description"),array($str),true);//.$lastRow;
+			break;
+
+		case 'label':
+			productsToCsv($db,array("libelle"),array($str),true);//.$lastRow;
+			break;
+
+		case 'brand':
+			productsToCsv($db,array("marque.nomMarque"),array($str),true);//.$lastRow;
+			break;
+	}
 }
+else
+	productsToCsv($db,null,null,null);
 
 ?>
+
