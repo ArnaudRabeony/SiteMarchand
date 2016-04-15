@@ -514,3 +514,9 @@ button
 	top: 8px;
 	color:#EEE;
 }
+
+.slide-image
+{
+	width : 795px !important;
+	height : 300px !important;
+}

@@ -142,10 +142,10 @@ function displayProducts($db,$whereArray,$bindValuesArray,$sameValueForAll)
 	{
 		if($sameValueForAll)//all param bound to the single value
 			for ($i=0; $i < $paramNumber; $i++) 
-				$req->bindValue($i+1,$bindValuesArray[0].'%');
+				$req->bindValue($i+1,'%'.$bindValuesArray[0].'%');
 		else
 			for ($i=0; $i < $paramNumber; $i++) 
-				$req->bindValue($i+1,$bindValuesArray[$i].'%');
+				$req->bindValue($i+1,'%'.$bindValuesArray[$i].'%');
 	}
 
 	$req->execute();
@@ -154,23 +154,7 @@ function displayProducts($db,$whereArray,$bindValuesArray,$sameValueForAll)
 	while($res=$req->fetch(PDO::FETCH_ASSOC))
 		$body.= addRowInProductTable($db,$res);
 
-	$lastRow='<tr>
-		<td></td>
-		<td><button id="downloadButton" class="btn btn-primary btn-sm"><a href="controller/download.php"><i class="fa fa-download"></i></a></button></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td><div class="multipleDeletion" style="float: right;">
-				<button class="btn btn-sm" id="multipleDeletionButton" style="background-color: #A90000"><i class="fa fa-close" style="color:white;"></i></button>
-			</div></td>
-	</tr>';
-
-	$tableContent=$body.$lastRow;
-
-	return $tableContent;
+	return $body;
 }
 
 function getProductById($db,$id)
@@ -228,38 +212,56 @@ function isProduitEmpty($db)
 
 // function used in all the sport pages
 // @param $images an array containing the images for the carousel
-/*function displayCarousel($images)
+function displayCarousel($images)
 {
-	echo "
-<div class=col-md-12>
-                    <div class=row carousel-holder>
-                        <div class=col-md-12>
-                            <div id=carousel-example-generic class=carousel slide data-ride=carousel>
-                                <ol class=carousel-indicators>
-                                    <li data-target=#carousel-example-generic data-slide-to=0 class=active></li>
-                                    <li data-target=#carousel-example-generic data-slide-to=1></li>
-                                    <li data-target=#carousel-example-generic data-slide-to=2></li>
+	$first=true;
+	$nb = count($images);
+	$firstIndicator=true;
+
+	echo '
+<div class="col-md-12">
+                    <div class="row carousel-holder">
+                        <div class="col-md-12">
+                            <div id="carousel-example-generic" class="carousel slide data-ride=carousel">
+                                <ol class="carousel-indicators">';
+                                	for ($i=0; $i < $nb; $i++) 
+                                	{ 
+										if($firstIndicator)
+										{
+											echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'" class="active"></li>';
+											$firstIndicator=false;
+										}
+										else
+                                    		echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'"></li>';
+                                	}
+                                
+                                echo '
                                 </ol>
-                                <div class=carousel-inner>
-                                    <div class=item active>
-                                        <img class=slide-image src=http://placehold.it/800x300 alt=>
-                                    </div>
-                                    <div class=item>
-                                        <img class=slide-image src=http://placehold.it/800x300 alt=>
-                                    </div>
-                                    <div class=item>
-                                        <img class=slide-image src=http://placehold.it/800x300 alt=>
-                                    </div>
-                                </div>
-                                <a class=left carousel-control href=#carousel-example-generic data-slide=prev>
-                                    <span class=glyphicon glyphicon-chevron-left></span>
+                                <div class="carousel-inner">';
+
+
+                                	foreach ($images as $filter => $path)
+                                	{
+                                		if($first)
+                                		{
+                                			echo '<div class="item active"><a href="#"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+                                			$first=false;
+                                		}
+                                		else
+                                			echo '<div class="item"><a href="#"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+                                	}
+
+
+                                echo '</div>
+                                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
                                 </a>
-                                <a class=right carousel-control href=#carousel-example-generic data-slide=next>
-                                    <span class=glyphicon glyphicon-chevron-right></span>
+                                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class=row>";
-}*/
+                    <div class="row">';
+}

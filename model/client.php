@@ -84,10 +84,10 @@ function displayCustomers($db,$id,$whereArray,$bindValuesArray,$sameValueForAll)
 	{
 		if($sameValueForAll)//all param bound to the single value
 			for ($i=0; $i < $paramNumber-1; $i++) 
-				$req->bindValue($i+1,$bindValuesArray[0].'%');
+				$req->bindValue($i+1,'%'.$bindValuesArray[0].'%');
 		else
 			for ($i=0; $i < $paramNumber-1; $i++) 
-				$req->bindValue($i+1,$bindValuesArray[$i].'%');
+				$req->bindValue($i+1,'%'.$bindValuesArray[$i].'%');
 	}
 
 	$req->bindValue($paramNumber,$id);

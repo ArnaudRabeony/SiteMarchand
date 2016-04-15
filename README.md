@@ -12,19 +12,15 @@
 
 
 ## TODO :
+* Use the carousel as a product filter (by brand, sport...)
+* Delete idTaille from produit table
 * basketItems number : increment regarding products or qty ?
 * Connection on the fly -> add product to basket
 * Connection on the fly -> show the modal before selections checking
 * create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
-* Change modal to preview articles div
-* Manage connection redirection (stay on the page or not)
-* customer's bakset/Orders
-* add products to customer's basket
 * Manage long description display (substr ?)
 * Q : Creation of the filter section 
-* A : Mon compte -> delete my account TBC
-* Manage update errors (check fields formats, email already exists...)
 
 #### Done
 * gather same products in the basket

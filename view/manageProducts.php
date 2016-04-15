@@ -63,6 +63,19 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 			</thead>
 				<tbody>
 					<?php echo displayProducts($db,null,null,null);?>
+					<tr>
+						<td></td>
+						<td><button id="downloadButton" class="btn btn-primary btn-sm"><a href="controller/download.php"><i class="fa fa-download"></i></a></button></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><div class="multipleDeletion" style="float: right;">
+								<button class="btn btn-sm" id="multipleDeletionButton" style="background-color: #A90000"><i class="fa fa-close" style="color:white;"></i></button>
+							</div></td>
+					</tr>
 				</tbody>
 			</table>
 			<div class="buttonsContainer">
