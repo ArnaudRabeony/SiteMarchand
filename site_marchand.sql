@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 15 Avril 2016 à 21:26
+-- Généré le :  Lun 18 Avril 2016 à 20:04
 -- Version du serveur :  5.6.28-0ubuntu0.15.10.1
 -- Version de PHP :  5.6.11-1ubuntu3.1
 
@@ -107,19 +107,20 @@ CREATE TABLE IF NOT EXISTS `ligne_commande` (
 
 CREATE TABLE IF NOT EXISTS `marque` (
   `idMarque` int(4) NOT NULL,
-  `nomMarque` varchar(30) NOT NULL
+  `nomMarque` varchar(30) NOT NULL,
+  `logo` varchar(50) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `marque`
 --
 
-INSERT INTO `marque` (`idMarque`, `nomMarque`) VALUES
-(1, 'Nike'),
-(2, 'Adidas'),
-(3, 'Puma'),
-(4, 'Under armour'),
-(5, 'Umbro');
+INSERT INTO `marque` (`idMarque`, `nomMarque`, `logo`) VALUES
+(1, 'Nike', 'images/Logos/just-do-it.jpg'),
+(2, 'Adidas', 'images/Logos/Adidas-Logo.png'),
+(3, 'Puma', 'images/Logos/puma.jpg'),
+(4, 'Under armour', 'images/Logos/underarmour.jpg'),
+(5, 'Umbro', 'images/Logos/umbro.jpg');
 
 -- --------------------------------------------------------
 
@@ -136,23 +137,27 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `idCategorie` int(4) NOT NULL,
   `idSport` int(4) NOT NULL,
   `idMarque` int(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `produit`
 --
 
 INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `idCategorie`, `idSport`, `idMarque`) VALUES
-(16, 'Mercurial', 'Lorem ipsum', 140, 'Football/mercurial.jpg', 5, 1, 1),
-(17, 'Maillot home PSG', 'Lorem ipsum', 85, 'Football/maillotHomePSG.jpg', 6, 1, 1),
-(18, 'Maillot home Marseille', 'Lorem ipsum', 85, 'Football/maillotHomeMarseille.jpg', 6, 1, 2),
-(19, 'Short Federer', 'Lorem ipsum', 35, 'Tennis/shortFederer.jpg', 2, 2, 1),
-(20, 'Survêtement Cleveland', 'Lorem ipsum', 70, 'Basketball/survetementCleveland.jpg', 3, 3, 4),
-(21, 'Pantalon survêtement', 'Lorem ipsum', 130, 'Rugby/survetementRugby.jpg', 3, 6, 3),
-(22, 'Short Warriors', 'Lorem ipsum', 45, 'Basketball/shortWarriors.jpg', 2, 3, 1),
-(23, 'Short away PSG', 'Lorem ipsum', 35, 'Football/shortAwayPSG.jpg', 2, 1, 1),
-(24, 'T-Shirt rugby', 'Lorem ipsum', 15, 'Rugby/t-shirtRugby.jpg', 1, 6, 3),
-(25, 'T-Shirt Jordan', 'Lorem ipsum', 30, 'Basketball/t-shirtJordan.jpg', 1, 3, 2);
+(1, 'Mercurial', 'Lorem ipsum', 140, 'Football/mercurial.jpg', 5, 1, 1),
+(2, 'Maillot home PSG', 'Lorem ipsum', 85, 'Football/maillotHomePSG.jpg', 6, 1, 1),
+(3, 'Maillot home Marseille', 'Lorem ipsum', 85, 'Football/maillotHomeMarseille.jpg', 6, 1, 2),
+(4, 'Short Federer', 'Lorem ipsum', 35, 'Tennis/shortFederer.jpg', 2, 2, 1),
+(5, 'Survêtement Cleveland', 'Lorem ipsum', 70, 'Basketball/survetementCleveland.jpg', 3, 3, 4),
+(6, 'Pantalon survêtement', 'Lorem ipsum', 130, 'Rugby/survetementRugby.jpg', 3, 6, 3),
+(7, 'Short Warriors', 'Lorem ipsum', 45, 'Basketball/shortWarriors.jpg', 2, 3, 1),
+(8, 'Short away PSG', 'Lorem ipsum', 35, 'Football/shortAwayPSG.jpg', 2, 1, 1),
+(9, 'T-Shirt rugby', 'Lorem ipsum', 15, 'Rugby/t-shirtRugby.jpg', 1, 6, 3),
+(10, 'T-Shirt Jordan', 'Lorem ipsum', 30, 'Basketball/t-shirtJordan.jpg', 1, 3, 2),
+(11, 'T-Shirt Federer', 'Lorem ipsum', 35, 'Tennis/t-shirtFederer.jpg', 1, 2, 1),
+(12, 'Tiempo', 'Lorem ipsum', 100, 'Football/tiempo.jpg', 5, 1, 1),
+(13, 'Hypervenom', 'Lorem ipsum', 200, 'Football/hypervenom.jpg', 5, 1, 1),
+(14, 'Survêtement Bulls', 'Lorem ipsum', 90, 'Basketball/survetementBulls.jpg', 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -162,20 +167,21 @@ INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `
 
 CREATE TABLE IF NOT EXISTS `sport` (
   `idSport` int(4) NOT NULL,
-  `nomSport` varchar(30) NOT NULL
+  `nomSport` varchar(30) NOT NULL,
+  `icone` varchar(50) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `sport`
 --
 
-INSERT INTO `sport` (`idSport`, `nomSport`) VALUES
-(1, 'Football'),
-(2, 'Tennis'),
-(3, 'Basketball'),
-(4, 'Handball'),
-(5, 'Natation'),
-(6, 'Rugby');
+INSERT INTO `sport` (`idSport`, `nomSport`, `icone`) VALUES
+(1, 'Football', 'images/Sports/soccer-128.png'),
+(2, 'Tennis', 'images/Sports/tennis-128.png'),
+(3, 'Basketball', 'images/Sports/basketball-128.png'),
+(4, 'Handball', 'images/Sports/soccer-128.png'),
+(5, 'Natation', 'images/Sports/soccer-128.png'),
+(6, 'Rugby', 'images/Sports/rugbyball-128.png');
 
 -- --------------------------------------------------------
 
@@ -317,7 +323,7 @@ ALTER TABLE `marque`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `sport`
 --

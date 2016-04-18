@@ -1,9 +1,9 @@
-<?php 
+<?php
     ob_start();
     session_start();
     //Info site
     $title = 'Site marchand';
-    
+
     require_once("connection.php");
     include('model/functions.php');
     include('model/client.php');
@@ -13,7 +13,7 @@
     // include('model/sport.php');
     include('model/produit.php');
     protectPostGet();
-    
+
     // $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" && isExisting($_GET['page']) ? $_GET['page'] : "welcome";
     $containedPage = isset($_GET['page']) && trim($_GET['page'])!="" ? $_GET['page'] : "view/welcome";
 ?>
@@ -50,12 +50,12 @@
 </head>
 
 <body>
-    <?php include('view/menu.php'); ?> 
+    <?php include('view/menu.php'); ?>
     <!-- Page Content -->
     <div class="container">
             <div id="containedPage" class="col-md-9">
-                <?php include($containedPage.'.php');   
-                ob_end_flush() ?> 
+                <?php include($containedPage.'.php');
+                ob_end_flush() ?>
                     <i id="top" class="fa fa-3x fa-arrow-circle-up" style="color:#888 ;display : none;bottom:20px;right:20px;height:2cm;width:2cm;position:fixed;cursor:pointer"></i>
             </div>
 
@@ -64,16 +64,14 @@
 
     <div class="container">
 
-        <hr>
-
         <!-- Footer -->
-        <footer>
+        <!-- <footer>
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; Site Marchand MIAGE 2016</p>
                 </div>
             </div>
-        </footer>
+        </footer> -->
 
     </div>
     <!-- /.container -->
@@ -83,10 +81,10 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    
+
     <!-- Custom JS -->
     <script src="js/global.js"></script>
-    
+
     <!-- Malihu ScrollBar -->
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 

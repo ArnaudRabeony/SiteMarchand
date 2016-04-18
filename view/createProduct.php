@@ -76,7 +76,7 @@ $creation=true;
 
 
 	$brandSelection='<select class="form-control" name="brand" id="selectBrand"'.$disableField.'><option value="-1">Choisir une marque</option>';
-	$brands=getAllMarques($db);
+	$brands=getAllBrandsName($db);
 
 	$brandCptr=1;
 	foreach ($brands as $key => $value)

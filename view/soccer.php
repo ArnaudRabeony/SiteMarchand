@@ -14,8 +14,7 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 <!-- Products are displayed in this area -->
 
                     <?php
-                    // use x/y to declare the filter category and the value
-                    $images = array("sport/football"=>"images/Carousel/nikeFootball.jpg","brand/adidas"=>"images/Carousel/adidas.jpg","brand/nike"=>"images/Carousel/nike.png","sport/basket"=>"images/Carousel/basket.jpg");
+                     $images = array("Football"=>"images/Carousel/nikeFootball.jpg","Adidas"=>"images/Carousel/adidas.jpg","Nike"=>"images/Carousel/nike.png","Basketball"=>"images/Carousel/basket.jpg");
 
                         displayCarousel($images);
                         echo '<div class="row" id="filtersContainer">';

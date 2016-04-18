@@ -191,6 +191,24 @@ function productsToCsv($db,$whereArray,$bindValuesArray,$sameValueForAll)
 	}
 }
 
+function getProductByBrandId($db,$id)
+{
+	$req = $db->prepare('select * from produit where idMarque = :id');
+	$req->bindValue(':id', $id);
+	$req->execute();
+	$res = $req->fetchAll();
+    return $res;
+}
+
+function getProductBySportId($db,$id)
+{
+	$req = $db->prepare('select * from produit where idSport = :id');
+	$req->bindValue(':id', $id);
+	$req->execute();
+	$res = $req->fetchAll();
+    return $res;
+}
+
 function getProductById($db,$id)
 {
 	$req = $db->prepare('select * from produit where idProduit = :id');
@@ -271,7 +289,6 @@ function displayCarousel($images)
 	$firstIndicator=true;
 
 	echo '
-<div class="col-md-12">
                     <div class="row carousel-holder">
                         <div class="col-md-12">
                             <div id="carousel-example-generic" class="carousel slide data-ride=carousel">
@@ -296,11 +313,11 @@ function displayCarousel($images)
                                 	{
                                 		if($first)
                                 		{
-                                			echo '<div class="item active"><a href="#"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+                                			echo '<div class="item active"><a href="index.php?filter='.$filter.'&page=view/globalProductsPage"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
                                 			$first=false;
                                 		}
                                 		else
-                                			echo '<div class="item"><a href="#"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+                                			echo '<div class="item"><a href="index.php?filter='.$filter.'&page=view/globalProductsPage"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
                                 	}
 
 
@@ -313,7 +330,5 @@ function displayCarousel($images)
                                 </a>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">';
+                    </div>';
 }

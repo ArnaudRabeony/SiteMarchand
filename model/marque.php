@@ -20,9 +20,17 @@ function getMarqueById($db, $idMarque)
     return $res[0];
 }	
 
-function getAllMarques($db)
+function getAllBrandsName($db)
 {
     $req = $db->prepare('select nomMarque from marque');
+    $req->execute();
+    $res = $req->fetchAll();
+    return $res;
+}
+
+function getAllMarques($db)
+{
+    $req = $db->prepare('select * from marque');
     $req->execute();
     $res = $req->fetchAll();
     return $res;

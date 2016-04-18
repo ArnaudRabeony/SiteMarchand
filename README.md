@@ -7,11 +7,12 @@
 * Display the carousel from the views/displayProducts file
 * Create an account with a non email format value
 * [Resolved] Create an account : mail already exists isn't taken into account
-* [Resolved] Update users fields : sets type value to 0 
+* [Resolved] Update users fields : sets type value to 0
 * [Resolved] Auto connection after account creation
 
 
 ## TODO :
+* Text on banners
 * XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
 * Use the carousel as a product filter (by brand, sport...)
 * Delete idTaille from produit table
@@ -21,7 +22,7 @@
 * create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
 * Manage long description display (substr ?)
-* Q : Creation of the filter section 
+* Q : Creation of the filter section
 
 #### Done
 * gather same products in the basket
@@ -53,14 +54,14 @@
 * Add customers in DB (pma)
 * UI form Validation
 * DB form Validation
-* Manage header redirect (connection failure) 
+* Manage header redirect (connection failure)
 * Insert customers
 
 # MVC Architecture
 * Controller
-	* Pages which contain redirections 
+	* Pages which contain redirections
 	* Forms managers
 * Model
 	* DB access functions
-* View 
+* View
 	* Display

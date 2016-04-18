@@ -517,6 +517,33 @@ button
 
 .slide-image
 {
-	width : 795px !important;
+	width : 825px !important;
 	height : 300px !important;
+}
+
+.categoryWelcome
+{
+	margin:10px 5px;
+	height:70px;
+	text-align:center;
+}
+
+.categoryWelcome img
+{
+	margin-top: 10px;
+	height:20px;
+	width: 20px;
+}
+
+#brandsContainer img
+{
+	cursor:pointer;
+	margin-top: 10px;
+    width: 159px;
+}
+
+#sportsContainer img
+{
+	margin: 18px 25px;
+    width: 80px;
 }

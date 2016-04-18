@@ -1,36 +1,34 @@
-<div id="welcomeContainer">
-	<div class="row" id="bannerContainer" style="text-align: center;">
-			<p>
-				<h2><small>Ici, un joli titre...</small></h2>
-				Nous sommes spécialisé dans la vente d'articles de sport. Bla bla bla... <br> Et puis bla bla bla...			
-			</p>
-	</div>
-	<div class="row imagesContainer">
-		<div class="col-md-6 col-xs-6">
-			<div class="curtain">
-				<img class="" src="images/running.jpg" alt="running">
-				<a href="#"><p>RUNNING <br><i class="fa fa-2x fa-th"></i></p></a>
+<?php 
+	
+	require_once(dirname(__FILE__) . '/../connection.php');
+	require_once(dirname(__FILE__) . '/../model/categorie_produit.php');
+	require_once(dirname(__FILE__) . '/../model/marque.php');
+
+    $images = array("Football"=>"images/Carousel/nikeFootball.jpg","Adidas"=>"images/Carousel/adidas.jpg","Nike"=>"images/Carousel/nike.png","Basketball"=>"images/Carousel/basket.jpg");
+
+    displayCarousel($images);
+	 ?>
+		<div id="icons">
+			<div id="sportsContainer" class="col-md-12" style="text-align: center;">
+			<?php 
+
+				$sports = getAllSports($db);
+				
+				foreach ($sports as $value)
+					echo '<a href="index.php?filter='.$value['nomSport'].'&page=view/globalProductsPage"><img src="'.$value['icone'].'" alt="'.$value['nomSport'].'"></a>';		
+			?>
+			</div>
+			<div id="brandsContainer" class="col-md-12" style="text-align: center;">
+				<?php 
+
+					$logos = getAllMarques($db);
+					
+					foreach ($logos as $value)
+						echo '<a href="index.php?filter='.$value['nomMarque'].'&page=view/globalProductsPage"><img src="'.$value['logo'].'" alt="'.$value['nomMarque'].'"></a>';		
+				?>
 			</div>
 		</div>
-		<div class="col-md-6 col-xs-6">
-			<div class="curtain">
-				<img class="" src="images/winterSports.jpg" alt="winter">
-				<a href="#"><p>SPORTS D'HIVER <br><i class="fa fa-2x fa-th"></i></p></a>
-			</div>
-		</div>
-	</div>
-	<div class="row imagesContainer">
-		<div class="col-md-6 col-xs-6">
-			<div class="curtain">
-				<img class="" src="images/summerSports.jpg" alt="summer">
-				<a href="#"><p>SPORTS D'ÉTÉ <br><i class="fa fa-2x fa-th"></i></p></a>
-			</div>
-		</div>
-		<div class="col-md-6 col-xs-6">
-			<div class="curtain">
-				<img class="" src="images/futsal.jpg" alt="futsal">
-				<a href="#"><p>SPORTS D'INTERIEUR <br><i class="fa fa-2x fa-th"></i></p></a>
-			</div>
-		</div>
-	</div>
-</div>
+
+<!-- </div> -->
+<script src="js/jquery.js"></script>
+<script src="js/welcome.js"></script>
