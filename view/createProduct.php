@@ -20,23 +20,23 @@ $creation=true;
 
     if(verifGet(array('id')))
     {
-    	$product=getProductById($db,$_GET['id']);
+    	$product=getProductById($db,$_GET['id'])[0];
 
     	//can't get multiple words value : separate words with a special char then split them again
-    	$libelle="";//str_replace(" ", ".", $product[0]['libelle']);
-    	$libellePieces=explode(" ", $product[0]['libelle']);
+    	$libelle="";//str_replace(" ", ".", $product['libelle']);
+    	$libellePieces=explode(" ", $product['libelle']);
 
     	foreach ($libellePieces as $value)
     		$libelle.=" ".$value;
 
     	// print_r($libelle);
 
-    	$price=$product[0]['prix'];
-    	$brandId=$product[0]['idMarque'];
-    	$categoryId=$product[0]['idCategorie'];
-    	$sportId=$product[0]['idSport'];
-    	$description=$product[0]['description'];
-    	$photo=strpos($product[0]['photo'], "images/") !== false ? $product[0]['photo']: "images/".$product[0]['photo'];
+    	$price=$product['prix'];
+    	$brandId=$product['idMarque'];
+    	$categoryId=$product['idCategorie'];
+    	$sportId=$product['idSport'];
+    	$description=$product['description'];
+    	$photo=strpos($product['photo'], "images/") !== false ? $product['photo']: "images/".$product['photo'];
 
     	$shoeSizes= $categoryId==5 ? true : false;
     	$creation=false;

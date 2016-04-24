@@ -47,11 +47,14 @@
     <!-- Malihu Scrollbar -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
 
+    <link href="css/animate.min.css" rel="stylesheet">
+
 </head>
 
 <body>
     <?php include('view/menu.php'); ?>
     <!-- Page Content -->
+
     <div class="container">
             <div id="containedPage" class="col-md-9">
                 <?php include($containedPage.'.php');
@@ -81,6 +84,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+
+   <script src="js/wow.min.js"></script>
 
     <!-- Custom JS -->
     <script src="js/global.js"></script>

@@ -6,7 +6,7 @@
 
     $images = array("Football"=>"images/Carousel/nikeFootball.jpg","Adidas"=>"images/Carousel/adidas.jpg","Nike"=>"images/Carousel/nike.png","Basketball"=>"images/Carousel/basket.jpg");
 
-    displayCarousel($images);
+    displayCarousel($db,$images);
 	 ?>
 		<div id="icons">
 			<div id="sportsContainer" class="col-md-12" style="text-align: center;">
@@ -15,7 +15,7 @@
 				$sports = getAllSports($db);
 				
 				foreach ($sports as $value)
-					echo '<a href="index.php?filter='.$value['nomSport'].'&page=view/globalProductsPage"><img src="'.$value['icone'].'" alt="'.$value['nomSport'].'"></a>';		
+					echo '<a href="index.php?page=view/globalProductsPage&filter='.$value['nomSport'].'"><img src="'.$value['icone'].'" alt="'.$value['nomSport'].'"></a>';		
 			?>
 			</div>
 			<div id="brandsContainer" class="col-md-12" style="text-align: center;">
@@ -24,11 +24,11 @@
 					$logos = getAllMarques($db);
 					
 					foreach ($logos as $value)
-						echo '<a href="index.php?filter='.$value['nomMarque'].'&page=view/globalProductsPage"><img src="'.$value['logo'].'" alt="'.$value['nomMarque'].'"></a>';		
+						echo '<a href="index.php?page=view/globalProductsPage&filter='.$value['nomMarque'].'"><img src="'.$value['logo'].'" data-wow-duration=".8s" data-wow-delay=".25s" class="wow zoomIn" alt="'.$value['nomMarque'].'"></a>';		
 				?>
 			</div>
 		</div>
 
 <!-- </div> -->
 <script src="js/jquery.js"></script>
-<script src="js/welcome.js"></script>
+   <script src="js/wow.min.js"></script>

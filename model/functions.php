@@ -86,9 +86,9 @@ function totalBasketPrice($db)
 
 	foreach ($_SESSION['basketItems'] as $value) 
 	{
-		$product=getProductById($db,$value["idProduit"]);
+		$product=getProductById($db,$value["idProduit"])[0];
 		//print_r($product);
-		$price+=$value["qty"]*$product[0]['prix'];
+		$price+=$value["qty"]*$product['prix'];
 	}
 
 	return $price;
@@ -99,7 +99,7 @@ function displayBasket($db)
 	// print_r($_SESSION['basketItems']);
 	foreach ($_SESSION['basketItems'] as $value) 
 	{
-		$product=getProductById($db,$value["idProduit"]);
+		$product=getProductById($db,$value["idProduit"])[0];
 		//print_r($product);
 
 		echo '<div class="basketItem" data-productid="'.$value["idProduit"].'">
@@ -108,8 +108,8 @@ function displayBasket($db)
 				</div>
 				<div class="row">
 					<div class="col-md-4" style="text-align:center">
-						<a href="index.php?page=view/productPage&ref='.$product[0]['idProduit'].'"><img src="images/'.$product[0]['photo'].'"></a>
-						<h4><small><i>'.$product[0]['libelle'].'</i></small></h4>
+						<a href="index.php?page=view/productPage&ref='.$product['idProduit'].'"><img src="images/'.$product['photo'].'"></a>
+						<h4><small><i>'.$product['libelle'].'</i></small></h4>
 					</div>
 					<div class="col-md-4" id="sizeQuantityContainer">
 					<table>
@@ -123,11 +123,11 @@ function displayBasket($db)
 						</tr>
 						<tr>
 							<td><b>PU</b></td>
-							<td style="float:right;"> '.$product[0]['prix'].' €</i></td>
+							<td style="float:right;"> '.$product['prix'].' €</i></td>
 						</tr>
 					</table>
 					</div>
-					<div class="col-md-4" id="priceContainer"><b>Prix</b> <i> '.$value["qty"]*$product[0]['prix'].' €</i></div>
+					<div class="col-md-4" id="priceContainer"><b>Prix</b> <i> '.$value["qty"]*$product['prix'].' €</i></div>
 				</div>
 				<hr style="margin:5px 0px !important;">
 			</div>';

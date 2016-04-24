@@ -191,6 +191,15 @@ function productsToCsv($db,$whereArray,$bindValuesArray,$sameValueForAll)
 	}
 }
 
+function getProductByLabel($db,$label)
+{
+	$req = $db->prepare('select * from produit where libelle = :label');
+	$req->bindValue(':label', $label);
+	$req->execute();
+	$res = $req->fetchAll();
+    return $res;
+}
+
 function getProductByBrandId($db,$id)
 {
 	$req = $db->prepare('select * from produit where idMarque = :id');
@@ -282,7 +291,7 @@ function isProduitEmpty($db)
 
 // function used in all the sport pages
 // @param $images an array containing the images for the carousel
-function displayCarousel($images)
+function displayCarousel($db,$images)
 {
 	$first=true;
 	$nb = count($images);
@@ -311,13 +320,36 @@ function displayCarousel($images)
 
                                 	foreach ($images as $filter => $path)
                                 	{
-                                		if($first)
+                                		$isSport = false;
+
+                            			$sports = getAllSports($db);
+
+										foreach ($sports as $value)
+										{
+											if(trim($filter) === trim($value['nomSport']))
+												$isSport=true;
+										}
+
+                                		if(!is_numeric($filter))
                                 		{
-                                			echo '<div class="item active"><a href="index.php?filter='.$filter.'&page=view/globalProductsPage"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
-                                			$first=false;
+	                                		if($first)
+	                                		{
+												echo $isSport ? '<div class="item active"><a href="index.php?page=view/'.lcfirst($filter).'"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>' : '<div class="item active"><a href="index.php?page=view/globalProductsPage&filter='.$filter.'"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+	                                			$first=false;
+	                                		}
+	                                		else
+												echo $isSport ? '<div class="item"><a href="index.php?page=view/'.lcfirst($filter).'"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>' : '<div class="item"><a href="index.php?page=view/globalProductsPage&filter='.$filter.'"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
                                 		}
                                 		else
-                                			echo '<div class="item"><a href="index.php?filter='.$filter.'&page=view/globalProductsPage"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+                                		{
+	                                		if($first)
+	                                		{
+	                                			echo '<div class="item active"><a href="index.php?page=view/productPage&ref='.$filter.'"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+	                                			$first=false;
+	                                		}
+	                                		else
+	                                			echo '<div class="item"><a href="index.php?page=view/productPage&ref='.$filter.'"><img class="slide-image" src="'.$path.'" data-filter="'.$filter.'"></a></div>';
+                                		}
                                 	}
 
 

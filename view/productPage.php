@@ -5,33 +5,33 @@ require_once(dirname(__FILE__) . '/../model/categorie_produit.php');
 
 $connected = isset($_SESSION['id']) ? true : false;
 
-$productData = getProductById($db, $_GET['ref']);
+$productData = getProductById($db, $_GET['ref'])[0];
 
-$imagePath=strpos($productData[0]['photo'], "images/") !== false ? $productData[0]['photo']: "images/".$productData[0]['photo'];
+$imagePath=strpos($productData['photo'], "images/") !== false ? $productData['photo']: "images/".$productData['photo'];
 
 
-$ref="REF".$productData[0]['idProduit'];
-$label=$productData[0]['libelle'];
-$category=getCategorieById($db,$productData[0]['idCategorie']);
-$sport=getSportById($db,$productData[0]['idSport']);
-$price=$productData[0]['prix'];
-$description=$productData[0]['description'];
+$ref="REF".$productData['idProduit'];
+$label=$productData['libelle'];
+$category=getCategorieById($db,$productData['idCategorie']);
+$sport=getSportById($db,$productData['idSport']);
+$price=$productData['prix'];
+$description=$productData['description'];
 
 $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"'  ;
 // the product doesn't exist
 
-// $sizes=getSizeByCategories($db,$productData[0]['idCategorie']);
+// $sizes=getSizeByCategories($db,$productData['idCategorie']);
 
 ?>
 <div id="displayProduct" class="shadow450 row" <?php echo $status ?>>
-	<div id="displayProductContainer" <?php echo 'data-productid="'.$productData[0]['idProduit'].'"' ?>>
+	<div id="displayProductContainer" <?php echo 'data-productid="'.$productData['idProduit'].'"' ?>>
 	<div id="productHeadingDiv">
 		<h1><small><?php echo $label ?></small><i id="closeIcon" class="material-icons" style="float: right;color:#ddd;">clear</i></h1>
 	</div>
 		<div id="imageContainer" class="col-md-6 col-xs-6">
 			<img id="productImage" <?php echo "data-zoom-image='".$imagePath."' src=".$imagePath ?> alt="preview" /><br>
 		</div>
-		<div id="descriptionContainer" <?php echo "data-category='".$productData[0]['idCategorie']."'" ?>class="col-md-5 col-sm-5">
+		<div id="descriptionContainer" <?php echo "data-category='".$productData['idCategorie']."'" ?>class="col-md-5 col-sm-5">
 		<h4 style="margin-bottom: -10px;"><small id="categoryNsport"><?php echo $category." de ".$sport ?> <br></small></h4 style="margin-bottom: -10px;">
 		<h5><small><i>Référence : <?php echo $ref ?></i></small></h5>
 			<ul class="nav nav-tabs">
@@ -45,12 +45,19 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 			    <p>
 					<span id="priceSpan"><b><?php echo $price."€" ?></b></span>
 					<hr>
-					<div id="ordering">
 
+					
+					<div id="ordering">
+					
+					<?php 
+					if(getStockByProductId($db,$productData['idProduit']))
+					{
+					 ?>
+					
 					<select name="sizeSelector" class="form-control col-md-2" id="sizeSelector">
 					<?php 
 
-						$sizes=getStockByProductId($db,$productData[0]['idProduit']);
+						$sizes=getStockByProductId($db,$productData['idProduit']);
 
 		    			echo '<option value="notSelected">Taille</option>';
 						foreach ($sizes as $key => $value)
@@ -59,6 +66,15 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 					</select>
 						<select name="quantitySelector" id="quantitySelector" class="col-md-1 form-control"><option value="-1">Quantité</option></select>
 						<button id="addToBasket" class="btn btn-default btn-sm btn-primary" data-toggle="modal" style="float: right;">Ajouter au panier</button>
+					
+					<?php 
+					}
+					else
+
+						echo '<span style="float:right;margin-top:40px;"><i>Aucune taille disponible</i></span>';
+
+
+					 ?>
 					</div>
 			    </p>
 			  </div>

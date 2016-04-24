@@ -14,9 +14,13 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 <!-- Products are displayed in this area -->
 
                     <?php
-                     $images = array("Football"=>"images/Carousel/nikeFootball.jpg","Adidas"=>"images/Carousel/adidas.jpg","Nike"=>"images/Carousel/nike.png","Basketball"=>"images/Carousel/basket.jpg");
 
-                        displayCarousel($images);
+                        $psgJersey = getProductByLabel($db,"Maillot home PSG")[0];
+                        $mercurial = getProductByLabel($db,"Mercurial")[0];
+
+                        $images = array($mercurial["idProduit"]=>"images/Carousel/mercurialBanner.jpg",$psgJersey["idProduit"]=>"images/Carousel/psg.jpg");
+
+                        displayCarousel($db,$images);
                         echo '<div class="row" id="filtersContainer">';
                         filters('taille', getAllTaille($db));
                         filters('sport', getAllSports($db));

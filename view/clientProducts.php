@@ -67,9 +67,10 @@ function displayProductList($db, $dataArray)
                         <i>'.$sizesList.'</i>
                     </div>';
 
-                    if($displayCartIcon)
+                    if($displayCartIcon && isset($_SESSION["id"]))
                         echo '<i class="toCartThumbnail fa fa-shopping-cart" style="cursor: pointer;color: rgb(150, 150, 150);margin-right: 55px;position: relative;top: 10px;"></i>';
-                    echo '
+                    
+                echo '
                 </div>
                 <div id="thumbnailOrder" style="height:100px;display:none">
                     <div id="thumbnailOrderContainer" class="row col-md-12">

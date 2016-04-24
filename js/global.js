@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+	new WOW().init();
 	$(window).scroll(function()
 	{
 		// console.log($(window).scrollTop());
