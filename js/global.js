@@ -237,4 +237,85 @@ $(document).ready(function()
 		var filter = $("#searchBy").val();		
 		$(this).attr("href","controller/download.php?str="+str+"&filter="+filter);
 	});
+
+
+
+	$("#commandButton").click(function(e)
+	{
+	jQuery.ajaxSetup({async:false});
+
+		var orderId=0;
+
+		$.get("js/ajax/updateOrders.php",function(response)
+		{
+			orderId=parseInt(response);
+		});
+
+		$(".basketItem").each(function()
+		{
+
+		var idProduit = $(this).attr("data-productid");
+		var size = $(this).find(".chosenSize").text().trim();
+		var qty = $(this).find(".chosenQty").text().trim();
+		var uprice = $(this).find(".uPrice").text().replace("€","").trim();
+
+		$.get("js/ajax/updateOrders.php",
+			{
+				orderId:orderId,
+				id:idProduit,
+				size:size,
+				qty:qty,
+				uprice:uprice
+			});
+		});
+
+		jQuery.ajaxSetup({async:true});
+
+		$.get("js/ajax/removeFromBasket.php",function(response)
+		{
+			$('#notEmptyBasket').hide();
+			$('#emptyBasket').show();
+			$('#basketSize').hide();
+		});
+
+		window.location ="index.php?page=view/myOrders";
+	});
+
+	$("body").on("click",".deleteOrderButton",function()
+	{
+		var idProduit= $(this).parent().parent().attr("data-orderid");
+
+		$.get("js/ajax/deleteOrder.php",
+			{
+				id:idProduit
+			},
+			function(response)
+			{
+				$('#ordersTable tbody').html(response);
+			});
+	});
+
+	$("body").on("click",'#ordersTable .mainRow',function()
+	{
+		// alert($(this).html());
+		$(this).next().find(".hiddenRow").toggle("medium");
+	});
+
+	$("body").on("click",".removeFromOrderButton",function()
+	{
+		var productId=$(this).parent().attr("data-productid");
+		var orderId = $(this).parent().attr("data-orderid");
+		var quantity = $(this).parent().parent().find(".qty").text();
+
+		$.get("js/ajax/deleteOrder.php",
+			{
+				productId:productId,
+				quantity:quantity,
+				orderId:orderId
+			},
+			function(response)
+			{
+				$('#ordersTable tbody').html(response);
+			});
+	});
 });

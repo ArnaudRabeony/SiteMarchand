@@ -32,7 +32,7 @@ function pageRestriction($authorizedTypes)
 		if (!(in_array($_SESSION['type'], $authorizedTypes)))
 		{
 			$access = false;
-			echo '<div class="permissionDenied row shadow">'."<br><i class='material-icons'style='font-size:3em'>pan_tool</i>".'<br>'."Vous n'avez pas la permission d'acceder au contenu de cette page".'				
+			echo '<div class="permissionDenied row shadow">'."<br><i class='material-icons'style='font-size:3em'>pan_tool</i>".'<br>'."Vous n'avez pas la permission d'accéder au contenu de cette page".'				
 				<br><br><button class="btn btn-sm btn-primary" id="backToIndex"><a href="index.php" style="text-decoration:none;color:white;">Accueil</a></button>
 			  </div>';
 		}
@@ -107,11 +107,11 @@ function displayBasket($db)
 					<i class="removeFromBasketButton material-icons" style="color:#ddd;float:right;cursor:pointer">clear</i>
 				</div>
 				<div class="row">
-					<div class="col-md-4" style="text-align:center">
+					<div class="col-xs-4 col-md-4" style="text-align:center">
 						<a href="index.php?page=view/productPage&ref='.$product['idProduit'].'"><img src="images/'.$product['photo'].'"></a>
 						<h4><small><i>'.$product['libelle'].'</i></small></h4>
 					</div>
-					<div class="col-md-4" id="sizeQuantityContainer">
+					<div class="col-xs-4 col-md-4" id="sizeQuantityContainer">
 					<table>
 						<tr>
 							<td><b>Taille</b></td>
@@ -123,11 +123,11 @@ function displayBasket($db)
 						</tr>
 						<tr>
 							<td><b>PU</b></td>
-							<td style="float:right;"> '.$product['prix'].' €</i></td>
+							<td style="float:right;" class="uPrice"> '.$product['prix'].' €</i></td>
 						</tr>
 					</table>
 					</div>
-					<div class="col-md-4" id="priceContainer"><b>Prix</b> <i> '.$value["qty"]*$product['prix'].' €</i></div>
+					<div class="col-xs-4 col-md-4" id="priceContainer"><b>Prix</b> <i> '.$value["qty"]*$product['prix'].' €</i></div>
 				</div>
 				<hr style="margin:5px 0px !important;">
 			</div>';

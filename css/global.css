@@ -243,6 +243,8 @@ td>select
 
 .thumbnail
 {
+	border-radius: 0px !important;
+	box-shadow: 4px 4px 18px;
 	height:300px;
 }
 
@@ -290,7 +292,7 @@ td>select
 
 #imageContainer
 {
-	margin-top: 10px;
+	margin: 10px 4px;
 	padding: 0px;
 }
 
@@ -546,4 +548,33 @@ button
 {
 	margin: 18px 25px;
     width: 80px;
+}
+
+#OrdersList
+{
+	padding:20px 20px;
+}
+
+#ordersTable
+{
+	margin-top: 30px;
+}
+
+#ordersTable .mainRow
+{
+	cursor:pointer;
+}
+
+.orderPreview
+{
+	display: none;
+	background-color: #EEE;
+/*	padding:10px 10px;
+	height:100px;*/
+}
+
+.hiddenRow
+{
+	height:0px !important;
+	margin:0px !important;
 }

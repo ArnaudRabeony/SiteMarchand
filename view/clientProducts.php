@@ -56,7 +56,7 @@ function displayProductList($db, $dataArray)
 
 
     	echo '
-    	<div class="col-sm-4 client-side">
+    	<div class="col-xs-6 col-sm-4 client-side">
         	<div class="thumbnail" data-productid="'.$key['idProduit'].'">
             	<img src="' . $photo . '"> 
                 <div class="caption">
@@ -74,10 +74,10 @@ function displayProductList($db, $dataArray)
                 </div>
                 <div id="thumbnailOrder" style="height:100px;display:none">
                     <div id="thumbnailOrderContainer" class="row col-md-12">
-                        <div class="col-md-6">'
+                        <div class="col-xs-6 col-md-6">'
                         .$selectSize.'
                         </div>
-                        <div class="col-md-6">'
+                        <div class="col-xs-6 col-md-6">'
                         .$selectQty.'
                         </div>
                         <button id="thumbnailOrderButton" class="btn btn-sm btn-success" style="margin:20px 60px;">Ajouter au panier</button>

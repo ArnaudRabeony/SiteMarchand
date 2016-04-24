@@ -58,7 +58,8 @@ if($connected)
                     <li><a href="index.php?page=view/myOrders">Mes commandes <span id="currentCommand"></span></a></li>
                     <li><a href="index.php?page=view/myBasket">Mon panier</a></li>
                     <li><a href="index.php?page=view/manageProducts">Gestion des produits</a></li>
-                    <li><a href="index.php?page=view/displayCustomers">Gestion des utilisateurs</a></li><hr>
+                    <li><a href="index.php?page=view/displayCustomers">Gestion des utilisateurs</a></li>
+                    <li><a href="#">Gestion des commandes</a></li><hr>
                     <li><a href="index.php?page=controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>
@@ -104,7 +105,7 @@ if($connected)
                 </div>
                 <div id="collapseCollectives" class="panel-collapse collapse">
                   <ul class="list-group">
-                    <li class="list-group-item"><a href="index.php?page=view/soccer"style="padding: 0px 0px">Football</a></li>
+                    <li class="list-group-item"><a href="index.php?page=view/football"style="padding: 0px 0px">Football</a></li>
                     <li class="list-group-item"><a href="index.php?page=view/basketball">Basketball</a></li>
                     <li class="list-group-item"><a href="index.php?page=view/rugby">Rugby</a></li>
                   </ul>

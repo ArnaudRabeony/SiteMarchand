@@ -12,7 +12,7 @@
 
 
 ## TODO :
-* Text on banners
+* hide table container if the ordering page is empty (after deletion)
 * XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
 * Use the carousel as a product filter (by brand, sport...)
 * Delete idTaille from produit table
@@ -25,6 +25,7 @@
 * Q : Creation of the filter section
 
 #### Done
+* create a new mapping table for etat in table Commande
 * gather same products in the basket
 * Get price, qty, size in the basket
 * addToBasket via thumbnail

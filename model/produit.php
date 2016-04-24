@@ -191,6 +191,15 @@ function productsToCsv($db,$whereArray,$bindValuesArray,$sameValueForAll)
 	}
 }
 
+function getProductPrice($db,$id)
+{
+	$req = $db->prepare('select prix from produit where idProduit = :id');
+	$req->bindValue(':id', $id);
+	$req->execute();
+	$res = $req->fetch(PDO::FETCH_NUM);
+    return $res[0];
+}
+
 function getProductByLabel($db,$label)
 {
 	$req = $db->prepare('select * from produit where libelle = :label');

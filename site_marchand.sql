@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 18 Avril 2016 à 20:04
+-- Généré le :  Dim 24 Avril 2016 à 20:37
 -- Version du serveur :  5.6.28-0ubuntu0.15.10.1
 -- Version de PHP :  5.6.11-1ubuntu3.1
 
@@ -81,11 +81,31 @@ INSERT INTO `client` (`idClient`, `type`, `email`, `nom`, `prenom`, `mdp`, `adre
 
 CREATE TABLE IF NOT EXISTS `commande` (
   `idCommande` int(11) NOT NULL,
-  `dateCommande` date DEFAULT NULL,
-  `prixCommande` float DEFAULT NULL,
-  `passee` tinyint(1) DEFAULT NULL,
+  `dateCommande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `prixCommande` float NOT NULL DEFAULT '0',
+  `idEtat` int(11) NOT NULL DEFAULT '1',
   `idClient` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commande_etat`
+--
+
+CREATE TABLE IF NOT EXISTS `commande_etat` (
+  `idEtat` int(11) NOT NULL,
+  `nomEtat` varchar(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commande_etat`
+--
+
+INSERT INTO `commande_etat` (`idEtat`, `nomEtat`) VALUES
+(1, 'créée'),
+(2, 'paiement'),
+(3, 'finalisée');
 
 -- --------------------------------------------------------
 
@@ -94,10 +114,11 @@ CREATE TABLE IF NOT EXISTS `commande` (
 --
 
 CREATE TABLE IF NOT EXISTS `ligne_commande` (
-  `idProduit` int(11) NOT NULL,
   `idCommande` int(11) NOT NULL,
-  `quantite` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idProduit` int(11) NOT NULL,
+  `quantite` int(11) DEFAULT NULL,
+  `idTaille` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -137,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `idCategorie` int(4) NOT NULL,
   `idSport` int(4) NOT NULL,
   `idMarque` int(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `produit`
@@ -157,7 +178,8 @@ INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `
 (11, 'T-Shirt Federer', 'Lorem ipsum', 35, 'Tennis/t-shirtFederer.jpg', 1, 2, 1),
 (12, 'Tiempo', 'Lorem ipsum', 100, 'Football/tiempo.jpg', 5, 1, 1),
 (13, 'Hypervenom', 'Lorem ipsum', 200, 'Football/hypervenom.jpg', 5, 1, 1),
-(14, 'Survêtement Bulls', 'Lorem ipsum', 90, 'Basketball/survetementBulls.jpg', 3, 3, 2);
+(14, 'Survêtement Bulls', 'Lorem ipsum', 90, 'Basketball/survetementBulls.jpg', 3, 3, 2),
+(16, 'Maillot NBA Kobe Bryant', 'Los Angeles Lakers', 60, './images/Basketball/kobe.jpg', 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -194,6 +216,15 @@ CREATE TABLE IF NOT EXISTS `stock` (
   `idTaille` int(11) NOT NULL,
   `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `stock`
+--
+
+INSERT INTO `stock` (`idProduit`, `idTaille`, `quantite`) VALUES
+(1, 7, 2),
+(2, 2, 4),
+(2, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -245,7 +276,14 @@ ALTER TABLE `client`
 --
 ALTER TABLE `commande`
   ADD PRIMARY KEY (`idCommande`),
-  ADD KEY `FK_COMMANDE_idClient` (`idClient`);
+  ADD KEY `FK_COMMANDE_idClient` (`idClient`),
+  ADD KEY `idEtat` (`idEtat`);
+
+--
+-- Index pour la table `commande_etat`
+--
+ALTER TABLE `commande_etat`
+  ADD PRIMARY KEY (`idEtat`);
 
 --
 -- Index pour la table `ligne_commande`
@@ -308,12 +346,17 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+--
+-- AUTO_INCREMENT pour la table `commande_etat`
+--
+ALTER TABLE `commande_etat`
+  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `ligne_commande`
 --
 ALTER TABLE `ligne_commande`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `marque`
 --
@@ -323,7 +366,7 @@ ALTER TABLE `marque`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT pour la table `sport`
 --
