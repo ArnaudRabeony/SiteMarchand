@@ -578,3 +578,9 @@ button
 	height:0px !important;
 	margin:0px !important;
 }
+
+.emtpyOrderList
+{
+	text-align: center; 
+	padding:120px;
+}

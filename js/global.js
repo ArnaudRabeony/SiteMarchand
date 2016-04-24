@@ -291,8 +291,14 @@ $(document).ready(function()
 			},
 			function(response)
 			{
-				$('#ordersTable tbody').html(response);
-			});
+				$('#ordersTable tbody').html(response.text);
+
+				if(response.nb == 0)
+					{
+						$(".emtpyOrderList").show();
+						$("#OrdersList").hide();
+					}
+			},"json");
 	});
 
 	$("body").on("click",'#ordersTable .mainRow',function()
@@ -315,7 +321,13 @@ $(document).ready(function()
 			},
 			function(response)
 			{
-				$('#ordersTable tbody').html(response);
-			});
+				$('#ordersTable tbody').html(response.text);
+
+				if(response.nb == 0)
+				{
+					$(".emtpyOrderList").show();
+					$("#OrdersList").hide();
+				}
+			},"json");
 	});
 });

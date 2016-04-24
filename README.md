@@ -12,9 +12,7 @@
 
 
 ## TODO :
-* hide table container if the ordering page is empty (after deletion)
 * XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
-* Use the carousel as a product filter (by brand, sport...)
 * Delete idTaille from produit table
 * basketItems number : increment regarding products or qty ?
 * Connection on the fly -> add product to basket
@@ -25,6 +23,8 @@
 * Q : Creation of the filter section
 
 #### Done
+* Use the carousel as a product filter (by brand, sport...)
+* hide table container if the ordering page is empty (after deletion)
 * create a new mapping table for etat in table Commande
 * gather same products in the basket
 * Get price, qty, size in the basket

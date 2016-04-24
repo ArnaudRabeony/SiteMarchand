@@ -10,9 +10,13 @@ if(verifGet(array("id")))
 	$orderId=$_GET['id'];
 	$customerId=$_SESSION['id'];
 
+
 	if(deleteLinesByOrder($db,$orderId))
-		if(deleteOrderById($db,$orderId))
-			echo displayOrdersByClient($db,$customerId);
+		deleteOrderById($db,$orderId);
+
+	$orders=count(getOrdersByClient($db,$customerId));
+
+	echo json_encode(array("text"=>displayOrdersByClient($db,$customerId),"nb"=>$orders));
 }
 else if(verifGet(array("productId","orderId","quantity")))
 {
@@ -24,7 +28,10 @@ else if(verifGet(array("productId","orderId","quantity")))
 	if(removeProductFromLine($db,$productId,$quantity,$orderId))
 		if(!getProductsNumber($db,$orderId))
 			deleteOrderById($db,$orderId);
-		echo displayOrdersByClient($db,$customerId);
+
+	$orders=count(getOrdersByClient($db,$customerId));
+
+	echo json_encode(array("text"=>displayOrdersByClient($db,$customerId),"nb"=>$orders));
 }
 
 
