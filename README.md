@@ -12,6 +12,8 @@
 
 
 ## TODO :
+* update stock depending on orders
+* Create a Notification table (idOrder,idClient,idEtat) containing the idEtat in pending validation (has to be updated by the admin)
 * XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
 * Delete idTaille from produit table
 * basketItems number : increment regarding products or qty ?

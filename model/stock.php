@@ -69,6 +69,22 @@ function updateStock($db,$idProduit,$idTaille,$qtyToAdd)
     return $res == 1 ? true : false;
 }
 
+function reduceStock($db,$idProduit,$idTaille,$qty)
+{
+    $req = $db->prepare('update stock set quantite = quantite - :qty where idProduit=:id and idTaille=:idTaille');
+    $req->bindValue(':id', $idProduit);
+    $req->bindValue(':idTaille', $idTaille);
+    $req->bindValue(':qty', $qty);
+    $req->execute();
+
+    $newQty = getQtyByProductIdAndSize($db,$idProduit,$idTaille);
+    
+    if($newQty==0)
+        deleteStockByProductIdAndSize($db,$idProduit,$idTaille);
+
+    return $newQty;
+}
+
 function sizeExists($db,$idProduit,$idTaille)
 {
 	$req = $db->prepare('select * from stock where idProduit=:id and idTaille=:idTaille');

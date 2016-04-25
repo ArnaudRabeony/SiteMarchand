@@ -19,9 +19,9 @@ function displayProductList($db, $dataArray)
 
         $sizesList="";
         $availableSizes = getStockByProductId($db,$key['idProduit']);
-        //print_r($availableSizes);
+        // print_r($availableSizes);
         $cpt = 1;
-        $sizesNb = count($availableSizes);          
+        $sizesNb = count($availableSizes);  
         $displayCartIcon = true;
 
         if($sizesNb==0)

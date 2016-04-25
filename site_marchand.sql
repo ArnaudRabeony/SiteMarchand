@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Dim 24 Avril 2016 à 20:37
+-- Généré le :  Mar 26 Avril 2016 à 00:45
 -- Version du serveur :  5.6.28-0ubuntu0.15.10.1
 -- Version de PHP :  5.6.11-1ubuntu3.1
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `prixCommande` float NOT NULL DEFAULT '0',
   `idEtat` int(11) NOT NULL DEFAULT '1',
   `idClient` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -96,15 +96,15 @@ CREATE TABLE IF NOT EXISTS `commande` (
 CREATE TABLE IF NOT EXISTS `commande_etat` (
   `idEtat` int(11) NOT NULL,
   `nomEtat` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `commande_etat`
 --
 
 INSERT INTO `commande_etat` (`idEtat`, `nomEtat`) VALUES
-(1, 'créée'),
-(2, 'paiement'),
+(1, 'paiement'),
+(2, 'livraison'),
 (3, 'finalisée');
 
 -- --------------------------------------------------------
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `stock` (
 --
 
 INSERT INTO `stock` (`idProduit`, `idTaille`, `quantite`) VALUES
-(1, 7, 2),
+(1, 7, 0),
 (2, 2, 4),
 (2, 3, 4);
 
@@ -346,12 +346,12 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT pour la table `commande_etat`
 --
 ALTER TABLE `commande_etat`
-  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `ligne_commande`
 --

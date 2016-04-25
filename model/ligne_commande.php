@@ -26,7 +26,9 @@ function addLine($db,$idCommande,$idProduit,$uprix,$quantite,$idTaille)
 	$req->bindValue(":uprix",$uprix);
 	$req->bindValue(":quantite",$quantite);
 	$req->bindValue(":idCommande",$idCommande);
-	return $req->execute();
+	$req->execute();
+
+	return reduceStock($db,$idProduit,$idTaille,$quantite);
 }
 
 function deleteLinesByOrder($db,$orderId)

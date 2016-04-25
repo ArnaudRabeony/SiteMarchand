@@ -301,10 +301,11 @@ $(document).ready(function()
 			},"json");
 	});
 
-	$("body").on("click",'#ordersTable .mainRow',function()
+	$("body").on("click",'.expander',function()
 	{
-		// alert($(this).html());
-		$(this).next().find(".hiddenRow").toggle("medium");
+		$(this).parent().next().find(".hiddenRow").toggle("medium");
+		$(this).find(".glyphicon").toggleClass("glyphicon-menu-down");
+		$(this).find(".glyphicon").toggleClass("glyphicon-menu-right");
 	});
 
 	$("body").on("click",".removeFromOrderButton",function()
@@ -312,12 +313,14 @@ $(document).ready(function()
 		var productId=$(this).parent().attr("data-productid");
 		var orderId = $(this).parent().attr("data-orderid");
 		var quantity = $(this).parent().parent().find(".qty").text();
+		var size = $(this).parent().parent().find(".size").text();
 
 		$.get("js/ajax/deleteOrder.php",
 			{
 				productId:productId,
 				quantity:quantity,
-				orderId:orderId
+				orderId:orderId,
+				sizeId:sizeId
 			},
 			function(response)
 			{
@@ -329,5 +332,17 @@ $(document).ready(function()
 					$("#OrdersList").hide();
 				}
 			},"json");
+	});
+
+	$('body').on("click","#payButton",function(e)
+	{
+		alert("update status request : payment to shipping");
+
+		// create an order status notification
+
+		// $.get("js/ajax/orderNotif.php",
+		// {
+		// 	orderId:orderId,
+		// });
 	});
 });

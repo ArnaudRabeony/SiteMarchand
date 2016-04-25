@@ -1,8 +1,9 @@
 <?php 
 
-require("../../model/functions.php");
-require("../../model/commande.php");
-require("../../model/ligne_commande.php");
+require_once("../../model/functions.php");
+require_once("../../model/commande.php");
+require_once("../../model/ligne_commande.php");
+require_once("../../model/taille.php");
 
 session_start();
 if(verifGet(array("id")))
@@ -18,16 +19,22 @@ if(verifGet(array("id")))
 
 	echo json_encode(array("text"=>displayOrdersByClient($db,$customerId),"nb"=>$orders));
 }
-else if(verifGet(array("productId","orderId","quantity")))
+else if(verifGet(array("productId","orderId","quantity","size")))
 {
 	$orderId=$_GET['orderId'];
 	$productId=$_GET['productId'];
 	$quantity=$_GET['quantity'];
+	$sizeId=getIdTailleByName($db,$_GET['quantity']);
 	$customerId=$_SESSION['id'];
 
 	if(removeProductFromLine($db,$productId,$quantity,$orderId))
+	{
+		//update stock
+		updateStock($db,$productId,$sizeId,$quantity);
+
 		if(!getProductsNumber($db,$orderId))
 			deleteOrderById($db,$orderId);
+	}
 
 	$orders=count(getOrdersByClient($db,$customerId));
 

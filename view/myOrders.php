@@ -13,7 +13,7 @@ $emptyOrderList=count(getOrdersByClient($db,$idClient)) == 0 ? true : false;
 $visibleEmptyContainer= $emptyOrderList==true ? 'style="display:block;"' : 'style="display:none;"';
 $visibleContainer= $emptyOrderList==true ? 'style="display:none;"' : 'style="display:block;"';
 
- ?>
+?>
 <hr>
 <div id="myOrders" class="row">
 	<div id="myOrdersContainer">
@@ -31,6 +31,7 @@ $visibleContainer= $emptyOrderList==true ? 'style="display:none;"' : 'style="dis
 			<table id="ordersTable" class="table table-condensed">
 				<thead>
 					<tr>
+						<th></th>
 						<th>N° Commande</th>
 						<th>Date</th>
 						<th>Nombre d'articles</th>
