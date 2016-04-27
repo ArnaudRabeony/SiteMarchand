@@ -161,18 +161,7 @@ function updateCustomer($db,$id,$type,$lastname,$firstname,$email)
 	$req->bindValue(':firstname',$firstname);
 	$req->bindValue(':email',$email);
 	$req->bindValue(':id',$id);
-	$req->execute();
-
-	$req=$db->prepare('select * from client where type=:type and nom=:lastname and prenom=:firstname and email=:email and idClient=:id');
-	$req->bindValue(':type',$type);
-	$req->bindValue(':lastname',$lastname);
-	$req->bindValue(':firstname',$firstname);
-	$req->bindValue(':email',$email);
-	$req->bindValue(':id',$id);
-	$req->execute();
-	$res=$req->rowCount();
-
-	return $res==1 ? true : false;
+	return $req->execute();
 }
 
 function getCustomerById($db,$id)
@@ -219,17 +208,5 @@ function oneselfUpdate($db,$id,$lastname,$firstname,$email,$address,$phone)
 	$req->bindValue(':firstname',$firstname);
 	$req->bindValue(':email',$email);
 	$req->bindValue(':id',$id);
-	$req->execute();
-
-	$req=$db->prepare('select * from client where adresse=:address and telephone=:phone and nom=:lastname and prenom=:firstname and email=:email and idClient=:id');
-	$req->bindValue(':address',$address);
-	$req->bindValue(':phone',$phone);
-	$req->bindValue(':lastname',$lastname);
-	$req->bindValue(':firstname',$firstname);
-	$req->bindValue(':email',$email);
-	$req->bindValue(':id',$id);
-	$req->execute();
-	$res=$req->rowCount();
-
-	return $res==1 ? true : false;
+	return $req->execute();
 }

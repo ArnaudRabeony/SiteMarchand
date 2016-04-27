@@ -239,7 +239,6 @@ $(document).ready(function()
 	});
 
 
-
 	$("#commandButton").click(function(e)
 	{
 	jQuery.ajaxSetup({async:false});
@@ -281,25 +280,6 @@ $(document).ready(function()
 		window.location ="index.php?page=view/myOrders";
 	});
 
-	$("body").on("click",".deleteOrderButton",function()
-	{
-		var idProduit= $(this).parent().parent().attr("data-orderid");
-
-		$.get("js/ajax/deleteOrder.php",
-			{
-				id:idProduit
-			},
-			function(response)
-			{
-				$('#ordersTable tbody').html(response.text);
-
-				if(response.nb == 0)
-					{
-						$(".emtpyOrderList").show();
-						$("#OrdersList").hide();
-					}
-			},"json");
-	});
 
 	$("body").on("click",'.expander',function()
 	{
@@ -308,8 +288,18 @@ $(document).ready(function()
 		$(this).find(".glyphicon").toggleClass("glyphicon-menu-right");
 	});
 
+	$("body").on("click",".deleteOrderButton",function()
+	{
+		$(this).parent().parent().next().find(".removeFromOrderButton").each(function()
+		{
+			$(this).click();
+			// alert($(this).parent().attr("data-productid"));
+		});
+	});
+	
 	$("body").on("click",".removeFromOrderButton",function()
 	{
+		alert("remove line");
 		var productId=$(this).parent().attr("data-productid");
 		var orderId = $(this).parent().attr("data-orderid");
 		var quantity = $(this).parent().parent().find(".qty").text();
@@ -320,7 +310,7 @@ $(document).ready(function()
 				productId:productId,
 				quantity:quantity,
 				orderId:orderId,
-				sizeId:sizeId
+				size:size
 			},
 			function(response)
 			{
@@ -332,6 +322,14 @@ $(document).ready(function()
 					$("#OrdersList").hide();
 				}
 			},"json");
+
+		//create or add stock
+		$.get("js/ajax/updateStock.php",
+		{
+			id:productId,
+			qty:quantity,
+			size:size
+		});
 	});
 
 	$('body').on("click","#payButton",function(e)

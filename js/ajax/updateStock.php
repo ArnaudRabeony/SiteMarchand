@@ -13,12 +13,12 @@ if(verifGet(array("id","size","qty")))
 	// print_r($_GET);
 	if(sizeExists($db,$idProduit,$idTaille))
 	{
-		echo "Taille existe deja";
+		// echo "Taille existe deja";
 		echo updateStock($db,$idProduit,$idTaille,$qty);
 	}
 	else
 	{
-		echo "Ajout de la taille";
+		// echo "Ajout de la taille";
 		echo addToStock($db,$idProduit,$idTaille,$qty);
 	}
 }

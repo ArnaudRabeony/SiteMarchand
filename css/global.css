@@ -584,3 +584,8 @@ button
 	text-align: center; 
 	padding:120px;
 }
+
+.innerContent
+{
+	padding: 20px;
+}

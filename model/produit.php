@@ -243,17 +243,7 @@ function updateProduct($db,$id,$libelle,$description,$prix)
 	$req->bindValue(':libelle', $libelle);
 	$req->bindValue(':description', $description);
 	$req->bindValue(':prix', $prix);
-	$req->execute();
-
-	$req = $db->prepare('select * from produit where libelle=:libelle and description=:description and prix=:prix and idProduit=:id');
-	$req->bindValue(':id', $id);
-	$req->bindValue(':libelle', $libelle);
-	$req->bindValue(':description', $description);
-	$req->bindValue(':prix', $prix);
-	$req->execute();
-	$res=$req->rowCount();
-
-	return $res==1 ? true : false;
+	return $req->execute();
 }
 
 function deleteProduct($db,$id)

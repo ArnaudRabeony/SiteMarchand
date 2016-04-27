@@ -52,21 +52,13 @@ function getQtyByProductIdAndSize($db,$idProduit,$idTaille)
 
 function updateStock($db,$idProduit,$idTaille,$qtyToAdd)
 {
-	$currentQty = getQtyByProductIdAndSize($db,$idProduit,$idTaille);
-	$newQty=$currentQty+$qtyToAdd;
 
-	$req = $db->prepare('update stock set quantite=:qty where idProduit=:id and idTaille=:idTaille');
+    // echo "update stock set quantite=quantite+$qtyToAdd where idProduit=$idProduit and idTaille=$idTaille";
+	$req = $db->prepare('update stock set quantite=quantite+:qty where idProduit=:id and idTaille=:idTaille');
 	$req->bindValue(':id', $idProduit);
 	$req->bindValue(':idTaille', $idTaille);
-	$req->bindValue(':qty', $newQty);
- 	$req->execute();
-
- 	$req = $db->prepare('select quantite from stock where idProduit=:id');
-	$req->bindValue(':id', $idProduit);
- 	$req->execute();
- 	$res = $req->rowCount();
-
-    return $res == 1 ? true : false;
+	$req->bindValue(':qty', $qtyToAdd);
+ 	return $req->execute();
 }
 
 function reduceStock($db,$idProduit,$idTaille,$qty)
