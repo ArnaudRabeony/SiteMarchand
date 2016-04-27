@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 26 Avril 2016 à 00:45
+-- Généré le :  Jeu 28 Avril 2016 à 01:36
 -- Version du serveur :  5.6.28-0ubuntu0.15.10.1
 -- Version de PHP :  5.6.11-1ubuntu3.1
 
@@ -85,7 +85,14 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `prixCommande` float NOT NULL DEFAULT '0',
   `idEtat` int(11) NOT NULL DEFAULT '1',
   `idClient` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commande`
+--
+
+INSERT INTO `commande` (`idCommande`, `dateCommande`, `prixCommande`, `idEtat`, `idClient`) VALUES
+(72, '2016-04-27 22:14:33', 140, 3, 23);
 
 -- --------------------------------------------------------
 
@@ -103,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `commande_etat` (
 --
 
 INSERT INTO `commande_etat` (`idEtat`, `nomEtat`) VALUES
-(1, 'paiement'),
-(2, 'livraison'),
-(3, 'finalisée');
+(1, 'Paiement'),
+(2, 'Livraison'),
+(3, 'Terminée');
 
 -- --------------------------------------------------------
 
@@ -119,6 +126,13 @@ CREATE TABLE IF NOT EXISTS `ligne_commande` (
   `quantite` int(11) DEFAULT NULL,
   `idTaille` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `ligne_commande`
+--
+
+INSERT INTO `ligne_commande` (`idCommande`, `idProduit`, `quantite`, `idTaille`) VALUES
+(72, 1, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -222,9 +236,8 @@ CREATE TABLE IF NOT EXISTS `stock` (
 --
 
 INSERT INTO `stock` (`idProduit`, `idTaille`, `quantite`) VALUES
-(1, 7, 0),
-(2, 2, 4),
-(2, 3, 4);
+(1, 9, 4),
+(2, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -346,7 +359,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT pour la table `commande_etat`
 --
