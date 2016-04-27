@@ -1,8 +1,8 @@
 <?php 
 session_start();
 require_once("../../connection.php");
-require("../../model/functions.php");
-require("../../model/client.php");
+require_once("../../model/functions.php");
+require_once("../../model/client.php");
 
 if(verifGet(array("str","filter")))
 {

@@ -589,3 +589,25 @@ button
 {
 	padding: 20px;
 }
+
+.step>i
+{
+	margin-right: 10px;
+}
+
+.orderContainer
+{
+	margin-bottom: 5px;
+}
+
+.customerInfo
+{
+	text-align: center;
+}
+
+.arrowsContainer>i
+{
+	position: relative;
+    top: 20px;
+    color:#CCC;
+}

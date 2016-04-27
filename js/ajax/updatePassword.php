@@ -1,7 +1,7 @@
 <?php 
 
- include('../../model/functions.php');
- include('../../model/client.php');
+require_once("../../model/functions.php");
+require_once("../../model/client.php");
 
 if(verifPost(array("id","email","password","newPassword")))
 {

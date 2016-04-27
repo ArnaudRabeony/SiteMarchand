@@ -59,7 +59,7 @@ if($connected)
                     <li><a href="index.php?page=view/myBasket">Mon panier</a></li>
                     <li><a href="index.php?page=view/manageProducts">Gestion des produits</a></li>
                     <li><a href="index.php?page=view/displayCustomers">Gestion des utilisateurs</a></li>
-                    <li><a href="#">Gestion des commandes</a></li><hr>
+                    <li><a href="index.php?page=view/manageOrders">Gestion des commandes</a></li><hr>
                     <li><a href="index.php?page=controller/deco_page"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                 </ul>
                 </div>

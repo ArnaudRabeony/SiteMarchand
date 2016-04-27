@@ -299,7 +299,7 @@ $(document).ready(function()
 	
 	$("body").on("click",".removeFromOrderButton",function()
 	{
-		alert("remove line");
+		//alert("remove line");
 		var productId=$(this).parent().attr("data-productid");
 		var orderId = $(this).parent().attr("data-orderid");
 		var quantity = $(this).parent().parent().find(".qty").text();
@@ -342,5 +342,26 @@ $(document).ready(function()
 		// {
 		// 	orderId:orderId,
 		// });
+	});
+
+	$('body').on("click",".step",function()
+	{
+		if(!$(this).is(':last-child'))
+		{
+			var orderId= $(this).parent().parent().parent().attr("data-orderid");
+
+			$(this).removeClass("active").css("cursor","default");
+			$(this).next().removeClass("disabled").addClass("active").css("cursor","pointer");
+
+			$.get("js/ajax/updateStatus.php",
+			{
+				orderId:orderId
+			});
+		// },function(response)
+		// {
+		// 	$("#notEmptyBasket").html(response);
+		// });
+			// alert("update status where idcommande = "+orderId);
+		}
 	});
 });

@@ -1,8 +1,8 @@
 <?php 
 
 require_once("../../connection.php");
-require("../../model/functions.php");
-require("../../model/produit.php");
+require_once("../../model/functions.php");
+require_once("../../model/produit.php");
 
 $lastRow = '<tr>
 						<td></td>

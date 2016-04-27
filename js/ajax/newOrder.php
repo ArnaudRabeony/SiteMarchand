@@ -1,10 +1,10 @@
 <?php 
 
-require("../../model/functions.php");
-require("../../model/produit.php");
-require("../../model/commande.php");
-require("../../model/taille.php");
-require("../../model/ligne_commande.php");
+require_once("../../model/functions.php");
+require_once("../../model/produit.php");
+require_once("../../model/commande.php");
+require_once("../../model/taille.php");
+require_once("../../model/ligne_commande.php");
 
 
 session_start();

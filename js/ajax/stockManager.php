@@ -1,8 +1,8 @@
 <?php 
 
-require("../../model/functions.php");
-require("../../model/stock.php");
-require("../../model/taille.php");
+require_once("../../model/functions.php");
+require_once("../../model/stock.php");
+require_once("../../model/taille.php");
 
 if(verifGet(array("id","size","qty")))
 {

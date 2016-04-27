@@ -1,8 +1,8 @@
 <?php 
 
 require_once("../../connection.php");
-require("../../model/categorie_produit.php");
-require("../../model/taille.php");
+require_once("../../model/categorie_produit.php");
+require_once("../../model/taille.php");
 
 $category = $_GET['category'];
 
