@@ -598,11 +598,14 @@ button
 .orderContainer
 {
 	margin-bottom: 5px;
+	border-bottom: 1px solid #EEE;
+	padding: 10px;
 }
 
 .customerInfo
 {
 	text-align: center;
+	margin-top: -8px;
 }
 
 .arrowsContainer>i
@@ -610,4 +613,29 @@ button
 	position: relative;
     top: 20px;
     color:#CCC;
+}
+
+.paymentForm
+{
+	height: 270px;
+}
+
+#sumupTable
+{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#creditCard input
+{
+	width:50%;
+	position: relative;
+	left: 160px;
+}
+
+#creditCard label
+{
+	width:50%;
+	position: relative;
+	top:30px;
 }

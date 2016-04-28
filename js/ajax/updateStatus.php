@@ -10,5 +10,9 @@ if(verifGet(array("orderId")))
 	updateOrderStatus($db,$_GET['orderId']);
 	echo displayOrders($db);
 }
-
+elseif(verifGet(array("orderIdUpdateBack")))
+{
+	updateBackOrderStatus($db,$_GET['orderIdUpdateBack']);
+	echo displayOrders($db);
+}
 

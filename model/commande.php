@@ -75,7 +75,7 @@ function displayOrdersByClient($db,$idClient)
 		switch ($value['idEtat'])
 			{
 				case 1:
-						$icone = '<i id="payButton" class="material-icons">credit_card</i>';
+						$icone = '<a href="index.php?page=view/paymentPage&orderid='.$id.'"><i id="payButton" class="material-icons">credit_card</i></a>';
 					break;
 
 				case 2:
@@ -161,7 +161,7 @@ function getDisplayById($db,$idCommande)
 				<h5>
 				'.$order['idCommande'].'<br>
 					<small>
-						'.substr($client['nom'], 0,1).". ".$client['prenom'].'
+						'.substr($client['nom'], 0,1).". ".$client['prenom'].'<br>'.$order['dateCommande'].'
 					</small>
 				</h5>
 
@@ -172,12 +172,11 @@ function getDisplayById($db,$idCommande)
 		$statusNb = count($status);
 		for($i=0;$i<$statusNb;$i++)
 		{
-
 			$divStatus="";
 
-			if($orderStatus==$i)
+			if($orderStatusId==$i+1)
 				$divStatus="active";
-			else if($orderStatus<$i)
+			else if($orderStatusId<$i+1)
 				$divStatus= "disabled";
 
 			$clickable=$divStatus=="active"&& $i+1!=$statusNb ? 'style="cursor:pointer"' : 'style="cursor:default"';
@@ -189,7 +188,7 @@ function getDisplayById($db,$idCommande)
 					    <div class="arrowsContainer" style="float:right;">';
 
 					    if($status[$i]['idEtat']!=1 && $divStatus=="active")
-							$body.='<i class="material-icons prevButton" style="right:100px;">navigate_before</i>';
+							$body.='<i class="material-icons prevButton" style="cursor:pointer;right:100px;">navigate_before</i>';
 						
 						$body.='
 					    </div>
@@ -200,6 +199,30 @@ function getDisplayById($db,$idCommande)
 			$body.='</div>
 				</div>
 		</div>';
+
+	return $body;
+}
+
+function recapCommande($db,$idCommande)
+{
+	$order = getOrderById($db,$idCommande)[0];
+	$client = getCustomerById($db,$order["idClient"]);
+	$lines = getLineByOrderId($db,$idCommande);
+
+	$body="";
+
+	foreach($lines as $line)
+	{
+		$product=getProductById($db,$line['idProduit'])[0];
+
+		$body.='<tr class="sumup">
+			<td>'.$product['idProduit'].'</td>
+			<td>'.$product['libelle'].'</td>
+			<td>'.$line['quantite'].'</td>
+			<td>'.getTailleById($db,$line['idTaille']).'</td>
+			<td>'.$product['prix'].'</td>
+		</tr>';
+	}
 
 	return $body;
 }
@@ -216,6 +239,21 @@ function updateOrderStatus($db,$idCommande)
 	if($res[0]<$statusNb)
 	{
 		$req=$db->prepare("update commande set idEtat = idEtat+1 where idCommande=:id");
+		$req->bindValue(":id",$idCommande);
+		$req->execute();
+	}
+}
+
+function updateBackOrderStatus($db,$idCommande)
+{
+	$req=$db->prepare("select idEtat from commande where idCommande=:id");
+	$req->bindValue(":id",$idCommande);
+	$req->execute();
+	$res=$req->fetch(PDO::FETCH_NUM);
+
+	if($res[0]>=1)
+	{
+		$req=$db->prepare("update commande set idEtat = idEtat-1 where idCommande=:id");
 		$req->bindValue(":id",$idCommande);
 		$req->execute();
 	}

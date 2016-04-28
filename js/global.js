@@ -239,9 +239,12 @@ $(document).ready(function()
 	});
 
 
-	$("#commandButton").click(function(e)
+	$("#commandButton,#payAndOrder").click(function(e)
 	{
-	jQuery.ajaxSetup({async:false});
+		var action = $(e.target).is("#payAndOrder") ? "payment" : "command";
+
+		// alert(action);
+		jQuery.ajaxSetup({async:false});
 
 		var orderId=0;
 
@@ -277,7 +280,10 @@ $(document).ready(function()
 			$('#basketSize').hide();
 		});
 
-		window.location ="index.php?page=view/myOrders";
+		if(action=="payment")
+			window.location ="index.php?page=view/paymentPage&orderid="+orderId;
+		else
+			window.location ="index.php?page=view/myOrders";
 	});
 
 
@@ -332,36 +338,76 @@ $(document).ready(function()
 		});
 	});
 
-	$('body').on("click","#payButton",function(e)
-	{
-		alert("update status request : payment to shipping");
-
-		// create an order status notification
-
-		// $.get("js/ajax/orderNotif.php",
-		// {
-		// 	orderId:orderId,
-		// });
-	});
-
 	$('body').on("click",".step",function()
 	{
 		if(!$(this).is(':last-child'))
 		{
 			var orderId= $(this).parent().parent().parent().attr("data-orderid");
 
-			$(this).removeClass("active").css("cursor","default");
-			$(this).next().removeClass("disabled").addClass("active").css("cursor","pointer");
+			// $(this).removeClass("active").css("cursor","default");
+			// $(this).next().removeClass("disabled").addClass("active").css("cursor","pointer");
 
 			$.get("js/ajax/updateStatus.php",
 			{
 				orderId:orderId
+			},function(response)
+			{
+				$("#notEmptyBasket").html(response);
 			});
-		// },function(response)
-		// {
-		// 	$("#notEmptyBasket").html(response);
-		// });
+		// }
 			// alert("update status where idcommande = "+orderId);
 		}
 	});
+
+	$('body').on("click",".prevButton",function(e)
+	{
+		var orderId= $(this).parent().parent().parent().parent().parent().attr("data-orderid");
+
+			// $(this).removeClass("active").css("cursor","default");
+			// $(this).next().removeClass("disabled").addClass("active").css("cursor","pointer");
+
+		// alert("update back status where idcommande = "+orderId);
+		$.get("js/ajax/updateStatus.php",
+		{
+			orderIdUpdateBack:orderId
+		},function(response)
+		{
+			$("#notEmptyBasket").html(response);
+		});
+
+		e.stopPropagation();
+	// }
+	});
+
+$('form button').click(function(e)
+	{
+
+		var owner=$("#owner").val();
+		var cardNumber=$("#creditCard #cardNumber").val();
+		var crypto=$("#crypto").val();
+	
+		// var noSize=filledSizesTable;
+		var noOwner= owner == "" ? true : false;
+		var noNumber= cardNumber == "" ? true : false;
+		var noCrypto= crypto == "" ? true : false;
+		
+		if(noOwner || noNumber || noCrypto)
+		{
+			e.preventDefault();
+			if(noOwner)
+				$('#owner').addClass("necessary");
+			if(noNumber)
+				$('#creditCard #cardNumber').addClass("necessary");
+			if(noCrypto)
+				$('#crypto').addClass("necessary");
+		}
+		else
+		{
+			$.get("js/ajax/updateStatus.php",
+			{
+				orderId:$("#paymentContainer").attr("data-orderid")
+			});
+		}
+	});
+
 });
