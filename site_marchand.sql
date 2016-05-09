@@ -81,7 +81,7 @@ INSERT INTO `client` (`idClient`, `type`, `email`, `nom`, `prenom`, `mdp`, `adre
 
 CREATE TABLE IF NOT EXISTS `commande` (
   `idCommande` int(11) NOT NULL,
-  `dateCommande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateCommande` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `prixCommande` float NOT NULL DEFAULT '0',
   `idEtat` int(11) NOT NULL DEFAULT '1',
   `idClient` int(11) NOT NULL
@@ -179,21 +179,21 @@ CREATE TABLE IF NOT EXISTS `produit` (
 --
 
 INSERT INTO `produit` (`idProduit`, `libelle`, `description`, `prix`, `photo`, `idCategorie`, `idSport`, `idMarque`) VALUES
-(1, 'Mercurial', 'Lorem ipsum', 140, 'Football/mercurial.jpg', 5, 1, 1),
-(2, 'Maillot home PSG', 'Lorem ipsum', 85, 'Football/maillotHomePSG.jpg', 6, 1, 1),
-(3, 'Maillot home Marseille', 'Lorem ipsum', 85, 'Football/maillotHomeMarseille.jpg', 6, 1, 2),
-(4, 'Short Federer', 'Lorem ipsum', 35, 'Tennis/shortFederer.jpg', 2, 2, 1),
-(5, 'Survêtement Cleveland', 'Lorem ipsum', 70, 'Basketball/survetementCleveland.jpg', 3, 3, 4),
-(6, 'Pantalon survêtement', 'Lorem ipsum', 130, 'Rugby/survetementRugby.jpg', 3, 6, 3),
-(7, 'Short Warriors', 'Lorem ipsum', 45, 'Basketball/shortWarriors.jpg', 2, 3, 1),
-(8, 'Short away PSG', 'Lorem ipsum', 35, 'Football/shortAwayPSG.jpg', 2, 1, 1),
-(9, 'T-Shirt rugby', 'Lorem ipsum', 15, 'Rugby/t-shirtRugby.jpg', 1, 6, 3),
-(10, 'T-Shirt Jordan', 'Lorem ipsum', 30, 'Basketball/t-shirtJordan.jpg', 1, 3, 2),
-(11, 'T-Shirt Federer', 'Lorem ipsum', 35, 'Tennis/t-shirtFederer.jpg', 1, 2, 1),
-(12, 'Tiempo', 'Lorem ipsum', 100, 'Football/tiempo.jpg', 5, 1, 1),
-(13, 'Hypervenom', 'Lorem ipsum', 200, 'Football/hypervenom.jpg', 5, 1, 1),
-(14, 'Survêtement Bulls', 'Lorem ipsum', 90, 'Basketball/survetementBulls.jpg', 3, 3, 2),
-(16, 'Maillot NBA Kobe Bryant', 'Los Angeles Lakers', 60, './images/Basketball/kobe.jpg', 1, 3, 2);
+(1, 'Mercurial', 'Conçue pour l\'attaquant, la chaussure de football à crampons pour sol dur Nike Mercurial Superfly pour Homme offre un maintien révolutionnaire, une sensation pieds nus et une plaque en fibre de carbone légère pour une vitesse explosive.', 140, 'Football/mercurial.jpg', 5, 1, 1),
+(2, 'Maillot home PSG', 'Le maillot de football 2015/16 Paris Saint-Germain Match Home pour Homme est identique à celui que portent les joueurs sur le terrain. Il arbore fièrement les emblèmes de l\'équipe et est doté d\'un système complet de ventilation pour vous offrir un confort absolu sans négliger le style.', 85, 'Football/maillotHomePSG.jpg', 6, 1, 1),
+(3, 'Maillot home Marseille', 'Ce maillot de football est une réplique de celui porté par les joueurs de l\'OM lorsqu\'ils imposent leur suprématie à domicile.', 85, 'Football/maillotHomeMarseille.jpg', 6, 1, 2),
+(4, 'Short Federer', 'Le short NIKE Gladiator Premier 7" est la vitrine technologique de NIKE. Conçu dans un tissu Dri-FIT 4 voies avec une respirabilité améliorée pour assurer performance et concentration sur le match.', 35, 'Tennis/shortFederer.jpg', 2, 2, 1),
+(5, 'Survêtement Cleveland', 'Survêtement d\'entrainement de l\'équipe des Cavaliers', 70, 'Basketball/survetementCleveland.jpg', 3, 3, 4),
+(6, 'Pantalon survêtement', 'Survêtement de l\'équipe de France de Rugby', 130, 'Rugby/survetementRugby.jpg', 3, 4, 3),
+(7, 'Short Warriors', 'Short des Golden State Warriors', 45, 'Basketball/shortWarriors.jpg', 2, 3, 1),
+(8, 'Short away PSG', 'Le short de football 2015/16 Paris Saint-Germain Stadium Dark Light pour Homme présente un tissu léger, des détails caractéristiques de la tenue des joueurs et un imprimé inspiré des matchs nocturnes.', 35, 'Football/shortAwayPSG.jpg', 2, 1, 1),
+(9, 'T-Shirt rugby', 'T-Shirt de Rugby', 15, 'Rugby/t-shirtRugby.jpg', 1, 4, 3),
+(10, 'T-Shirt Jordan', 'T-Shirt du meilleur joueur de l\'histoire de la NBA', 30, 'Basketball/t-shirtJordan.jpg', 1, 3, 2),
+(11, 'T-Shirt Federer', 'T-Shirt de la légende suisse du tennis', 35, 'Tennis/t-shirtFederer.jpg', 1, 2, 1),
+(12, 'Tiempo', 'Crampons de football pour terrain en herbe synthétique', 100, 'Football/tiempo.jpg', 5, 1, 1),
+(13, 'Hypervenom', 'Crampons de football pour terrain en herbe synthétique', 200, 'Football/hypervenom.jpg', 5, 1, 1),
+(14, 'Survêtement Bulls', 'Survêtement de l\'équipe phare de Chicago', 90, 'Basketball/survetementBulls.jpg', 3, 3, 2),
+(15, 'Maillot NBA Kobe Bryant', 'Los Angeles Lakers', 60, './images/Basketball/kobe.jpg', 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -215,9 +215,7 @@ INSERT INTO `sport` (`idSport`, `nomSport`, `icone`) VALUES
 (1, 'Football', 'images/Sports/soccer-128.png'),
 (2, 'Tennis', 'images/Sports/tennis-128.png'),
 (3, 'Basketball', 'images/Sports/basketball-128.png'),
-(4, 'Handball', 'images/Sports/soccer-128.png'),
-(5, 'Natation', 'images/Sports/soccer-128.png'),
-(6, 'Rugby', 'images/Sports/rugbyball-128.png');
+(4, 'Rugby', 'images/Sports/rugbyball-128.png');
 
 -- --------------------------------------------------------
 
