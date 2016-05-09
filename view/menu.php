@@ -25,7 +25,7 @@ if($connected)
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <!-- <ul class="nav navbar-nav">
                     <li>
                         <a href="#">Nouveautés</a>
                     </li>
@@ -35,7 +35,7 @@ if($connected)
                     <li>
                         <a href="#">Promotions</a>
                     </li>
-                </ul>
+                </ul> -->
                 <ul class="nav navbar-nav navbar-right">
         <?php 
 
@@ -103,7 +103,7 @@ if($connected)
                     <a data-toggle="collapse" href="#collapseCollectives">Sports collectifs</a>
                   </h4>
                 </div>
-                <div id="collapseCollectives" class="panel-collapse collapse">
+                <div id="collapseCollectives" class="panel-collapse collapse in">
                   <ul class="list-group">
                     <li class="list-group-item"><a href="index.php?page=view/football"style="padding: 0px 0px">Football</a></li>
                     <li class="list-group-item"><a href="index.php?page=view/basketball">Basketball</a></li>
@@ -119,10 +119,9 @@ if($connected)
                     <a data-toggle="collapse" href="#collapseIndividuals">Sports individuels</a>
                   </h4>
                 </div>
-                <div id="collapseIndividuals" class="panel-collapse collapse">
+                <div id="collapseIndividuals" class="panel-collapse collapse in">
                   <ul class="list-group">
-                    <li class="list-group-item"><a href="#">Tennis</a></li>
-                    <li class="list-group-item"><a href="#">Natation</a></li>
+                    <li class="list-group-item"><a href="index.php?page=view/tennis">Tennis</a></li>
                   </ul>
                 </div>
               </div>

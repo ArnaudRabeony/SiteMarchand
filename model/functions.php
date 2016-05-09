@@ -134,6 +134,40 @@ function displayBasket($db)
 	}
 }
 
+function filters($db)
+{
+	echo '<div class="row" id="filtersContainer">
+            <button id="expandFilters" class="btn btn-sm btn-default">Filtres</button>
+            <br>
+            <div id="filtersGrid" class="col-md-12" style="margin-left:-15px;">
+                <div id="categoryFiltersContainer" class="col-md-6 list-group">
+                    <h4><small>Catégories</small></h4>';
+
+                                $categories = getAllCategories($db);
+
+                                foreach ($categories as $value)
+                                	echo '<span class="col-md-4"><label class="list-group-item" data-selected=false>'.$value['nomCategorie'].'</label></span>';
+
+                         
+                    
+    echo    '</div>
+                <div id="sizeFiltersContainer" class="col-md-6">
+                    <h4><small>Tailles</small></h4>';
+
+                                $sizes = getAllTaille($db);
+
+                                foreach ($sizes as $value) 
+                                	echo '<span class="col-md-3"><label class="list-group-item" data-selected=false>'.$value['nomTaille'].'</label></span>';
+                    
+    echo '            </div>
+    <div id="priceFiltersContainer" class="col-md-12" style="background-color:red">
+                    <h4><small>Prix</small></h4>';                    
+    echo '  </div>
+            </div>
+            
+        </div>';
+}
+
 // function isExisting($page)
 // {
 // 	$pagesArray=array(

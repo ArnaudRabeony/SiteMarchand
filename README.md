@@ -12,6 +12,8 @@
 
 
 ## TODO :
+* Price filter (jquery ui slider :https://jqueryui.com/slider/#range)
+* Size filter : check every stock (workaround : hide div in js)
 * update stock depending on orders
 * Create a Notification table (idOrder,idClient,idEtat) containing the idEtat in pending validation (has to be updated by the admin)
 * XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
@@ -25,6 +27,7 @@
 * Q : Creation of the filter section
 
 #### Done
+* Category filter
 * Use the carousel as a product filter (by brand, sport...)
 * hide table container if the ordering page is empty (after deletion)
 * create a new mapping table for etat in table Commande

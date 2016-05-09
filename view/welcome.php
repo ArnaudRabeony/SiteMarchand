@@ -15,7 +15,7 @@
 				$sports = getAllSports($db);
 				
 				foreach ($sports as $value)
-					echo '<a href="index.php?page=view/globalProductsPage&filter='.$value['nomSport'].'"><img src="'.$value['icone'].'" alt="'.$value['nomSport'].'"></a>';		
+					echo '<a href="index.php?page=view/'.lcfirst($value['nomSport']).'"><img src="'.$value['icone'].'" alt="'.$value['nomSport'].'"></a>';		
 			?>
 			</div>
 			<div id="brandsContainer" class="col-md-12" style="text-align: center;">

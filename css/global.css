@@ -628,14 +628,58 @@ button
 
 #creditCard input
 {
-	width:50%;
-	position: relative;
+/*	width:50%;
+*/	position: relative;
 	left: 160px;
 }
 
 #creditCard label
 {
-	width:50%;
-	position: relative;
+/*	width:50%;
+*/	position: relative;
 	top:30px;
 }
+
+#filtersGrid
+{
+	display:none;
+}
+
+#filtersContainer
+{
+	padding:4px 15px;
+}
+
+#expandFilters
+{
+	margin-bottom: 5px;
+}
+
+#filtersGrid label
+{
+	font-weight: normal;
+}
+
+#categoryFiltersContainer .list-group-item, #sizeFiltersContainer .list-group-item
+{
+	text-align: center;
+    padding: 5px;
+    width: 100px;
+    height: 30px;
+	border-radius: 8px;
+	box-shadow: 2px 2px 5px #EEE;
+	cursor:pointer;
+}
+
+
+#categoryFiltersContainer span, #sizeFiltersContainer span
+{
+	margin: 3px 3px;
+}
+
+.filterShadow
+{
+	box-shadow: 5px 5px 5px #EEE !important;
+	background-color: #EEE;
+}
+

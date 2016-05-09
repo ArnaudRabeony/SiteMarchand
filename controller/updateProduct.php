@@ -1,6 +1,7 @@
-<?php 
-    include('../model/functions.php');
-    include('../model/produit.php');
+<?php
+
+require_once(dirname(__FILE__) . '/../model/functions.php');
+require_once(dirname(__FILE__) . '/../model/produit.php');
 
 if(verifGet(array("id","libelle","description","prix")))
 {

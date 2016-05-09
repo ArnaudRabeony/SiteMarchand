@@ -35,12 +35,16 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 		<h4 style="margin-bottom: -10px;"><small id="categoryNsport"><?php echo $category." de ".$sport ?> <br></small></h4 style="margin-bottom: -10px;">
 		<h5><small><i>Référence : <?php echo $ref ?></i></small></h5>
 			<ul class="nav nav-tabs">
-			  <li class="active"><a data-toggle="tab" href="#mainProductTab">Info</a></li>
-			  <li><a data-toggle="tab" href="#descriptionTab">Description</a></li>
+			  <li class="active"><a data-toggle="tab" href="#descriptionTab">Description</a></li>
+			  <li><a data-toggle="tab" href="#mainProductTab">Info</a></li>
 			</ul>
 			
 			<div class="tab-content">
-			  <div id="mainProductTab" class="tab-pane fade in active">
+			  <div id="descriptionTab" class="tab-pane fade in active">
+			    <h3><small>Description</small></h3>
+			    <p><?php echo $description ?></p>
+			  </div>
+			  <div id="mainProductTab" class="tab-pane fade">
 			   <h3><small>Info</small></h3>
 			    <p>
 					<span id="priceSpan"><b><?php echo $price."€" ?></b></span>
@@ -77,10 +81,6 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 					 ?>
 					</div>
 			    </p>
-			  </div>
-			  <div id="descriptionTab" class="tab-pane fade">
-			    <h3><small>Description</small></h3>
-			    <p><?php echo $description ?></p>
 			  </div>
 			</div>
 		</div>

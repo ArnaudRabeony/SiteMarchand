@@ -9,6 +9,11 @@ require_once(dirname(__FILE__) . '/../model/ligne_commande.php');
 if(pageRestriction(array("admin")))
 {
 
+$toHightlight=0;
+
+	if(verifGet(array("main")))
+		$toHightlight=$_GET['main'];
+
 $emptyTable=isCommandeEmpty($db);
 
 $visibleEmptyContainer= $emptyTable ? 'style="display:block;"' : 'style="display:none;"';
@@ -22,8 +27,8 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 		 Les changements effectués seront visibles sur la page "Mes commandes" des clients concernés.
 		 <hr>
 	</p>
-	<div class="tableContainer">
-		<div id="notEmptyBasket" class="table-responsive" <?php echo $visibleContainer ?>>
+	<div id="ordersContainer" <?php echo "data-main=$toHightlight" ?>>
+		<div id="notEmptyOrderTable" class="table-responsive" <?php echo $visibleContainer ?>>
 			<?php echo displayOrders($db) ?>
 		</div>
 		<div id="emptyOrderTableContainer" class="shadow450" <?php echo $visibleEmptyContainer ?>>
@@ -41,6 +46,23 @@ $visibleContainer= $emptyTable ? 'style="display:none;"' : 'style="display:block
 </div>
 
 <script src="js/jquery.js"></script>
-<script src="js/displayProducts.js"></script>
+<script>
+	
+	$(function()
+	{
+		var toHightlight = $("#ordersContainer").attr("data-main");
+		
+		if(toHightlight!=0)
+		{
+			$('.orderContainer').each(function()
+			{
+				if($(this).attr("data-orderid")==toHightlight)
+				{
+					$(this).css("background-color","#EEE");
+				}
+			});
+		}
+	})
 
+</script>
 <?php } ?>

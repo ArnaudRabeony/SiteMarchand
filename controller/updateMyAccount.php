@@ -1,6 +1,7 @@
 <?php 
- include('../model/functions.php');
- include('../model/client.php');
+
+require_once(dirname(__FILE__) . '/../model/client.php');
+require_once(dirname(__FILE__) . '/../model/functions.php');
 
 if(verifGet(array("id","address","phone","lastname","firstname","email")))
 {

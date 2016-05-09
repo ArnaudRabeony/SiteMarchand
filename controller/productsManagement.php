@@ -1,6 +1,6 @@
 <?php 
-require_once('./model/sport.php');
-print_r($_FILES);
+require_once(dirname(__FILE__) . '/../model/sport.php');
+// print_r($_FILES);
 if(verifPost(array("category","sport","price","label","description","brand")))
 {
 	print_r($_POST);

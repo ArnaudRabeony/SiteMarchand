@@ -1,8 +1,8 @@
 <?php 
 
 require_once(dirname(__FILE__) . '/../connection.php');
-require("../model/functions.php");
-require("../model/produit.php");
+require_once(dirname(__FILE__) . '/../model/functions.php');
+require_once(dirname(__FILE__) . '/../model/produit.php');
 
 header("Content-Type: text/csv; charset=UTF-8");
 header('Content-Disposition: attachment; filename="produits.csv"');

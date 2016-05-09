@@ -1,6 +1,7 @@
 $(document).ready(function()
 {
 	new WOW().init();
+
 	$(window).scroll(function()
 	{
 		// console.log($(window).scrollTop());
@@ -18,15 +19,6 @@ $(document).ready(function()
 		// }
 	});
 
-	$("#updateProductButton").click(function(e)
-	{
-		e.preventDefault();
-		$.get("ajax/filteredProducts", 
-			{
-				nb:"ok"	
-			});
-	});
-
 	$('#top').click(function() 
 	{ 
 		console.log('click fleche');
@@ -42,23 +34,56 @@ $(document).ready(function()
 	$('.client-filters').change(function()
 	{
 		$(".client-side").html("");
-		$.get("ajax/filteredProducts", 
+
+		var filterCategory = $(this).find("select").attr("name");
+
+		var targetSelect = $(this).parent().find("select[name='taille']");
+
+		if(filterCategory == "categorie")
+		{
+			var selection  = $(this).find("option:selected").val();
+
+			if(selection != "-1")
 			{
-				nb:"ok"	
-			});
+				var categoryId = selection == "Chaussures" ? 5 : 1; 
+
+				$.get("js/ajax/sizeTable.php", 
+				{
+					category:categoryId	
+				},function(response)
+				{
+					targetSelect.html('');
+
+					var options="";
+					for(var i=0; i<response.length;i++)
+						options+='<option value="'+response[i]+'">'+response[i]+'</option>';
+
+					targetSelect.html(options);
+
+				},'json');
+			}
+			else
+				alert("ERROR");
+			// alert("Refresh Sizes");
+		}
+
+		// $.get("js/ajax/filteredProducts.php", 
+		// 	{
+		// 		nb:"ok"	
+		// 	});
 	});
 
-	$('.curtain').mouseover(function()
-		{
-			$(this).find("img").css({ opacity: 0.4 });
-			$(this).find("p").show();
-		});
+	// $('.curtain').mouseover(function()
+	// 	{
+	// 		$(this).find("img").css({ opacity: 0.4 });
+	// 		$(this).find("p").show();
+	// 	});
 
-	$('.curtain').mouseout(function()
-		{
-			$(this).find("img").css({ opacity: 1 });
-			$(this).find("p").hide();
-		});
+	// $('.curtain').mouseout(function()
+	// 	{
+	// 		$(this).find("img").css({ opacity: 1 });
+	// 		$(this).find("p").hide();
+	// 	});
 
 
 	// $('#createAccoundContent form').validator();

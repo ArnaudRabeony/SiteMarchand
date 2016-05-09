@@ -36,5 +36,3 @@ else if(verifGet(array("productId","orderId","quantity","size")))
 
 	echo json_encode(array("text"=>displayOrdersByClient($db,$customerId),"nb"=>$orders));
 }
-
-

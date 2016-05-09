@@ -1,6 +1,6 @@
 <?php 
 
-include('../model/client.php');
+require_once(dirname(__FILE__) . '/../model/client.php');
 
 if(verifPost(array("email","firstname","lastname","password","address","phone")))
 {

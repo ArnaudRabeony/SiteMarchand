@@ -191,6 +191,57 @@ function productsToCsv($db,$whereArray,$bindValuesArray,$sameValueForAll)
 	}
 }
 
+function getFilteredProducts($db,$whereArray,$sport)
+{
+	//possibility : $operation=["like" | "=" | "!="]
+	$query="select * from produit ";
+
+	$query.="where idSport=".getIdSportByName($db,$sport);
+
+	if(!is_null($whereArray) && count($whereArray)!=0)
+	{
+
+		$query.=" and (";
+		$cptWhere=count($whereArray);
+
+		$categoriesName = array_column(getAllCategories($db),"nomCategorie");
+
+		for ($i=0; $i < $cptWhere; $i++)
+		{
+			$isCategorie = false;
+
+			foreach ($categoriesName as $value)
+			{
+				if(trim(strtolower($whereArray[$i])) == trim(strtolower($value)))
+					$isCategorie=true;
+			}
+				
+
+			if($i+1 == $cptWhere)//last
+			{
+				if($isCategorie)
+					$query.="idCategorie=".getIdCategorieByName($db,trim($whereArray[$i])).")";
+				// else
+				// 	$query.=" idTaille ='".$whereArray[$i]."' or  blabla1 ='".$whereArray[$i]."'";
+			}
+			else
+				$query.="idCategorie=".getIdCategorieByName($db,trim($whereArray[$i]))." or ";
+		}
+	}
+
+ 	// echo $query;
+	$req=$db->prepare($query);
+
+	$req->execute();
+	// echo $req->rowCount();
+	$products=[];
+	while($res=$req->fetch(PDO::FETCH_ASSOC))
+		array_push($products, getProductById($db,$res['idProduit']));
+
+	return $products;
+}
+
+
 function getProductPrice($db,$id)
 {
 	$req = $db->prepare('select prix from produit where idProduit = :id');
