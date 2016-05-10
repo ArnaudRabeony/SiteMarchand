@@ -139,32 +139,34 @@ function filters($db)
 	echo '<div class="row" id="filtersContainer">
             <button id="expandFilters" class="btn btn-sm btn-default">Filtres</button>
             <br>
+            <i style="font-size:0.85em">Les combinaisons de filtres peuvent se faire en séléctionnant, dans un premier temps, une ou plusieurs catégories puis la ou les tailles désirées. </i>
             <div id="filtersGrid" class="col-md-12" style="margin-left:-15px;">
-                <div id="categoryFiltersContainer" class="col-md-6 list-group">
+                <div id="categoryFiltersContainer" class="col-md-4 list-group">
                     <h4><small>Catégories</small></h4>';
 
                                 $categories = getAllCategories($db);
 
                                 foreach ($categories as $value)
-                                	echo '<span class="col-md-4"><label class="list-group-item" data-selected=false>'.$value['nomCategorie'].'</label></span>';
+                                	echo '<label class="list-group-item col-md-2" data-selected=false>'.$value['nomCategorie'].'</label>';
 
                          
                     
-    echo    '</div>
-                <div id="sizeFiltersContainer" class="col-md-6">
+    echo       '</div>
+                <div id="sizeFiltersContainer" class="col-md-8">
                     <h4><small>Tailles</small></h4>';
 
                                 $sizes = getAllTaille($db);
 
                                 foreach ($sizes as $value) 
-                                	echo '<span class="col-md-3"><label class="list-group-item" data-selected=false>'.$value['nomTaille'].'</label></span>';
+                                	echo '<label class="list-group-item col-md-2" data-selected=false>'.$value['nomTaille'].'</label>';
                     
-    echo '            </div>
-    <div id="priceFiltersContainer" class="col-md-12" style="background-color:red">
-                    <h4><small>Prix</small></h4>';                    
-    echo '  </div>
-            </div>
-            
+    echo '      </div>
+    			<div id="priceFiltersContainer" class="col-md-4">
+                    <h4><small>Prix</small></h4>
+					  <p><input type="text" id="amount" readonly style="border:0; color:#36899E; font-weight:bold;"></p>
+                   <div id="slider-range"></div>';                    
+    echo '  	</div>
+            </div> 
         </div>';
 }
 

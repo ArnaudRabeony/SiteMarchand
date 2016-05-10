@@ -658,6 +658,9 @@ button
 #filtersGrid label
 {
 	font-weight: normal;
+	font-size: 0.7em;
+	padding-top: 8px !important;
+	margin : 3px 3px;
 }
 
 #categoryFiltersContainer .list-group-item, #sizeFiltersContainer .list-group-item

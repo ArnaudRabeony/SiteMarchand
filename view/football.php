@@ -41,9 +41,41 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
     </div>
 
 <script src="js/jquery.js"></script>
+<!-- <script src="js/ion.rangeSlider.min.js"></script> -->
 <script>
     $(function()
     {
+
+       $("#slider-range" ).slider({
+          range: true,
+          min: 0,
+          max: 250,
+          values: [ 0, 250 ],
+          slide: function( event, ui ) 
+          {
+            $( "#amount" ).val(ui.values[ 0 ] + "€ - " + ui.values[ 1 ]+"€");
+
+            $(".thumbnail").each(function()
+            {
+                $(this).parent().show();
+                
+                var price = $(this).find('.caption h4').text().trim().replace("€","");
+
+                // alert(price);
+                var show = false;
+
+                if(price>=ui.values[0] && price<=ui.values[1])
+                    show=true;
+
+                if(!show)
+                    $(this).parent().hide();
+            });
+          }
+        });
+
+       $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+      "€ - " + $( "#slider-range" ).slider( "values", 1 )+"€" );
+
         $('#expandFilters').click(function()
         {
             $('#filtersGrid').toggle("fast");
@@ -102,25 +134,36 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 
             $(".thumbnail").each(function()
             {
+                $(this).parent().show();
+                
                 var sizes = $(this).find('.availableSizes').text().trim();
 
                 var availableSizes=sizes.split(",");
 
-                var show = false;
-
-                for(var i = 0; i<filtersArray.length;i++)
-                {
-                    for (var j = 0; j < availableSizes.length; j++) 
-                    {
-                        if(availableSizes[j]==filtersArray[i])
-                            show=true;
-                    }
+                for (var i = 0; i < availableSizes.length; i++) {
+                    availableSizes[i] = availableSizes[i].trim();
                 }
 
-                if(!show)
-                    $(this).parent().hide();
-                else
+                var show = false;
+
+                if(filtersArray.length == 0)
                     $(this).parent().show();
+                else
+                {
+                    for(var i = 0; i<filtersArray.length;i++)
+                    {
+                        // alert("search "+filtersArray[i]+" in ["+availableSizes+ "]   :  "+ $.inArray( filtersArray[i], availableSizes));
+                        for (var j = 0; j < availableSizes.length; j++)
+                        {
+                            // alert(availableSizes[j]+"("+availableSizes[j].length+")==="+filtersArray[i]+"("+filtersArray[i].length+")");
+                            if(availableSizes[j].trim()===filtersArray[i].trim())
+                                show = true;
+                        }
+                    }
+
+                    if(!show)
+                        $(this).parent().hide();
+                }
             });
         });
     });

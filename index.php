@@ -49,6 +49,8 @@
 
     <link href="css/animate.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 </head>
 
 <body>
@@ -96,6 +98,8 @@
 
      <!-- ElevateZoom -->
     <script src="js/jquery.elevatezoom.js"></script>
-</body>
+    <script src="js/jquery-ui.min.js"></script>
+<!--     <script src="js/ion.rangeSlider.min.js"></script>
+ --></body>
 
 </html>
