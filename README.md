@@ -10,23 +10,23 @@
 * [Resolved] Update users fields : sets type value to 0
 * [Resolved] Auto connection after account creation
 
-
 ## TODO :
-* Price filter (jquery ui slider :https://jqueryui.com/slider/#range)
-* Size filter : check every stock (workaround : hide div in js)
-* update stock depending on orders
+* Add filters to Brands pages
 * Create a Notification table (idOrder,idClient,idEtat) containing the idEtat in pending validation (has to be updated by the admin)
-* XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
-* Delete idTaille from produit table
 * basketItems number : increment regarding products or qty ?
 * Connection on the fly -> add product to basket
 * Connection on the fly -> show the modal before selections checking
 * create an icon menu regarding the scrollTop position
 * Display all products on a page and use a string filter
-* Manage long description display (substr ?)
-* Q : Creation of the filter section
 
 #### Done
+* XLS IMPORT WON'T WORK ! The db structure has changed -> no more idTaille in Produit
+* Delete idTaille from produit table
+* Manage long description display (substr ?)
+* Q : Creation of the filter section
+* Price filter (jquery ui slider :https://jqueryui.com/slider/#range)
+* Size filter : check every stock (workaround : hide div in js)
+* update stock depending on orders
 * Category filter
 * Use the carousel as a product filter (by brand, sport...)
 * hide table container if the ordering page is empty (after deletion)

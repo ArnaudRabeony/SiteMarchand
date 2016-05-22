@@ -628,8 +628,8 @@ button
 
 #creditCard input
 {
-/*	width:50%;
-*/	position: relative;
+	width:50%;
+	position: relative;
 	left: 160px;
 }
 

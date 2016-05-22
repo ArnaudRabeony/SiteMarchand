@@ -4,24 +4,9 @@ require_once(dirname(__FILE__) . '/../model/sport.php');
 require_once(dirname(__FILE__) . '/../model/produit.php');
 require_once(dirname(__FILE__) . '/../controller/sportController.php');
 require_once(dirname(__FILE__) . '/../view/clientProducts.php');
+require_once(dirname(__FILE__) . '/../model/functions.php');
 
-?>
-			<form class="form-inline">
-			<div id="searchContainer" class="form-inline col-md-6">
-				<div class="form-group ">
-					<select class="form-control col-md-2" name="searchBy" id="searchBy">
-						<option value="all">Tout</option>
-						<option value="ref">Référence</option>
-						<option value="brand">Marque</option>
-						<option value="label">Libelle</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" id="searchInBase" name="searchInBase" placeholder="Nike, 45, Maillot...">
-			    </div>
-			</div><br><br>
-			</form>
-<?php 
+
 	// $footballArray = getSportProducts($db, 'Football');
  //    displayProductList($db, $footballArray);
  //    $basketballArray = getSportProducts($db, 'Basketball');
@@ -62,8 +47,134 @@ if(verifGet(array("filter")))
 				$array = getProductBySportId($db, $sportId);
 			break;
 	}
-
+	// filters($db);
 	displayProductList($db, $array);
-
 }
 ?>
+<script src="js/jquery.js"></script>
+<script>
+	$(function()
+    {
+
+       $("#slider-range" ).slider({
+          range: true,
+          min: 0,
+          max: 250,
+          values: [ 0, 250 ],
+          slide: function( event, ui ) 
+          {
+            $( "#amount" ).val(ui.values[ 0 ] + "€ - " + ui.values[ 1 ]+"€");
+
+            $(".thumbnail").each(function()
+            {
+                $(this).parent().show();
+                
+                var price = $(this).find('.caption h4').text().trim().replace("€","");
+
+                // alert(price);
+                var show = false;
+
+                if(price>=ui.values[0] && price<=ui.values[1])
+                    show=true;
+
+                if(!show)
+                    $(this).parent().hide();
+            });
+          }
+        });
+
+       $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+      "€ - " + $( "#slider-range" ).slider( "values", 1 )+"€" );
+
+       	$('body').on("click",'#expandFilters',function()
+        {
+            $('#filtersGrid').toggle("fast");
+        });
+
+        $('body').on("click","#categoryFiltersContainer label",function()
+        {
+            var checked = $(this).attr("data-selected")=="true";
+
+            if(!checked)
+                $(this).attr("data-selected","true").addClass("filterShadow");
+            else
+                $(this).attr("data-selected","false").removeClass("filterShadow");
+
+
+            var filtersArray = [];
+
+            $('#categoryFiltersContainer label').each(function()
+            {
+                // alert($(this).text()+" : "+$(this).attr("data-selected"));
+
+                if($(this).attr("data-selected")=="true")
+                    filtersArray.push($(this).text());
+            });
+
+            // alert(filtersArray);
+
+            $.get("js/ajax/filteredProducts.php",
+            {
+                filters:JSON.stringify(filtersArray),
+                sport:"basketball"
+            },function(response)
+            {  
+                $("#productList").html(response);
+            });
+        });
+
+        $('body').on("click","#sizeFiltersContainer label",function()
+        {
+            var checked = $(this).attr("data-selected")=="true";
+
+            if(!checked)
+                $(this).attr("data-selected","true").addClass("filterShadow");
+            else
+                $(this).attr("data-selected","false").removeClass("filterShadow");
+
+            var filtersArray = [];
+
+            $('#sizeFiltersContainer label').each(function()
+            {
+                if($(this).attr("data-selected")=="true")
+                    filtersArray.push($(this).text());
+            });
+
+            // alert(filtersArray);
+
+            $(".thumbnail").each(function()
+            {
+                $(this).parent().show();
+                
+                var sizes = $(this).find('.availableSizes').text().trim();
+
+                var availableSizes=sizes.split(",");
+
+                for (var i = 0; i < availableSizes.length; i++) {
+                    availableSizes[i] = availableSizes[i].trim();
+                }
+
+                var show = false;
+
+                if(filtersArray.length == 0)
+                    $(this).parent().show();
+                else
+                {
+                    for(var i = 0; i<filtersArray.length;i++)
+                    {
+                        // alert("search "+filtersArray[i]+" in ["+availableSizes+ "]   :  "+ $.inArray( filtersArray[i], availableSizes));
+                        for (var j = 0; j < availableSizes.length; j++)
+                        {
+                            // alert(availableSizes[j]+"("+availableSizes[j].length+")==="+filtersArray[i]+"("+filtersArray[i].length+")");
+                            if(availableSizes[j].trim()===filtersArray[i].trim())
+                                show = true;
+                        }
+                    }
+
+                    if(!show)
+                        $(this).parent().hide();
+                }
+            });
+        });
+    });
+</script>

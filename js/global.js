@@ -377,7 +377,7 @@ $(document).ready(function()
 				orderId:orderId
 			},function(response)
 			{
-				$("#notEmptyBasket").html(response);
+				$("#notEmptyOrderTable").html(response);
 			});
 		// }
 			// alert("update status where idcommande = "+orderId);
@@ -397,7 +397,7 @@ $(document).ready(function()
 			orderIdUpdateBack:orderId
 		},function(response)
 		{
-			$("#notEmptyBasket").html(response);
+			$("#notEmptyOrderTable").html(response);
 		});
 
 		e.stopPropagation();

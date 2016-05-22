@@ -70,7 +70,7 @@ function displayOrdersByClient($db,$idClient)
 		$icone="";
 
 		$display = $value['idEtat']==$statusNb ? 'style="display:none"' : "";
-		$displayRemoveCross = $value['idEtat']==$statusNb ? ' display:none;' : "";
+		$displayRemoveCross = $value['idEtat']!=1 ? ' display:none;' : "";
 
 		switch ($value['idEtat'])
 			{
