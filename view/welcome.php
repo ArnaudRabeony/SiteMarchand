@@ -4,7 +4,7 @@
 	require_once(dirname(__FILE__) . '/../model/categorie_produit.php');
 	require_once(dirname(__FILE__) . '/../model/marque.php');
 
-    $images = array("Football"=>"images/Carousel/nikeFootball.jpg","Adidas"=>"images/Carousel/adidas.jpg","Nike"=>"images/Carousel/nike.png","asketball"=>"images/Carousel/basket.jpg");
+    $images = array("Football"=>"images/Carousel/nikeFootball.jpg","Adidas"=>"images/Carousel/adidas.jpg","Nike"=>"images/Carousel/nike.png","Basketball"=>"images/Carousel/basket.jpg");
 
     displayCarousel($db,$images);
 	 ?>
