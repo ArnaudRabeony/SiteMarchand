@@ -83,7 +83,7 @@ if(pageRestriction(array("admin","client")))
 						Pour supprimer votre compte, cliquez sur le bouton ci-dessous. Vous serez alors invité(e) à confirmer cette action en renseingnant votre mot de passe.	
 					</div>
 			</p>
-			<button id="deleteMyAccount" class="btn btn-default btn-sm" disabled>Supprimer mon compte</button>
+			<button id="deleteMyAccount" class="btn btn-default btn-sm">Supprimer mon compte</button>
 		</div>
 	</div>
 	

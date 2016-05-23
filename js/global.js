@@ -435,4 +435,15 @@ $('form button').click(function(e)
 		}
 	});
 
+	
+	$("body").on('click',".deleteButton",function()
+	{	
+		var id = $(this).parent().parent().attr("id").replace("row",'');
+
+		$.post("js/ajax/deleteCustomer.php",
+		{
+			id:id
+		});
+	});
+
 });

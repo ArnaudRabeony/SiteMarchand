@@ -1,7 +1,7 @@
 <?php
 
 // echo realpath("../");
-require_once(dirname(__FILE__) . '/../../connection.php');
+require_once(dirname(__FILE__) . '/../connection.php');
 
 require_once(dirname(__FILE__) . '/../../model/marque.php');
 require_once(dirname(__FILE__) . '/../../model/categorie_produit.php');

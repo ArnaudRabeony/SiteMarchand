@@ -192,7 +192,7 @@ function deleteUserById($db,$id)
 	$req->bindValue(':id',$id);
 	$req->execute();
 
-	return $getCustomerById($db,$id)==null ? true : false;
+	return getCustomerById($db,$id)==null ? true : false;
 }
 
 function oneselfUpdate($db,$id,$lastname,$firstname,$email,$address,$phone)
