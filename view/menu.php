@@ -108,7 +108,6 @@ if($connected)
                     <li class="list-group-item"><a href="index.php?page=view/football"style="padding: 0px 0px">Football</a></li>
                     <li class="list-group-item"><a href="index.php?page=view/basketball">Basketball</a></li>
                     <li class="list-group-item"><a href="index.php?page=view/rugby">Rugby</a></li>
-                    <li class="list-group-item"><a href="index.php?page=view/tennis">Tennis</a></li>
                   </ul>
                 </div>
               </div>
