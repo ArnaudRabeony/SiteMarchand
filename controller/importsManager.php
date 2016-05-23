@@ -3,11 +3,11 @@
 // echo realpath("../");
 require_once(dirname(__FILE__) . '/../connection.php');
 
-require_once(dirname(__FILE__) . '/../../model/marque.php');
-require_once(dirname(__FILE__) . '/../../model/categorie_produit.php');
-require_once(dirname(__FILE__) . '/../../model/taille.php');
-require_once(dirname(__FILE__) . '/../../model/sport.php');
-require_once(dirname(__FILE__) . '/../../model/produit.php');
+require_once(dirname(__FILE__) . '/../model/marque.php');
+require_once(dirname(__FILE__) . '/../model/categorie_produit.php');
+require_once(dirname(__FILE__) . '/../model/taille.php');
+require_once(dirname(__FILE__) . '/../model/sport.php');
+require_once(dirname(__FILE__) . '/../model/produit.php');
 
 //  Include PHPExcel_IOFactory
 include 'PHPExcel_1/Classes/PHPExcel/IOFactory.php';

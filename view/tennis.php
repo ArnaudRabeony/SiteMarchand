@@ -15,7 +15,7 @@ $status= $connected ? 'data-status="connected"' :  'data-status="disconnected"' 
 
         <?php
 
-            $rf = getProductByLabel($db,"Nike Team Court Polo")[0];
+            $rf = getProductByLabel($db,"T-Shirt Federer")[0];
             $images = array($rf["idProduit"]=>"images/Carousel/rf1.jpg");
 
             displayCarousel($db,$images);

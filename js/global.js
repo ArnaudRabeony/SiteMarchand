@@ -443,6 +443,9 @@ $('form button').click(function(e)
 		$.post("js/ajax/deleteCustomer.php",
 		{
 			id:id
+		},function(response)
+		{
+			$('#customersTable tbody').html(response);
 		});
 	});
 
